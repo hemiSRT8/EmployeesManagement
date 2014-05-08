@@ -10,11 +10,11 @@ public class Developer extends Employee {
         //default constructor
     }
 
-    public Developer(long id, String firstName, String lastName, Date dateOfBirth,
-                        double wage, double bonus, double penalty, double salary,
-                        int linesOfCode) {
+    public Developer(long id, String lastName, String firstName, Date dateOfBirth,
+                     double wage, double bonus, double penalty, double salary,
+                     int linesOfCode) {
 
-        super(id, firstName, lastName, dateOfBirth, wage, bonus, penalty, salary);
+        super(id, lastName, firstName, dateOfBirth, wage, bonus, penalty, salary);
         this.linesOfCode = linesOfCode;
     }
 

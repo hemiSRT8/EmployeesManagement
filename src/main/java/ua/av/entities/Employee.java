@@ -7,8 +7,8 @@ import static ua.av.constants.Constants.SIMPLE_DATE_FORMAT;
 public abstract class Employee {
 
     private long id;
-    private String firstName;
     private String lastName;
+    private String firstName;
     private Date dateOfBirth;
     private double wage;
     private double bonus;
@@ -19,12 +19,12 @@ public abstract class Employee {
         //default constructor
     }
 
-    protected Employee(long id, String firstName, String lastName, Date dateOfBirth,
+    protected Employee(long id, String lastName, String firstName, Date dateOfBirth,
                        double wage, double bonus, double penalty, double salary) {
 
         this.id = id;
-        this.firstName = firstName;
         this.lastName = lastName;
+        this.firstName = firstName;
         this.dateOfBirth = dateOfBirth;
         this.wage = wage;
         this.bonus = bonus;
@@ -38,8 +38,8 @@ public abstract class Employee {
 
     @Override
     public String toString() {
-        return "First name :" + firstName + "\n"
-                + "Last name : " + lastName + "\n"
+        return "Last name : " + lastName + "\n" +
+                "First name :" + firstName + "\n"
                 + "Date of birth : " + SIMPLE_DATE_FORMAT.format(dateOfBirth) + "\n"
                 + "Wage : " + wage + "\n"
                 + "Bonus :" + bonus + "\n"

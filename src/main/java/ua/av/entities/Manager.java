@@ -11,11 +11,11 @@ public class Manager extends Employee {
         //default constructor
     }
 
-    public Manager(long id, String firstName, String lastName, Date dateOfBirth,
-                      double wage, double bonus, double penalty, double salary,
-                      double amountOfSales, double percentageOfSales) {
+    public Manager(long id, String lastName, String firstName, Date dateOfBirth,
+                   double wage, double bonus, double penalty, double salary,
+                   double amountOfSales, double percentageOfSales) {
 
-        super(id, firstName, lastName, dateOfBirth, wage, bonus, penalty, salary);
+        super(id, lastName, firstName, dateOfBirth, wage, bonus, penalty, salary);
         this.amountOfSales = amountOfSales;
         this.percentageOfSales = percentageOfSales;
     }
