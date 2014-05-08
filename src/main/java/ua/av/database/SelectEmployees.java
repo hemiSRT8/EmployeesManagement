@@ -39,12 +39,16 @@ public class SelectEmployees {
                 while (managersResultSet.next()) {
                     managers.add(
                             new Manager(
-                                    managersResultSet.getLong(1),
-                                    managersResultSet.getString(2), managersResultSet.getString(3),
-                                    managersResultSet.getDate(4),
-                                    managersResultSet.getDouble(5), managersResultSet.getDouble(6), managersResultSet.getDouble(7),
-                                    managersResultSet.getDouble(8),
-                                    managersResultSet.getDouble(10), managersResultSet.getDouble(11))
+                                    managersResultSet.getLong("id"),
+                                    managersResultSet.getString("lastName"),
+                                    managersResultSet.getString("firstName"),
+                                    managersResultSet.getDate("dateOfBirth"),
+                                    managersResultSet.getDouble("wage"),
+                                    managersResultSet.getDouble("bonus"),
+                                    managersResultSet.getDouble("penalty"),
+                                    managersResultSet.getDouble("salary"),
+                                    managersResultSet.getDouble("amountOfSales"),
+                                    managersResultSet.getDouble("percentageOfSales"))
                     );
                 }
             }
@@ -79,13 +83,18 @@ public class SelectEmployees {
         try {
             if (developersResultSet != null) {
                 while (developersResultSet.next()) {
-                    developers.add(new Developer(
-                            developersResultSet.getLong(1),
-                            developersResultSet.getString(2), developersResultSet.getString(3),
-                            developersResultSet.getDate(4),
-                            developersResultSet.getDouble(5), developersResultSet.getDouble(6), developersResultSet.getDouble(7),
-                            developersResultSet.getDouble(8),
-                            developersResultSet.getInt(10)));
+                    developers.add(
+                            new Developer(
+                                    developersResultSet.getLong("id"),
+                                    developersResultSet.getString("lastName"),
+                                    developersResultSet.getString("firstName"),
+                                    developersResultSet.getDate("dateOfBirth"),
+                                    developersResultSet.getDouble("wage"),
+                                    developersResultSet.getDouble("bonus"),
+                                    developersResultSet.getDouble("penalty"),
+                                    developersResultSet.getDouble("salary"),
+                                    developersResultSet.getInt("linesOfCode"))
+                    );
                 }
             }
         } catch (SQLException e) {
@@ -121,12 +130,15 @@ public class SelectEmployees {
                 while (cleanersResultSet.next()) {
                     cleaners.add(
                             new Cleaner(
-                                    cleanersResultSet.getLong(1),
-                                    cleanersResultSet.getString(2), cleanersResultSet.getString(3),
-                                    cleanersResultSet.getDate(4),
-                                    cleanersResultSet.getDouble(5), cleanersResultSet.getDouble(6), cleanersResultSet.getDouble(7),
-                                    cleanersResultSet.getDouble(8),
-                                    cleanersResultSet.getInt(10))
+                                    cleanersResultSet.getLong("id"),
+                                    cleanersResultSet.getString("lastName"),
+                                    cleanersResultSet.getString("firstName"),
+                                    cleanersResultSet.getDate("dateOfBirth"),
+                                    cleanersResultSet.getDouble("wage"),
+                                    cleanersResultSet.getDouble("bonus"),
+                                    cleanersResultSet.getDouble("penalty"),
+                                    cleanersResultSet.getDouble("salary"),
+                                    cleanersResultSet.getInt("amountOfCleanedOffices"))
                     );
                 }
             }
