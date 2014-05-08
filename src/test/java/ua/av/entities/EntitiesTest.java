@@ -4,9 +4,9 @@ import org.junit.Test;
 
 import java.util.Calendar;
 
-import static ua.av.constants.Constants.SIMPLE_DATE_FORMAT;
 import static java.util.Calendar.*;
 import static org.junit.Assert.*;
+import static ua.av.constants.Constants.SIMPLE_DATE_FORMAT;
 
 public class EntitiesTest {
 
@@ -14,11 +14,11 @@ public class EntitiesTest {
     public void testEmployee() {
         Employee employee = new Manager();
 
-        employee.setFirstName("Artem");
         employee.setLastName("Khvorov");
+        employee.setFirstName("Artem");
         employee.setId(69);
-        assertEquals(employee.getFirstName(), "Artem");
         assertEquals(employee.getLastName(), "Khvorov");
+        assertEquals(employee.getFirstName(), "Artem");
         assertTrue(employee.getId() == 69);
 
         employee.setWage(5);
@@ -43,7 +43,7 @@ public class EntitiesTest {
         calendar.set(Calendar.MONTH, JANUARY);
         calendar.set(Calendar.DAY_OF_MONTH, 5);
 
-        Developer developer = new Developer(1, "Vita", "Ievleva", calendar.getTime(), 10000, 500, 35, 0, 1000);
+        Developer developer = new Developer(1, "Ievleva", "Vita", calendar.getTime(), 10000, 500, 35, 0, 1000);
 
         assertTrue(developer.getId() == 1);
         assertEquals(developer.getFirstName(), "Vita");

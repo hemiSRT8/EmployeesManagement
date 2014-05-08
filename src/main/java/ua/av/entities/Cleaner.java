@@ -10,10 +10,10 @@ public class Cleaner extends Employee {
         //default constructor
     }
 
-    public Cleaner(long id, String firstName, String lastName, Date dateOfBirth,
-                      double wage, double bonus, double penalty, double salary,
-                      int amountOfCleanedOffices) {
-        super(id, firstName, lastName, dateOfBirth, wage, bonus, penalty, salary);
+    public Cleaner(long id, String lastName, String firstName, Date dateOfBirth,
+                   double wage, double bonus, double penalty, double salary,
+                   int amountOfCleanedOffices) {
+        super(id, lastName, firstName, dateOfBirth, wage, bonus, penalty, salary);
         this.amountOfCleanedOffices = amountOfCleanedOffices;
     }
 
