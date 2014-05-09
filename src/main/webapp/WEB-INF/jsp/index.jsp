@@ -140,7 +140,9 @@
                     	</form>
 
                         <form class="deleteAction" action="deleteEmployee.html" method="POST">
-                            <button type = "submit" name = "deleteEmployee" value = "${developer.getId()}"> <img src="img/delete.png"> </button>
+                            <button type = "submit" name = "deleteEmployee" value = "${developer.getId()}" onclick="infoBox()">
+                                <img src="img/delete.png">
+                            </button>
                         </form>
                     </td>
 				</tr>
@@ -178,7 +180,9 @@
                             </form>
 
                             <form class="deleteAction" action="deleteEmployee.html" method="POST">
-                                <button type = "submit" name = "deleteEmployee" value = "${cleaner.getId()}"> <img src="img/delete.png"> </button>
+                                <button type = "submit" name = "deleteEmployee" value = "${cleaner.getId()}" onclick="infoBox()">
+                                    <img src="img/delete.png">
+                                </button>
                             </form>
 					</td>
 				</tr>
