@@ -68,7 +68,7 @@
     <br>
 
     <div id="managersMainTableContainer" style="display:none;">
-		<table class="employeesMainTable" cellspacing="0">
+		<table class="employeesMainTable" cellspacing="0" cellpadding="1px">
 			<tr>
 				<th>Last name</th>
 				<th>First name</th>
@@ -94,10 +94,13 @@
 				   <td>${manager.getAmountOfSales()}</td>
 				   <td>${manager.getPercentageOfSales()}</td>
 				   <td>
-						<div id="actionForm">
-							<img src="img/view.png">
-							<img src="img/delete.png">
-						</div>
+						<form class="viewAction" action="" method="POST">
+							<button type = "submit" name = "viewEmployee" value = ""> <img src="img/view.png"> </button>
+					    </form>
+
+					    <form class="deleteAction" action="deleteEmployee.html" method="POST">
+                        	<button type = "submit" name = "deleteEmployee" value = "${manager.getId()}"> <img src="img/delete.png"> </button>
+                        </form>
 				   </td>
 				</tr>
 			  </c:forEach>
@@ -130,11 +133,14 @@
 					<td>${developer.getSalary()}</td>
 					<td>${developer.getLinesOfCode()}</td>
 					<td>
-						<div id="actionForm">
-							<img src="img/view.png">
-					     	<img src="img/delete.png">
-						</div>
-					</td>
+                    	<form class="viewAction" action="" method="POST">
+                    	    <button type = "submit" name = "viewEmployee" value = ""> <img src="img/view.png"> </button>
+                    	</form>
+
+                        <form class="deleteAction" action="deleteEmployee.html" method="POST">
+                            <button type = "submit" name = "deleteEmployee" value = "${developer.getId()}"> <img src="img/delete.png"> </button>
+                        </form>
+                    </td>
 				</tr>
 			</c:forEach>
         </table>
@@ -165,10 +171,13 @@
 					<td>${cleaner.getSalary()}</td>
 					<td>${cleaner.getAmountOfCleanedOffices()}</td>
 					<td>
-						<div id="actionForm">
-							<img src="img/view.png">
-							<img src="img/delete.png">
-						</div>
+							<form class="viewAction" action="" method="POST">
+                                <button type = "submit" name = "viewEmployee" value = ""> <img src="img/view.png"> </button>
+                            </form>
+
+                            <form class="deleteAction" action="deleteEmployee.html" method="POST">
+                                <button type = "submit" name = "deleteEmployee" value = "${cleaner.getId()}"> <img src="img/delete.png"> </button>
+                            </form>
 					</td>
 				</tr>
 			</c:forEach>
