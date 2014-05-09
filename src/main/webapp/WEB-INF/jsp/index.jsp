@@ -14,6 +14,7 @@
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="js/hideAndShow.js"></script>
+    <script src="js/infoBox.js"></script>
 </head>
 
 <body style="background: url(img/background.jpg);">
@@ -24,7 +25,6 @@
         <div id="employeesImg"> <img src="img/employees.png"> </div>
         <div id="signboard"> Manage employees</div>
     </center>
-
 
     <ul class="professions">
         <li>
@@ -99,7 +99,9 @@
 					    </form>
 
 					    <form class="deleteAction" action="deleteEmployee.html" method="POST">
-                        	<button type = "submit" name = "deleteEmployee" value = "${manager.getId()}"> <img src="img/delete.png"> </button>
+                        	<button type = "submit" name = "deleteEmployee" value = "${manager.getId()}" onclick="infoBox()">
+                        	        <img src="img/delete.png">
+                        	</button>
                         </form>
 				   </td>
 				</tr>
