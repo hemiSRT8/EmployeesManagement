@@ -42,7 +42,7 @@
 }
 
 #managersMainTableContainer {
-    margin : 50px;
+    margin : 43px;
     height : 400px;
     overflow: auto;
     margin-bottom:100px;
@@ -50,7 +50,7 @@
 }
 
 #developersMainTableContainer {
-    margin : 50px;
+    margin : 43px;
     height : 400px;
     overflow: auto;
     margin-bottom:100px;
@@ -58,7 +58,7 @@
 }
 
 #cleanersMainTableContainer {
-    margin : 50px;
+    margin : 43px;
     height : 400px;
     overflow: auto;
     margin-bottom:100px;
@@ -66,21 +66,18 @@
 }
 
 .employeesMainTable {
+    table-layout: fixed;
     width : 1000px;
     background-color:#FAEBD7;
 }
 
 .employeesMainTable td, tr, th {
-    padding: 6px 12px;
+    padding: 5px;
     border-collapse: separate;
     text-align:center;
     border-bottom: 1px solid #51626f;
     border-right: 1px solid #51626f;
     font-size : 11px;
-}
-
-#actionForm{
-    float:left;
 }
 
 #nameOfProfession {
@@ -93,10 +90,22 @@ ul.professions {
     list-style-type: none;
     margin-left : 260px;
     padding: 25px;
-   }
+}
 
 ul.professions > li {
     float:left;
     margin-right: 50px;
-    margin-bottom:50px;
-   }
+    margin-bottom : 50px;
+}
+
+.viewAction button {
+     border : 0 none;
+     background : none;
+     float : left;
+}
+
+.deleteAction button {
+     border : 0 none;
+     background : none;
+     float : right;
+}
