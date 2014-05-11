@@ -13,20 +13,18 @@
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script src="js/hideAndShow.js"></script>
-    <script src="js/infoBox.js"></script>
 </head>
 
 <body style="background: url(img/background.jpg);margin-top:100px">
 
-<div id="container">
+<div id="container" style="background : #FAEBD7;">
 
   <form action="editEmployeeResult.html" method="POST">
     <center>
-        <table class="employeesTable">
+        <table class="editEmployeeTable" cellspacing="0" style="border-left : 1px solid #51626f;">
             <thead>
                 <tr>
-                    <th colspan="2" >Fill in the form</th>
+                    <th colspan="2" >Edit employee</th>
                 </tr>
             </thead>
 
@@ -35,7 +33,7 @@
                      <td> <input type="text" name="id" value="${employee.getId()}"  /> </td>
                </tr>
 
-               <tr>
+               <tr style="font-weight:900;">
                     <td>Last Name</td>
                     <td><input type="text" name="lastName" value="" placeholder="${employee.getLastName()}" required /></td>
                 </tr>
@@ -114,19 +112,23 @@
             </tbody>
         </table>
 
-        <input type="submit" value="Submit"/>
-        <input type="submit" value="Reset" />
-
+        <br>
+        <input type="submit" value="Submit" style="color:green; font-weight:900;"/>
+        <input type="submit" value="Reset" style="color:red; font-weight:900;" />
+        <br><br>
     </center>
-
 	<!-- Container end -->
 </div>
+
+<center style="text-align:center;margin-top:20px;">
+        <a href="index.html"> <img src="img/homePage.png"> </a>
+</center>
 
 <div id="copyright">
     by A69V &copy; 2014
 <br>
     boss : Tolya
 </div>
-
 </body>
+
 </html>
