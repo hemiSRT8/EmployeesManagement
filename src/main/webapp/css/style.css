@@ -32,14 +32,14 @@ ul#menu li a{
 	background: url(../img/verticalMenu.png) no-repeat 0 0;
 	text-decoration:none;
 	width: 200px;
-	height: 38px;
+	height: 30px;
 	display:block;
 	border:none;
 }
 
 ul#menu li a:hover{
 	width: 200px;
-	height: 38px;
+	height: 30px;
 	display:block;
 	color:black;
 }
@@ -48,7 +48,7 @@ ul#menu li a {
 	font-weight : 900;
 	font-size:11px;
 	padding-top : 11px;
-	padding-left : 25px;
+	padding-left : 15px;
 }
 
 #copyright {
@@ -105,28 +105,62 @@ ul#menu li a {
 .employeesMainTable {
     table-layout: fixed;
     width : 1000px;
-    background-color:#FAEBD7;
+    background-color:#D8CEC1;
 }
 
 .employeesMainTable td, tr, th {
     padding: 5px;
-    border-collapse: separate;
+    border-collapse: collapse;
     text-align:center;
     border-bottom: 1px solid #51626f;
     border-right: 1px solid #51626f;
     font-size : 11px;
 }
 
+.salaryTable {
+    table-layout: fixed;
+    width : 1000px;
+    background-color:#FAEBD7;
+}
+
+.salaryTable td, tr, th {
+    padding: 25px;
+    border-collapse: collapse;
+    text-align:center;
+    border-bottom: 1px solid #51626f;
+    border-right: 1px solid #51626f;
+    font-size : 15px;
+}
+
+.editEmployeeTable {
+     table-layout: fixed;
+     width : 600px;
+     background-color:#FAEBD7;
+}
+
+.editEmployeeTable td, tr, th {
+    padding: 5px;
+    border-collapse: collapse;
+    text-align:center;
+    border-bottom: 1px solid #51626f;
+    border-right: 1px solid #51626f;
+    font-size : 15px;
+}
+
+.editEmployeeTable td {
+    font-weight:900;
+}
+
 #nameOfProfession {
     font-family : cuprum;
-    font-weight:900;
-    color:red;
+    font-weight : 900;
+    color : red;
 }
 
 ul.professions {
-    list-style-type: none;
+    list-style-type : none;
     margin-left : 260px;
-    padding: 25px;
+    padding : 25px;
 }
 
 ul.professions > li {
@@ -139,12 +173,12 @@ ul.professions > li {
      border : 0 none;
      background : none;
      cursor: pointer;
-     float:left;
+     float : left;
 }
 
 .deleteAction button {
      border : 0 none;
      background : none;
      cursor: pointer;
-     float:left;
+     float : left;
 }

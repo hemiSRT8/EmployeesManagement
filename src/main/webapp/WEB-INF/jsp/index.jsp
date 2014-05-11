@@ -19,7 +19,7 @@
 
 <body style="background: url(img/background.jpg);">
 
-<div id="container">
+<div id="container" style="background : #FAEBD7;">
 
     <center>
         <div id="employeesImg"> <img src="img/employees.png"> </div>
@@ -42,7 +42,7 @@
              <center>
                         <div id="nameOfProfession"> Developers </div>
                         <br>
-                        <img src="img/developer.jpg">
+                        <img src="img/developer.png">
                         <br>
                         <button style="cursor:pointer;" onClick=show2_onclick()> SHOW </button>
                         <button style="cursor:pointer;" onClick=hide2_onclick()> HIDE </button>
@@ -64,6 +64,7 @@
     <div id="mainMenuContainer">
         <ul id="menu">
            <li> <a href=""> Add employee </a> </li>
+           <li> <a href="salaryInformation.html"> Salary information </a> </li>
         </ul>
     </div>
 
@@ -74,7 +75,7 @@
     <br>
 
     <div id="managersMainTableContainer" style="display:none;">
-		<table class="employeesMainTable" cellspacing="0" cellpadding="1px">
+		<table class="employeesMainTable" cellspacing="0" >
 			<tr>
 				<th>Last name</th>
 				<th>First name</th>
@@ -206,6 +207,10 @@
 	
 	<!-- Container end -->
 </div>
+
+<center style="text-align:center;margin-top:20px;">
+        <a href="index.html"> <img src="img/homePage.png"> </a>
+</center>
 
 <div id="copyright">
     by A69V &copy; 2014
