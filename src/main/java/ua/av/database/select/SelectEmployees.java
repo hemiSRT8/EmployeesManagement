@@ -1,6 +1,7 @@
-package ua.av.database;
+package ua.av.database.select;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import ua.av.database.connector.ConnectorJDBC;
 import ua.av.entities.*;
 import ua.av.exception.BusinessException;
 

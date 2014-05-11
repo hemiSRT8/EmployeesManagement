@@ -1,7 +1,8 @@
-package ua.av.database;
+package ua.av.database.delete;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.context.request.WebRequest;
+import ua.av.database.connector.ConnectorJDBC;
 
 import javax.sql.DataSource;
 import java.sql.CallableStatement;
@@ -12,14 +13,13 @@ import static java.lang.Long.*;
 
 public class DeleteEmployee {
 
-    public int deleteEmployee(WebRequest request) {
+    public void deleteEmployee(WebRequest request) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
         ConnectorJDBC connectorJDBC = (ConnectorJDBC) context.getBean("connectorJDBC");
         DataSource dataSource = connectorJDBC.getDataSource();
         Connection connection = null;
 
-        long id = valueOf(request.getParameter("deleteEmployee"));
-        int resultRow = 0;
+        long id = valueOf(request.getParameter("deleteEmployeeId"));
 
         try {
             connection = dataSource.getConnection();
@@ -27,7 +27,8 @@ public class DeleteEmployee {
             CallableStatement callableStatement = connection.prepareCall("{call deleteEmployee(?)}");
             callableStatement.setLong("id", id);
 
-            resultRow = callableStatement.executeUpdate();
+            callableStatement.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -39,7 +40,5 @@ public class DeleteEmployee {
                 e.printStackTrace();
             }
         }
-
-        return resultRow;
     }
 }

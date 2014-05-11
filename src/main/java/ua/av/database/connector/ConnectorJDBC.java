@@ -1,4 +1,4 @@
-package ua.av.database;
+package ua.av.database.connector;
 
 import ua.av.exception.BusinessException;
 

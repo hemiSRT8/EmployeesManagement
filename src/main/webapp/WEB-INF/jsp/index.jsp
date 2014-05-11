@@ -3,7 +3,7 @@
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <meta http-equiv=Content-Type content='text/html; charset=utf-8'>
-<meta name="keywords" content="Company, developer, manager, cleaner, com.av.department">
+<meta name="keywords" content="Company, developer, manager, cleaner, department">
 <meta name="description" content="Web project: Company management">
 
 <title>Employees management</title>
@@ -14,7 +14,7 @@
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="js/hideAndShow.js"></script>
-    <script src="js/infoBox.js"></script>
+    <script src="js/showBox.js"></script>
 </head>
 
 <body style="background: url(img/background.jpg);">
@@ -33,8 +33,8 @@
                     <br>
                     <img src="img/manager.png">
                     <br>
-                    <button onClick=show1_onclick()> SHOW </button>
-                    <button onClick=hide1_onclick()> HIDE </button>
+                    <button style="cursor:pointer;" onClick=show1_onclick()> SHOW </button>
+                    <button style="cursor:pointer;" onClick=hide1_onclick()> HIDE </button>
             </center>
         </li>
 
@@ -44,8 +44,8 @@
                         <br>
                         <img src="img/developer.jpg">
                         <br>
-                        <button onClick=show2_onclick()> SHOW </button>
-                        <button onClick=hide2_onclick()> HIDE </button>
+                        <button style="cursor:pointer;" onClick=show2_onclick()> SHOW </button>
+                        <button style="cursor:pointer;" onClick=hide2_onclick()> HIDE </button>
              </center>
         </li>
 
@@ -55,11 +55,17 @@
                     <br>
                     <img src="img/cleaner.png">
                     <br>
-                    <button onClick=show3_onclick()> SHOW </button>
-                    <button onClick=hide3_onclick()> HIDE </button>
+                    <button style="cursor:pointer;" onClick=show3_onclick()> SHOW </button>
+                    <button style="cursor:pointer;" onClick=hide3_onclick()> HIDE </button>
              </center>
         </li>
     </ul>
+
+    <div id="mainMenuContainer">
+        <ul id="menu">
+           <li> <a href=""> Add employee </a> </li>
+        </ul>
+    </div>
 
     <br>
     <br>
@@ -94,12 +100,15 @@
 				   <td>${manager.getAmountOfSales()}</td>
 				   <td>${manager.getPercentageOfSales()}</td>
 				   <td>
-						<form class="viewAction" action="" method="POST">
-							<button type = "submit" name = "viewEmployee" value = ""> <img src="img/view.png"> </button>
-					    </form>
+				        <form class="editAction" action="editEmployee.html" method="POST">
+                        	<input type="hidden" name="profession" value="manager"/>
+                        	<button type = "submit" name = "editEmployeeId" value = "${manager.getId()}" title="Edit employee">
+                                    <img src="img/edit.png">
+                            </button>
+                        </form>
 
-					    <form class="deleteAction" action="deleteEmployee.html" method="POST">
-                        	<button type = "submit" name = "deleteEmployee" value = "${manager.getId()}" onclick="infoBox()">
+                        <form class="deleteAction" action="deleteEmployee.html" method="POST">
+                        	<button type = "submit" name = "deleteEmployeeId" value = "${manager.getId()}" title="Delete employee">
                         	        <img src="img/delete.png">
                         	</button>
                         </form>
@@ -109,7 +118,6 @@
 
 		</table>
     </div>
-
 
     <div id="developersMainTableContainer" style="display:none;">
         <table class="employeesMainTable" cellspacing="0">
@@ -135,12 +143,15 @@
 					<td>${developer.getSalary()}</td>
 					<td>${developer.getLinesOfCode()}</td>
 					<td>
-                    	<form class="viewAction" action="" method="POST">
-                    	    <button type = "submit" name = "viewEmployee" value = ""> <img src="img/view.png"> </button>
-                    	</form>
+                    	<form class="editAction" action="editEmployee.html" method="POST">
+                            <input type="hidden" name="profession" value="developer"/>
+                            <button type = "submit" name = "editEmployeeId" value = "${developer.getId()}" title="Edit employee">
+                                <img src="img/edit.png">
+                            </button>
+                        </form>
 
-                        <form class="deleteAction" action="deleteEmployee.html" method="POST">
-                            <button type = "submit" name = "deleteEmployee" value = "${developer.getId()}" onclick="infoBox()">
+                        <form class="deleteAction" action="deleteEmployee.html" method="POST"">
+                            <button type = "submit" name = "deleteEmployeeId" value = "${developer.getId()}" title="Delete employee">
                                 <img src="img/delete.png">
                             </button>
                         </form>
@@ -175,12 +186,15 @@
 					<td>${cleaner.getSalary()}</td>
 					<td>${cleaner.getAmountOfCleanedOffices()}</td>
 					<td>
-							<form class="viewAction" action="" method="POST">
-                                <button type = "submit" name = "viewEmployee" value = ""> <img src="img/view.png"> </button>
+						    <form class="editAction" action="editEmployee.html" method="POST">
+                                <input type="hidden" name="profession" value="cleaner"/>
+                                <button type = "submit" name = "editEmployeeId" value = "${cleaner.getId()}" title="Edit employee">
+                                    <img src="img/edit.png">
+                                </button>
                             </form>
 
                             <form class="deleteAction" action="deleteEmployee.html" method="POST">
-                                <button type = "submit" name = "deleteEmployee" value = "${cleaner.getId()}" onclick="infoBox()">
+                                <button type = "submit" name = "deleteEmployeeId" value = "${cleaner.getId()}" title="Delete employee">
                                     <img src="img/delete.png">
                                 </button>
                             </form>
