@@ -14,6 +14,43 @@
 	font-family : garlfield ;
 }
 
+#mainMenuContainer {
+    position:absolute;
+    float:left;
+    margin-top: -250px;
+    color:red;
+}
+
+ul#menu {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+}
+
+ul#menu li a{
+	color:#909090;
+	background: url(../img/verticalMenu.png) no-repeat 0 0;
+	text-decoration:none;
+	width: 200px;
+	height: 38px;
+	display:block;
+	border:none;
+}
+
+ul#menu li a:hover{
+	width: 200px;
+	height: 38px;
+	display:block;
+	color:black;
+}
+
+ul#menu li a {
+	font-weight : 900;
+	font-size:11px;
+	padding-top : 11px;
+	padding-left : 25px;
+}
+
 #copyright {
 	margin-top:10px;
 	color:#E5E5E5;
@@ -98,14 +135,16 @@ ul.professions > li {
     margin-bottom : 50px;
 }
 
-.viewAction button {
+.editAction button {
      border : 0 none;
      background : none;
-     float : left;
+     cursor: pointer;
+     float:left;
 }
 
 .deleteAction button {
      border : 0 none;
      background : none;
-     float : right;
+     cursor: pointer;
+     float:left;
 }
