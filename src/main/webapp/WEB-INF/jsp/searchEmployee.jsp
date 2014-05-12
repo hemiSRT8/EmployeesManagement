@@ -1,8 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored = "false"%>
+<%@ page contentType="" language="java" isELIgnored = "false"%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
-<meta http-equiv=Content-Type content='text/html; charset=utf-8'>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="keywords" content="Company, developer, manager, cleaner, department">
 <meta name="description" content="Web project: Company management">
 
