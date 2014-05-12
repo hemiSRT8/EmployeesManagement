@@ -1,6 +1,7 @@
 package ua.av.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,6 +18,11 @@ public class SearchEmployeeController {
     @RequestMapping(value = "searchEmployeeResult.html")
     public ModelAndView searchEmployeeResult(WebRequest request) {
         SearchEmployeeInDatabase search = new SearchEmployeeInDatabase();
-        return new ModelAndView("searchEmployeeResult", "foundEmployees", search.searchEmployee(request));
+        ModelMap modelMap = new ModelMap();
+
+        modelMap.addAttribute("foundEmployees", search.searchEmployee(request));
+        modelMap.addAttribute("lastName", request.getParameter("lastName"));
+
+        return new ModelAndView("searchEmployeeResult", modelMap);
     }
 }

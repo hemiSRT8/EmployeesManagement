@@ -1,7 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored = "false"%>
+<%@ page contentType="" language="java" isELIgnored = "false"%>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
-<meta http-equiv=Content-Type content='text/html; charset=utf-8'>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="keywords" content="Company, developer, manager, cleaner, department">
 <meta name="description" content="Web project: Company management">
 
@@ -19,15 +20,23 @@
 <div id="container" style="background : #FAEBD7;padding-bottom:50px;">
 
    <center style="margin-bottom:50px;margin-top:20px">
-   <img src="img/result.png"> <br>
            <c:choose>
                <c:when test="${foundEmployees.size() == 0}">
-                   No employees with this last name were found ! <br>
-                   <a href="/searchEmployee.html"> Try again ! </a>
+                   <img src="img/tryagain.png"> <br>
+ <br>
+                   <div class="failOperationContainer" style="padding-bottom:30px;">
+                     No employees were found with "${lastName}" last name
+                   </div>
+<br>
+                   <a href="searchEmployee.html"> Try again ! </a>
                </c:when>
 
                <c:when test="${foundEmployees.size() == 1}">
-                   1 employee with this last name was found ! <br>
+
+                <div class="successOperationContainer">
+                  <b style="color:red"> 1 </b> employee was found with last name <b style="color:red"> ${lastName} </b>
+               </div>
+<br>
                    <table class="searchResultsSingleTable" cellspacing="0" >
 						
 					<c:if test="${foundEmployees.get(0).getClass().name == 'ua.av.entities.Manager'}">
@@ -178,7 +187,12 @@
    				</table>
                </c:when>
 
-<c:otherwise>
+              <c:otherwise>
+               <div class="successOperationContainer">
+                  <b style="color:red">  ${foundEmployees.size()} </b> employees were found with last name <b style="color:red"> ${lastName} </b>
+               </div>
+<br>
+                 <img src="img/result.png"> <br>
    				<c:forEach items="${foundEmployees}" var="employee">
    					<table class="searchResultsMultipleTable" cellspacing="0">
    					

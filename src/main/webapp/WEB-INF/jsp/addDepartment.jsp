@@ -15,28 +15,24 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
-<body style="background: url(img/background.jpg);">
+<body style="background: url(img/background.jpg);margin-top:100px">
 
 <div id="container" style="background : #FAEBD7;">
+    <center style="font-weight:900;color:green;padding-top:20px;font-family:cuprum;font-size:20px;">
+        Add department
+    </center>
 
-<center>
-    <img src="img/salary.png">
-      <table class="salaryTable" cellspacing="0" style="margin-top:100px;margin-bottom:40px; background-color:#D8CEC1;border-left : 1px solid #51626f;border-top : 1px solid #51626f;">
-                <tr style="font-weight:900;">
-                    <th> Salary expense </th>
-                    <th> Average salary </th>
-                    <th> Max salary </th>
-                    <th> Min salary </th>
-                </tr>
+    <div style="margin-bottom:50px;padding-left:55px;padding-top:20px;">
+    <img src="img/department.png" style="float:right;">
 
-                <tr>
-                    <td> ${expense} </td>
-                    <td> ${averageSalary} </td>
-                    <td> ${maxSalary} </td>
-                    <td> ${minSalary} </td>
-                </tr>
-      </table>
-<center>
+        <form action="addDepartmentResult.html" method="POST">
+            <input style="width:200px;height:30px;border:1px solid black;" type="text" name="departmentName" value="" placeholder= "Name of the department" required />
+            <br><br>
+            <input style="width:200px;height:30px;border:1px solid black;" type="text" name="amountOfEmployees" value="" placeholder= "Amount of employees" required />
+            <br><br>
+            <button type="submit"> Submit </button>
+        </form>
+    </div>
 
 	<!-- Container end -->
 </div>
@@ -50,6 +46,6 @@
 <br>
     boss : Tolya
 </div>
-
 </body>
+
 </html>
