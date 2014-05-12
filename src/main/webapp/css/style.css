@@ -182,3 +182,56 @@ ul.professions > li {
      cursor: pointer;
      float : left;
 }
+
+input[type=search] {
+    padding: 10px;
+    border: 1px solid black;
+    height:25px;
+    width:222px;
+}
+
+.searchResultsMultipleTable {
+    width:450px;
+    table-layout-fixed;
+    background-color:#D8CEC1;
+    float:left;
+    margin-left:67px;
+    margin-top:20px;
+}
+
+.searchResultsMultipleTable td, tr, th {
+    padding: 5px;
+    border-collapse: collapse;
+    text-align:center;
+    border-bottom: 1px solid #51626f;
+    border-right: 1px solid #51626f;
+    font-size : 15px;
+}
+
+.searchResultsSingleTable {
+    width:300px;
+    table-layout-fixed;
+    background-color:#D8CEC1;
+}
+
+.searchResultsSingleTable td, tr, th {
+    padding: 5px;
+    border-collapse: collapse;
+    text-align:center;
+    border-bottom: 1px solid #51626f;
+    border-right: 1px solid #51626f;
+    font-size : 15px;
+}
+
+.editActionSearchForm button {
+     border : 0 none;
+     background : none;
+     cursor: pointer;
+     margin-bottom:10px;
+}
+
+.deleteActionSearchForm button {
+     border : 0 none;
+     background : none;
+     cursor: pointer;
+}
