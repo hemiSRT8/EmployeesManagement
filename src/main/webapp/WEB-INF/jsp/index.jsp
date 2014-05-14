@@ -23,54 +23,69 @@
 
     <center>
         <div id="employeesImg"> <img src="img/employees.png"> </div>
-        <div id="signboard"> Manage employees</div>
+        <div id="signboard">Manage employees</div>
     </center>
 
     <ul class="professions">
         <li>
             <center>
-                    <div id="nameOfProfession"> Managers </div>
+                    <div id="nameOfProfession">Managers</div>
                     <br>
                     <img src="img/manager.png">
                     <br>
-                    <button style="cursor:pointer;" onClick=show1_onclick()> SHOW </button>
-                    <button style="cursor:pointer;" onClick=hide1_onclick()> HIDE </button>
+                    <button style="cursor:pointer;" onClick=show1_onclick()>SHOW</button>
+                    <button style="cursor:pointer;" onClick=hide1_onclick()>HIDE</button>
+
+
+                <form action="addEmployee.html" method="POST">
+                    <button type="submit" name="type" value = "manager">ADD
+                    </button>
+                </form>
+
+
+
             </center>
         </li>
 
         <li>
              <center>
-                        <div id="nameOfProfession"> Developers </div>
+                        <div id="nameOfProfession">Developers</div>
                         <br>
                         <img src="img/developer.png">
                         <br>
-                        <button style="cursor:pointer;" onClick=show2_onclick()> SHOW </button>
-                        <button style="cursor:pointer;" onClick=hide2_onclick()> HIDE </button>
+                        <button style="cursor:pointer;" onClick=show2_onclick()>SHOW</button>
+                        <button style="cursor:pointer;" onClick=hide2_onclick()>HIDE</button>
+
+                 <form action="addEmployee.html" method="POST">
+                     <button type="submit" name="type" value = "developer">ADD
+                     </button>
+                 </form>
              </center>
         </li>
 
         <li>
              <center>
-                    <div id="nameOfProfession"> Cleaners </div>
+                    <div id="nameOfProfession">Cleaners</div>
                     <br>
                     <img src="img/cleaner.png">
                     <br>
-                    <button style="cursor:pointer;" onClick=show3_onclick()> SHOW </button>
-                    <button style="cursor:pointer;" onClick=hide3_onclick()> HIDE </button>
+                    <button style="cursor:pointer;" onClick=show3_onclick()>SHOW</button>
+                    <button style="cursor:pointer;" onClick=hide3_onclick()>HIDE</button>
+
+                 <form action="addEmployee.html" method="POST">
+                     <button type="submit" name="type" value = "cleaner">ADD
+                     </button>
+                 </form>
              </center>
         </li>
     </ul>
 
     <div id="mainMenuContainer">
         <ul id="menu">
-           <li> <a href=""> Add employee </a> </li>
-           <li> <a href="salaryInformation.html"> Salary information </a> </li>
+           <li> <a href="salaryInformation.html">Salary information</a> </li>
         </ul>
     </div>
 
-    <br>
-    <br>
-    <br>
     <br>
     <br>
 
@@ -151,7 +166,7 @@
                             </button>
                         </form>
 
-                        <form class="deleteAction" action="deleteEmployee.html" method="POST"">
+                        <form class="deleteAction" action="deleteEmployee.html" method="POST">
                             <button type = "submit" name = "deleteEmployeeId" value = "${developer.getId()}" title="Delete employee">
                                 <img src="img/delete.png">
                             </button>
