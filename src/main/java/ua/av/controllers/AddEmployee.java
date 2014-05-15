@@ -1,37 +1,37 @@
 package ua.av.controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
-import ua.av.database.delete.DeleteEmployee;
-import ua.av.entities.Cleaner;
-import ua.av.entities.Developer;
-import ua.av.entities.Manager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class AddEmployee {
 
-
     @RequestMapping(value = "addEmployee.html", method = RequestMethod.POST)
     public ModelAndView addEmployee(WebRequest request) {
-        ModelMap modelMap = new ModelMap();
 
         String type = request.getParameter("type");
+        List<String> employeeFields = new ArrayList<String>();
+        System.out.println("List of the specific employee fields is created.");
 
         if("manager".equals(type)) {
-            modelMap.addAttribute("manager",new Manager() );
+            employeeFields.add("Amount of sales");
+            employeeFields.add("Percentage of sales");
+            System.out.println(type + " is being added.");
 
         } else if("developer".equals(type)) {
-            modelMap.addAttribute("developer",new Developer() );
+            employeeFields.add("Lines of code");
+            System.out.println(type + " is being added." );
 
         } else if("cleaner".equals(type)) {
-            modelMap.addAttribute("cleaner",new Cleaner() );
+            employeeFields.add("Amount of cleaned offices");
+            System.out.println(type + " is being added.");
         }
-
-        return new ModelAndView ("addEmployee", "employee", modelMap);
+        return new ModelAndView ("addEmployee", "employeeFields", employeeFields);
     }
-
 }

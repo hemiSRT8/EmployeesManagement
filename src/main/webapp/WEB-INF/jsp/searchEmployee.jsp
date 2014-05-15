@@ -15,28 +15,18 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
-<body style="background: url(img/background.jpg);">
+<body style="background: url(img/background.jpg);margin-top:100px">
 
 <div id="container" style="background : #FAEBD7;">
 
-<center>
-    <img src="img/salary.png">
-      <table class="salaryTable" cellspacing="0" style="margin-top:100px;margin-bottom:40px; background-color:#D8CEC1;border-left : 1px solid #51626f;border-top : 1px solid #51626f;">
-                <tr style="font-weight:900;">
-                    <th> Salary expense </th>
-                    <th> Average salary </th>
-                    <th> Max salary </th>
-                    <th> Min salary </th>
-                </tr>
-
-                <tr>
-                    <td> ${expense} </td>
-                    <td> ${averageSalary} </td>
-                    <td> ${maxSalary} </td>
-                    <td> ${minSalary} </td>
-                </tr>
-      </table>
-<center>
+    <center style="margin-bottom:50px;">
+    <img src="img/search.png">
+        <form action="searchEmployeeResult.html" method="POST">
+            <input type="search" name="lastName" value="" placeholder= "Search by last name">
+            <br><br>
+            <button type="submit">I'm lucky</button>
+        </form>
+    </center>
 
 	<!-- Container end -->
 </div>
@@ -50,6 +40,6 @@
 <br>
     boss : Tolya
 </div>
-
 </body>
+
 </html>
