@@ -30,7 +30,7 @@
 
        <br><br>
 
-       <div style="padding-top:220px;padding-left:95px;position:absolute;height:20px;width:20px;">
+       <div style="margin-top:220px;margin-left:95px;position:absolute;height:20px;width:20px;">
             <form action="addEmployeesToDepartmentResult.html" method="POST">
             <input type="submit" name="Submit" value="Submit">
        </div>
