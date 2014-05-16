@@ -3,6 +3,7 @@ package ua.av.database.edit;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.context.request.WebRequest;
 import ua.av.database.connector.ConnectorJDBC;
+import ua.av.exception.BusinessException;
 
 import javax.sql.DataSource;
 import java.sql.CallableStatement;
@@ -54,14 +55,14 @@ public class EditEmployee {
 
                 callableStatement.executeUpdate();
             } catch (SQLException e) {
-                e.printStackTrace();
+                throw new BusinessException(e);
             } finally {
                 try {
                     if (connection != null) {
                         connection.close();
                     }
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    throw new BusinessException(e);
                 }
             }
         }

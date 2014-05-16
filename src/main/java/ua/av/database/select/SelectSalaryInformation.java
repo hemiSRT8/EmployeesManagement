@@ -36,7 +36,7 @@ public class SelectSalaryInformation {
                     connection.close();
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                throw new BusinessException(e);
             }
         }
 
@@ -63,7 +63,7 @@ public class SelectSalaryInformation {
                     connection.close();
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                throw new BusinessException(e);
             }
         }
 
@@ -90,7 +90,7 @@ public class SelectSalaryInformation {
                     connection.close();
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                throw new BusinessException(e);
             }
         }
 
@@ -117,7 +117,7 @@ public class SelectSalaryInformation {
                     connection.close();
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                throw new BusinessException(e);
             }
         }
 

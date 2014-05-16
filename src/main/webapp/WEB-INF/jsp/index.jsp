@@ -8,13 +8,15 @@
 
 <title>Employees management</title>
 
+<html>
+
 <head>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="js/hideAndShow.js"></script>
-    <script src="js/showBox.js"></script>
+    <script src="js/infoBox.js"></script>
 </head>
 
 <body style="background: url(img/background.jpg);">
@@ -68,6 +70,7 @@
            <li> <a href=""> Departments </a>
                 <ul>
                     <li> <a href="addDepartment.html"> Add department </a> </li>
+                    <li> <a href="addEmployeesToDepartment.html"> Add employees to department </a> </li>
                 </ul>
            </li>
         </ul>
@@ -80,7 +83,7 @@
     <br>
 
     <div id="managersMainTableContainer" style="display:none;">
-		<table class="employeesMainTable" cellspacing="0" >
+		<table class="managersMainTable" cellspacing="0" >
 			<tr>
 				<th>Last name</th>
 				<th>First name</th>
@@ -91,6 +94,7 @@
 				<th>Salary</th>
 				<th>Amount of sales</th>
 				<th>Percentage of sales</th>
+				<th>Department</th>
 				<th>Action</th>
 			</tr>
 
@@ -105,6 +109,20 @@
 				   <td>${manager.getSalary()}</td>
 				   <td>${manager.getAmountOfSales()}</td>
 				   <td>${manager.getPercentageOfSales()}</td>
+				  <td>
+                      <c:choose>
+                          <c:when test="${manager.getDepartment().size() > 0}">
+                              <select multiple disabled>
+                                  <c:forEach items="${manager.getDepartment()}" var="department">
+                                        <option> ${department.getName()} </option>
+                                  </c:forEach>
+                              </select>
+                          </c:when>
+                          <c:otherwise>
+                                <span style="color:red;font-weight:bold;"> No departments </span>
+                          </c:otherwise>
+                      </c:choose>
+                  </td>
 				   <td>
 				        <form class="editAction" action="editEmployee.html" method="POST">
                         	<input type="hidden" name="profession" value="manager"/>
@@ -113,7 +131,7 @@
                             </button>
                         </form>
 
-                        <form class="deleteAction" action="deleteEmployee.html" method="POST">
+                        <form class="deleteAction" action="deleteEmployee.html" method="POST" onsubmit="deleteConfirmation(this);">
                         	<button type = "submit" name = "deleteEmployeeId" value = "${manager.getId()}" title="Delete employee">
                         	        <img src="img/delete.png">
                         	</button>
@@ -126,7 +144,7 @@
     </div>
 
     <div id="developersMainTableContainer" style="display:none;">
-        <table class="employeesMainTable" cellspacing="0">
+        <table class="developersMainTable" cellspacing="0">
             <tr>
                             <th>Last name</th>
                             <th>First name</th>
@@ -136,6 +154,7 @@
                             <th>Penalty</th>
                             <th>Salary</th>
                             <th>Lines of code</th>
+                            <th>Department</th>
                             <th>Action</th>
             </tr>
 			<c:forEach var="developer" items="${developers}" >
@@ -149,6 +168,20 @@
 					<td>${developer.getSalary()}</td>
 					<td>${developer.getLinesOfCode()}</td>
 					<td>
+                        <c:choose>
+                            <c:when test="${developer.getDepartment().size() > 0}">
+                                <select multiple disabled>
+                                    <c:forEach items="${developer.getDepartment()}" var="department">
+                                         <option> ${department.getName()} </option>
+                                    </c:forEach>
+                                </select>
+                            </c:when>
+                                <c:otherwise>
+                                     <span style="color:red;font-weight:bold;"> No departments </span>
+                                </c:otherwise>
+                        </c:choose>
+                    </td>
+					<td>
                     	<form class="editAction" action="editEmployee.html" method="POST">
                             <input type="hidden" name="profession" value="developer"/>
                             <button type = "submit" name = "editEmployeeId" value = "${developer.getId()}" title="Edit employee">
@@ -156,7 +189,7 @@
                             </button>
                         </form>
 
-                        <form class="deleteAction" action="deleteEmployee.html" method="POST"">
+                        <form class="deleteAction" action="deleteEmployee.html" method="POST" onsubmit="deleteConfirmation(this)">
                             <button type = "submit" name = "deleteEmployeeId" value = "${developer.getId()}" title="Delete employee">
                                 <img src="img/delete.png">
                             </button>
@@ -168,7 +201,7 @@
     </div>
 
 	<div id="cleanersMainTableContainer" style="display:none;">
-        <table class="employeesMainTable" cellspacing="0">
+        <table class="cleanersMainTable" cellspacing="0">
             <tr>
                             <th>Last name</th>
                             <th>First name</th>
@@ -178,6 +211,7 @@
                             <th>Penalty</th>
                             <th>Salary</th>
                             <th>Cleaned offices</th>
+                            <th>Department</th>
                             <th>Action</th>
             </tr>
 
@@ -192,6 +226,20 @@
 					<td>${cleaner.getSalary()}</td>
 					<td>${cleaner.getAmountOfCleanedOffices()}</td>
 					<td>
+                        <c:choose>
+                            <c:when test="${cleaner.getDepartment().size() > 0}">
+                                <select multiple disabled>
+                                <c:forEach items="${cleaner.getDepartment()}" var="department">
+                                    <option> ${department.getName()} </option>
+                                </c:forEach>
+                                </select>
+                            </c:when>
+                                <c:otherwise>
+                                    <span style="color:red;font-weight:bold;"> No departments </span>
+                                </c:otherwise>
+                            </c:choose>
+                    </td>
+					<td>
 						    <form class="editAction" action="editEmployee.html" method="POST">
                                 <input type="hidden" name="profession" value="cleaner"/>
                                 <button type = "submit" name = "editEmployeeId" value = "${cleaner.getId()}" title="Edit employee">
@@ -199,7 +247,7 @@
                                 </button>
                             </form>
 
-                            <form class="deleteAction" action="deleteEmployee.html" method="POST">
+                            <form class="deleteAction" action="deleteEmployee.html" method="POST" onsubmit="deleteConfirmation(this)">
                                 <button type = "submit" name = "deleteEmployeeId" value = "${cleaner.getId()}" title="Delete employee">
                                     <img src="img/delete.png">
                                 </button>

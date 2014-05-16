@@ -8,11 +8,14 @@
 
 <title>Employees management</title>
 
+<html>
+
 <head>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="js/infoBox.js"></script>
 </head>
 
 <body style="background: url(img/background.jpg);margin-top:100px">
@@ -120,7 +123,7 @@
 										</button>
 									</form>
 						
-								<form class="deleteActionSearchForm" action="deleteEmployee.html" method="POST">
+								<form class="deleteActionSearchForm" action="deleteEmployee.html" method="POST" onsubmit="deleteConfirmation(this);">
 									<button type = "submit" name = "deleteEmployeeId" value = "${employee.getId()}" title="Delete employee">
 										<img src="img/delete.png">
 									</button>
@@ -148,7 +151,7 @@
 										</button>
 									</form>
 						
-								<form class="deleteActionSearchForm" action="deleteEmployee.html" method="POST">
+								<form class="deleteActionSearchForm" action="deleteEmployee.html" method="POST" onsubmit="deleteConfirmation(this);">
 									<button type = "submit" name = "deleteEmployeeId" value = "${employee.getId()}" title="Delete employee">
 										<img src="img/delete.png">
 									</button>
@@ -176,7 +179,7 @@
 										</button>
 									</form>
 						
-								<form class="deleteActionSearchForm" action="deleteEmployee.html" method="POST">
+								<form class="deleteActionSearchForm" action="deleteEmployee.html" method="POST" onsubmit="deleteConfirmation(this);">
 									<button type = "submit" name = "deleteEmployeeId" value = "${employee.getId()}" title="Delete employee">
 										<img src="img/delete.png">
 									</button>
@@ -277,7 +280,7 @@
 										</button>
 									</form>
 						
-								<form class="deleteActionSearchForm" action="deleteEmployee.html" method="POST">
+								<form class="deleteActionSearchForm" action="deleteEmployee.html" method="POST" onsubmit="deleteConfirmation(this);">
 									<button type = "submit" name = "deleteEmployeeId" value = "${employee.getId()}" title="Delete employee">
 										<img src="img/delete.png">
 									</button>
@@ -306,7 +309,7 @@
 										</button>
 									</form>
 						
-								<form class="deleteActionSearchForm" action="deleteEmployee.html" method="POST">
+								<form class="deleteActionSearchForm" action="deleteEmployee.html" method="POST" onsubmit="deleteConfirmation(this);">
 									<button type = "submit" name = "deleteEmployeeId" value = "${employee.getId()}" title="Delete employee">
 										<img src="img/delete.png">
 									</button>
@@ -334,7 +337,7 @@
 										</button>
 									</form>
 						
-								<form class="deleteActionSearchForm" action="deleteEmployee.html" method="POST">
+								<form class="deleteActionSearchForm" action="deleteEmployee.html" method="POST" onsubmit="deleteConfirmation(this);">
 									<button type = "submit" name = "deleteEmployeeId" value = "${employee.getId()}" title="Delete employee">
 										<img src="img/delete.png">
 									</button>
