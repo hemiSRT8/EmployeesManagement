@@ -8,6 +8,8 @@
 
 <title>Employees management</title>
 
+<html>
+
 <head>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">

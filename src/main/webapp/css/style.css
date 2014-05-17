@@ -58,7 +58,7 @@
     position: absolute; 
     display: none;
     top: 0px;
-    left: 99px;
+    left: 148px;
 }
 
 .menu li:hover ul {
@@ -142,12 +142,56 @@
 
 .employeesMainTable {
     table-layout: fixed;
-    width : 1000px;
     background-color:#D8CEC1;
 }
 
 .employeesMainTable td, tr, th {
-    padding: 5px;
+    padding: 14px;
+    border-collapse: collapse;
+    text-align:center;
+    border-bottom: 1px solid #51626f;
+    border-right: 1px solid #51626f;
+    font-size : 11px;
+}
+
+.managersMainTable {
+    table-layout: fixed;
+    background-color:#D8CEC1;
+    display: inline-block;
+}
+
+.managersMainTable td, tr, th {
+    padding: 14px;
+    border-collapse: collapse;
+    text-align:center;
+    border-bottom: 1px solid #51626f;
+    border-right: 1px solid #51626f;
+    font-size : 11px;
+}
+
+.developersMainTable {
+    table-layout: fixed;
+    background-color:#D8CEC1;
+    display: inline-block;
+}
+
+.developersMainTable td, tr, th {
+    padding: 24px;
+    border-collapse: collapse;
+    text-align:center;
+    border-bottom: 1px solid #51626f;
+    border-right: 1px solid #51626f;
+    font-size : 11px;
+}
+
+.cleanersMainTable {
+    table-layout: fixed;
+    background-color:#D8CEC1;
+    display: inline-block;
+}
+
+.cleanersMainTable td, tr, th {
+    padding: 24px;
     border-collapse: collapse;
     text-align:center;
     border-bottom: 1px solid #51626f;
@@ -221,6 +265,12 @@ ul.professions > li {
      float : left;
 }
 
+.addEmployeeToDepartment button {
+     border : 0 none;
+     background : none;
+     cursor: pointer;
+}
+
 input[type=search] {
     padding: 10px;
     border: 1px solid black;
@@ -292,4 +342,10 @@ input[type=search] {
      font-weight: bold;
      overflow: hidden;
      border-radius: 3px;
+}
+
+select {
+    border:1px solid black;
+    font-weight:600;
+    font-size:11px;
 }

@@ -1,6 +1,10 @@
 package ua.av.entities;
 
+import ua.av.department.Department;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static ua.av.constants.Constants.SIMPLE_DATE_FORMAT;
 
@@ -14,6 +18,7 @@ public abstract class Employee {
     private double bonus;
     private double penalty;
     private double salary;
+    private List<Department> department = new ArrayList<Department>();
 
     protected Employee() {
         //default constructor
@@ -109,5 +114,13 @@ public abstract class Employee {
 
     public void setSalary(double salary) {
         this.salary = salary;
+    }
+
+    public List<Department> getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department.add(department);
     }
 }
