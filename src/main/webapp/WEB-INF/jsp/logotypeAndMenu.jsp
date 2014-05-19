@@ -11,6 +11,7 @@
             <ul>
                 <li> <a href="addDepartment.html"> Add department </a> </li>
                 <li> <a href="addEmployeesToDepartment.html"> Add employee to department </a> </li>
+                <li> <a href="viewAllDepartments.html"> View all departments </a> </li>
             </ul>
         </li>
     </ul>

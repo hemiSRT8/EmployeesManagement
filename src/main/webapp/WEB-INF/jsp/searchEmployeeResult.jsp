@@ -27,7 +27,7 @@
                     </div>
 
                     <div class="mainTableContainer">
-                    		<table class="employeesMainTable" cellspacing="0" >
+                    		<table class="mainTable" cellspacing="0" >
                     			<tr>
                     				<th>Last name</th>
                     				<th>First name</th>
