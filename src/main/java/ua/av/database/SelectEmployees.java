@@ -1,12 +1,7 @@
-package ua.av.database.select;
+package ua.av.database;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import ua.av.database.connector.ConnectorJDBC;
-import ua.av.department.Department;
-import ua.av.entities.Cleaner;
-import ua.av.entities.Developer;
-import ua.av.entities.Employee;
-import ua.av.entities.Manager;
+import ua.av.entities.*;
 import ua.av.exception.BusinessException;
 
 import javax.sql.DataSource;
@@ -22,11 +17,11 @@ import java.util.Map;
 
 public class SelectEmployees {
 
-    private ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
-    private ConnectorJDBC connectorJDBC = (ConnectorJDBC) context.getBean("connectorJDBC");
-    private DataSource dataSource = connectorJDBC.getDataSource();
+    private static final ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
+    private static final ConnectorJDBC connectorJDBC = (ConnectorJDBC) context.getBean("connectorJDBC");
+    private static final DataSource dataSource = connectorJDBC.getDataSource();
 
-    public List<Employee> selectManagers() {
+    public static List<Employee> selectManagers() {
 
         List<Employee> managers = new ArrayList<Employee>();
         Map<Long, List<Department>> departmentsHashMap = new HashMap<Long, List<Department>>();
@@ -116,7 +111,7 @@ public class SelectEmployees {
         return managers;
     }
 
-    public List<Employee> selectDevelopers() {
+    public static List<Employee> selectDevelopers() {
 
         List<Employee> developers = new ArrayList<Employee>();
         Map<Long, List<Department>> departmentsHashMap = new HashMap<Long, List<Department>>();
@@ -204,7 +199,7 @@ public class SelectEmployees {
         return developers;
     }
 
-    public List<Employee> selectCleaners() {
+    public static List<Employee> selectCleaners() {
 
         List<Employee> cleaners = new ArrayList<Employee>();
         Map<Long, List<Department>> departmentsHashMap = new HashMap<Long, List<Department>>();

@@ -6,28 +6,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
-import ua.av.database.edit.EditEmployee;
-import ua.av.database.select.SelectSingleEmployee;
+import ua.av.database.EditEmployee;
+import ua.av.database.SelectSingleEmployee;
 
 @Controller
 public class EditEmployeeController {
-
-    private SelectSingleEmployee selectSingleEmployee = new SelectSingleEmployee();
-    private EditEmployee editEmployee = new EditEmployee();
 
     @RequestMapping(value = "/editEmployee.html", method = RequestMethod.POST)
     public ModelAndView editEmployee(WebRequest request) {
         ModelMap map = new ModelMap();
         if ("manager".equalsIgnoreCase(request.getParameter("profession"))) {
-            map.addAttribute("employee", selectSingleEmployee.selectSingleEmployee(request, "manager"));
+            map.addAttribute("employee", SelectSingleEmployee.selectSingleEmployee(request, "manager"));
             map.addAttribute("profession", "manager");
             return new ModelAndView("editEmployee", map);
         } else if ("developer".equalsIgnoreCase(request.getParameter("profession"))) {
-            map.addAttribute("employee", selectSingleEmployee.selectSingleEmployee(request, "developer"));
+            map.addAttribute("employee", SelectSingleEmployee.selectSingleEmployee(request, "developer"));
             map.addAttribute("profession", "developer");
             return new ModelAndView("editEmployee", map);
         } else if ("cleaner".equalsIgnoreCase(request.getParameter("profession"))) {
-            map.addAttribute("employee", selectSingleEmployee.selectSingleEmployee(request, "cleaner"));
+            map.addAttribute("employee", SelectSingleEmployee.selectSingleEmployee(request, "cleaner"));
             map.addAttribute("profession", "cleaner");
             return new ModelAndView("editEmployee", map);
         } else {
@@ -36,8 +33,8 @@ public class EditEmployeeController {
     }
 
     @RequestMapping(value = "/editEmployeeResult.html", method = RequestMethod.POST)
-    public String editManagerResult(WebRequest request) {
-        editEmployee.editEmployee(request);
-        return ("redirect:/index.html");
+    public ModelAndView editEmployeeResult(WebRequest request) {
+        boolean result = EditEmployee.editEmployee(request);
+        return new ModelAndView("editEmployeeResult", "result", result);
     }
 }

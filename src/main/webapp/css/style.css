@@ -1,7 +1,6 @@
 #container {
 	width:1100px;
-	overflow:auto;
-	background:#f3f3f3;
+    background:#FAEBD7;
 	margin: auto;
 	border:none;
 	text-decoration:none;
@@ -10,14 +9,13 @@
 #signboard {
 	color:black;
 	font-size:30px;
-	margin-bottom:25px;
 	font-family : garlfield ;
 }
 
 #mainMenuContainer {
     position:absolute;
     float:left;
-    margin-top: -250px;
+    margin-top: -160px;
     color:red;
 }
 
@@ -29,7 +27,7 @@
 }
 
 .menu li {
-	background: url(../img/verticalMenu.png) no-repeat 0 0;
+	background: url(../img/menuButton.png) no-repeat 0 0;
 	width: 200px;
 	height: 30px;
 	border:none;
@@ -41,7 +39,7 @@
 .menu a {
 	color:#909090;
     font-weight : 900;
-    font-size:11px;
+    font-size:12px;
 	text-decoration:none;
 }
 
@@ -49,7 +47,12 @@
 	width: 200px;
 	height: 30px;
 	color:black;
-	font-size:12px;
+}
+
+#menuPointer {
+    padding-left:75px;
+    font-weight:900;
+    font-size:15px;
 }
 
 /* Drop menu */
@@ -58,7 +61,7 @@
     position: absolute; 
     display: none;
     top: 0px;
-    left: 148px;
+    left: 132px;
 }
 
 .menu li:hover ul {
@@ -66,7 +69,7 @@
 }
 
 .menu li ul li{
-  background: url(../img/verticalMenu.png) no-repeat 0 0;
+  background: url(../img/menuButton.png) no-repeat 0 0;
 }
 
 .menu li ul li:hover {
@@ -78,11 +81,10 @@
 .menu li ul li a{
   color:#909090;
   text-decoration:none;
-  font-size:11px;
+  font-size:12px;
 }
 
 .menu li ul li a:hover{
-  font-size: 12px;
   color: black;
   text-decoration:none;
 }
@@ -116,87 +118,45 @@
 	url(../fonts/cuprum.otf);
 }
 
-#managersMainTableContainer {
-    margin : 43px;
-    height : 400px;
-    overflow: auto;
-    margin-bottom:100px;
-    margin-top:300px;
-}
-
-#developersMainTableContainer {
-    margin : 43px;
-    height : 400px;
-    overflow: auto;
-    margin-bottom:100px;
-    margin-top:300px;
-}
-
-#cleanersMainTableContainer {
-    margin : 43px;
-    height : 400px;
-    overflow: auto;
-    margin-bottom:100px;
-    margin-top:300px;
+.mainTableContainer {
+    margin-top:30px;
+    background-color:#FAEBD7;
+    width:100%;
 }
 
 .employeesMainTable {
-    table-layout: fixed;
-    background-color:#D8CEC1;
+    width:100%
 }
 
-.employeesMainTable td, tr, th {
-    padding: 14px;
+.employeesMainTable td, tr {
+    background : #FAEBD7;
     border-collapse: collapse;
     text-align:center;
     border-bottom: 1px solid #51626f;
     border-right: 1px solid #51626f;
-    font-size : 11px;
+    font-size:12px;
+    white-space: nowrap;
 }
 
-.managersMainTable {
-    table-layout: fixed;
-    background-color:#D8CEC1;
-    display: inline-block;
+.employeesMainTable th {
+    font-size:12px;
+    font-weight:bold;
+}
+.editAction button {
+     border : 0 none;
+     background : none;
+     cursor: pointer;
+     float:left;
+     width:28px;
+     height:21px;
 }
 
-.managersMainTable td, tr, th {
-    padding: 14px;
-    border-collapse: collapse;
-    text-align:center;
-    border-bottom: 1px solid #51626f;
-    border-right: 1px solid #51626f;
-    font-size : 11px;
-}
-
-.developersMainTable {
-    table-layout: fixed;
-    background-color:#D8CEC1;
-    display: inline-block;
-}
-
-.developersMainTable td, tr, th {
-    padding: 24px;
-    border-collapse: collapse;
-    text-align:center;
-    border-bottom: 1px solid #51626f;
-    border-right: 1px solid #51626f;
-    font-size : 11px;
-}
-
-.cleanersMainTable {
-    table-layout: fixed;
-    background-color:#D8CEC1;
-    display: inline-block;
-}
-
-.cleanersMainTable td, tr, th {
-    padding: 24px;
-    border-collapse: collapse;
-    text-align:center;
-    border-bottom: 1px solid #51626f;
-    border-right: 1px solid #51626f;
-    font-size : 11px;
+.deleteAction button {
+    border : 0 none;
+    background : none;
+    cursor: pointer;
+    width:28px;
+    height:21px;
 }
 
 .salaryTable {
@@ -233,82 +193,11 @@
     font-weight:900;
 }
 
-#nameOfProfession {
-    font-family : cuprum;
-    font-weight : 900;
-    color : red;
-}
-
-ul.professions {
-    list-style-type : none;
-    margin-left : 260px;
-    padding : 25px;
-}
-
-ul.professions > li {
-    float:left;
-    margin-right: 50px;
-    margin-bottom : 50px;
-}
-
-.editAction button {
-     border : 0 none;
-     background : none;
-     cursor: pointer;
-     float : left;
-}
-
-.deleteAction button {
-     border : 0 none;
-     background : none;
-     cursor: pointer;
-     float : left;
-}
-
-.addEmployeeToDepartment button {
-     border : 0 none;
-     background : none;
-     cursor: pointer;
-}
-
 input[type=search] {
     padding: 10px;
     border: 1px solid black;
     height:25px;
     width:222px;
-}
-
-.searchResultsMultipleTable {
-    width:450px;
-    table-layout-fixed;
-    background-color:#D8CEC1;
-    float:left;
-    margin-left:67px;
-    margin-top:20px;
-}
-
-.searchResultsMultipleTable td, tr, th {
-    padding: 5px;
-    border-collapse: collapse;
-    text-align:center;
-    border-bottom: 1px solid #51626f;
-    border-right: 1px solid #51626f;
-    font-size : 15px;
-}
-
-.searchResultsSingleTable {
-    width:300px;
-    table-layout-fixed;
-    background-color:#D8CEC1;
-}
-
-.searchResultsSingleTable td, tr, th {
-    padding: 5px;
-    border-collapse: collapse;
-    text-align:center;
-    border-bottom: 1px solid #51626f;
-    border-right: 1px solid #51626f;
-    font-size : 15px;
 }
 
 .editActionSearchForm button {
@@ -336,7 +225,7 @@ input[type=search] {
 
 .failOperationContainer {
      border: 1px solid #F08080 !important;
-     background: url(../img/error.png) no-repeat scroll 12px 12px #FF6347 !important;
+     background: url(../img/fail.png) no-repeat scroll 12px 12px #FF6347 !important;
      color: black !important;
      padding: 15px 0 0 40px;
      font-weight: bold;
@@ -344,8 +233,45 @@ input[type=search] {
      border-radius: 3px;
 }
 
+.scrollup {
+    width:40px;
+    height:40px;
+    opacity:0.5;
+    position:fixed;
+    bottom:50px;
+    right:50px;
+    display:none;
+    text-indent:-9999px;
+    background: url(../img/upButton.png) no-repeat;
+}
+
+.scrollup:hover {
+    opacity: 1;
+}
+
+.addDepartmentButton {
+    background:red;
+    border: 0;
+    background : url(../img/submitButton.png) no-repeat;
+    width:75px;
+    height:75px;
+    cursor: pointer;
+}
+
 select {
-    border:1px solid black;
-    font-weight:600;
-    font-size:11px;
+    width:25px;
+}
+
+.addEmployeesToDepartmentTable {
+    width:100%
+}
+
+.addEmployeesToDepartmentTable td, tr {
+    background-color:#FAEBD7;
+    border-collapse: collapse;
+    text-align:center;
+    border-bottom: 1px solid #51626f;
+    border-right: 1px solid #51626f;
+    font-size : 15px;
+    white-space: nowrap;
 }

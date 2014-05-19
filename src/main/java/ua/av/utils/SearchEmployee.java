@@ -9,9 +9,7 @@ import java.util.List;
 
 public class SearchEmployee {
 
-    private List<Employee> employees;
-
-    public Employee searchById(long id) {
+    public static Employee searchById(long id, List<Employee> employees) {
         for (Employee e : employees) {
             if (e.getId() == id) {
                 return e;
@@ -20,7 +18,7 @@ public class SearchEmployee {
         return null;
     }
 
-    public List<Employee> searchByLastName(String lastName) {
+    public static List<Employee> searchByLastName(String lastName, List<Employee> employees) {
         if (lastName == null) {
             throw new BusinessException("lastName is null");
         }
@@ -36,7 +34,7 @@ public class SearchEmployee {
         return result;
     }
 
-    public List<Employee> searchByFullName(String lastName, String firstName) {
+    public static List<Employee> searchByFullName(String lastName, String firstName, List<Employee> employees) {
         if (lastName == null) {
             throw new BusinessException("lastName is null");
         } else if (firstName == null) {
@@ -52,29 +50,5 @@ public class SearchEmployee {
         }
 
         return result;
-    }
-
-    public List<Employee> searchByProfession(Class profession) {
-        if (!profession.isInstance(Employee.class)) {
-            throw new BusinessException("Parameter profession is not instance of the Employee's classes.");
-        }
-
-        List<Employee> result = new ArrayList<Employee>();
-
-        for (Employee e : employees) {
-            if (e.getClass().isInstance(profession)) {
-                result.add(e);
-            }
-        }
-
-        return result;
-    }
-
-    public List<Employee> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
     }
 }

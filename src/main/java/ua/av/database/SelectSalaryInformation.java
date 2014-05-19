@@ -1,7 +1,6 @@
-package ua.av.database.select;
+package ua.av.database;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import ua.av.database.connector.ConnectorJDBC;
 import ua.av.exception.BusinessException;
 
 import javax.sql.DataSource;
@@ -12,11 +11,11 @@ import java.sql.SQLException;
 
 public class SelectSalaryInformation {
 
-    private ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
-    private ConnectorJDBC connectorJDBC = (ConnectorJDBC) context.getBean("connectorJDBC");
-    private DataSource dataSource = connectorJDBC.getDataSource();
+    private static ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
+    private static ConnectorJDBC connectorJDBC = (ConnectorJDBC) context.getBean("connectorJDBC");
+    private static DataSource dataSource = connectorJDBC.getDataSource();
 
-    public double selectSalaryExpense() {
+    public static double selectSalaryExpense() {
         Connection connection = null;
         ResultSet resultSet;
         double expense = -1;
@@ -43,7 +42,7 @@ public class SelectSalaryInformation {
         return expense;
     }
 
-    public double selectAverageSalary() {
+    public static double selectAverageSalary() {
         Connection connection = null;
         ResultSet resultSet;
         double averageSalary = -1;
@@ -70,7 +69,7 @@ public class SelectSalaryInformation {
         return averageSalary;
     }
 
-    public double selectMaxSalary() {
+    public static double selectMaxSalary() {
         Connection connection = null;
         ResultSet resultSet;
         double maxSalary = -1;
@@ -97,7 +96,7 @@ public class SelectSalaryInformation {
         return maxSalary;
     }
 
-    public double selectMinSalary() {
+    public static double selectMinSalary() {
         Connection connection = null;
         ResultSet resultSet;
         double minSalary = -1;

@@ -1,8 +1,7 @@
-package ua.av.database.select;
+package ua.av.database;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.context.request.WebRequest;
-import ua.av.database.connector.ConnectorJDBC;
 import ua.av.entities.Cleaner;
 import ua.av.entities.Developer;
 import ua.av.entities.Employee;
@@ -19,7 +18,7 @@ import static java.lang.Long.valueOf;
 
 public class SelectSingleEmployee {
 
-    public Employee selectSingleEmployee(WebRequest request, String profession) {
+    public static Employee selectSingleEmployee(WebRequest request, String profession) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
         ConnectorJDBC connectorJDBC = (ConnectorJDBC) context.getBean("connectorJDBC");
         DataSource dataSource = connectorJDBC.getDataSource();

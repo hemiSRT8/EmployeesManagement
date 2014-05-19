@@ -1,12 +1,9 @@
 package ua.av.entities;
 
-import ua.av.department.Department;
-
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import static ua.av.constants.Constants.SIMPLE_DATE_FORMAT;
 
 public abstract class Employee {
 
@@ -43,9 +40,10 @@ public abstract class Employee {
 
     @Override
     public String toString() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         return "Last name : " + lastName + "\n" +
                 "First name :" + firstName + "\n"
-                + "Date of birth : " + SIMPLE_DATE_FORMAT.format(dateOfBirth) + "\n"
+                + "Date of birth : " + simpleDateFormat.format(dateOfBirth) + "\n"
                 + "Wage : " + wage + "\n"
                 + "Bonus :" + bonus + "\n"
                 + "Penalty : " + penalty + "\n"
