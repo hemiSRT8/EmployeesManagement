@@ -5,10 +5,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
-import ua.av.database.add.AddEmployeesToDepartment;
-import ua.av.database.select.SelectDepartments;
-import ua.av.database.select.SelectEmployees;
-import ua.av.department.Department;
+import ua.av.database.AddEmployeesToDepartment;
+import ua.av.database.SelectDepartments;
+import ua.av.database.SelectEmployees;
+import ua.av.entities.Department;
 import ua.av.entities.Employee;
 
 import java.util.List;
@@ -18,13 +18,10 @@ public class AddEmployeesToDepartmentController {
 
     @RequestMapping(value = "/addEmployeesToDepartment.html")
     public ModelAndView addEmployeesToDepartment() {
-        SelectDepartments selectDepartments = new SelectDepartments();
-        SelectEmployees selectEmployees = new SelectEmployees();
-
-        List<Department> departments = selectDepartments.selectDepartmentsFromDatabase();
-        List<Employee> managers = selectEmployees.selectManagers();
-        List<Employee> developers = selectEmployees.selectDevelopers();
-        List<Employee> cleaners = selectEmployees.selectCleaners();
+        List<Department> departments = SelectDepartments.selectDepartmentsFromDatabase();
+        List<Employee> managers = SelectEmployees.selectManagers();
+        List<Employee> developers = SelectEmployees.selectDevelopers();
+        List<Employee> cleaners = SelectEmployees.selectCleaners();
 
         ModelMap modelMap = new ModelMap();
         modelMap.addAttribute("managers", managers);
@@ -37,9 +34,8 @@ public class AddEmployeesToDepartmentController {
 
     @RequestMapping(value = "/addEmployeesToDepartmentResult.html")
     public ModelAndView addEmployeesToDepartmentResult(WebRequest request) {
-        AddEmployeesToDepartment addEmployeesToDepartment = new AddEmployeesToDepartment();
-        addEmployeesToDepartment.addEmployeesToDepartment(request);
+        boolean result = AddEmployeesToDepartment.addEmployeesToDepartment(request);
 
-        return new ModelAndView("redirect:/index.html");
+        return new ModelAndView("addEmployeesToDepartmentResult", "result", result);
     }
 }

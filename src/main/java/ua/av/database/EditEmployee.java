@@ -1,9 +1,8 @@
-package ua.av.database.edit;
+package ua.av.database;
 
+import com.mysql.jdbc.MysqlDataTruncation;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.context.request.WebRequest;
-import ua.av.database.connector.ConnectorJDBC;
-import ua.av.exception.BusinessException;
 
 import javax.sql.DataSource;
 import java.sql.CallableStatement;
@@ -16,7 +15,7 @@ import static java.lang.Long.valueOf;
 
 public class EditEmployee {
 
-    public void editEmployee(WebRequest request) {
+    public static boolean editEmployee(WebRequest request) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
         ConnectorJDBC connectorJDBC = (ConnectorJDBC) context.getBean("connectorJDBC");
         DataSource dataSource = connectorJDBC.getDataSource();
@@ -53,18 +52,26 @@ public class EditEmployee {
                 callableStatement.setString("colName", parameter);
                 callableStatement.setString("newValue", "'" + request.getParameter(parameter) + "'");
 
+                if (request.getParameter(parameter).equals("")) {
+                    continue;
+                }
+
                 callableStatement.executeUpdate();
+
+            } catch (MysqlDataTruncation e) {
+                return false;
             } catch (SQLException e) {
-                throw new BusinessException(e);
+                return false;
             } finally {
                 try {
                     if (connection != null) {
                         connection.close();
                     }
                 } catch (SQLException e) {
-                    throw new BusinessException(e);
+                    return false;
                 }
             }
         }
+        return true;
     }
 }

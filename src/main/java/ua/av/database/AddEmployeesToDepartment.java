@@ -1,54 +1,63 @@
-package ua.av.database.add;
+package ua.av.database;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.context.request.WebRequest;
-import ua.av.database.connector.ConnectorJDBC;
-import ua.av.exception.BusinessException;
 
 import javax.sql.DataSource;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import static java.lang.Long.*;
+import static java.lang.Long.valueOf;
 
 public class AddEmployeesToDepartment {
 
-    public void addEmployeesToDepartment(WebRequest request) {
+    public static boolean addEmployeesToDepartment(WebRequest request) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
         ConnectorJDBC connectorJDBC = (ConnectorJDBC) context.getBean("connectorJDBC");
         DataSource dataSource = connectorJDBC.getDataSource();
         Connection connection = null;
 
-        String[] idsAsString = request.getParameterValues("employeeId");
-        String[] departments = request.getParameterValues("department");
+        String[] stringIdsArray = request.getParameterValues("employeeId");
+        String[] departmentsArray = request.getParameterValues("department");
 
-        Long[] idsAsLong = new Long[idsAsString.length];
-        for (int i = 0; i < idsAsString.length; i++) {
-            Long id = valueOf(idsAsString[i]);
+        if (stringIdsArray == null) {
+            return false;
+        } else if (departmentsArray == null) {
+            return false;
+        }
+
+        Long[] idsAsLong = new Long[stringIdsArray.length];
+        for (int i = 0; i < stringIdsArray.length; i++) {
+            String stringId = stringIdsArray[i];
+            if (stringId == null) {
+                return false;
+            }
+            Long id = valueOf(stringId);
             idsAsLong[i] = id;
         }
 
-        for (Long anIdsAsLong : idsAsLong) {
-            for (String department : departments) {
+        for (Long id : idsAsLong) {
+            for (String department : departmentsArray) {
                 try {
                     connection = dataSource.getConnection();
                     CallableStatement callableStatement = connection.prepareCall("{call addEmployeesToDepartment(?,?)}");
-                    callableStatement.setLong("employeeId", anIdsAsLong);
+                    callableStatement.setLong("employeeId", id);
                     callableStatement.setString("departmentName", "'" + department + "'");
                     callableStatement.executeUpdate();
                 } catch (SQLException e) {
-                    throw new BusinessException();
+                    return false;
                 } finally {
                     try {
                         if (connection != null) {
                             connection.close();
                         }
                     } catch (SQLException e) {
-                        throw new BusinessException();
+                        return false;
                     }
                 }
             }
         }
+        return true;
     }
 }

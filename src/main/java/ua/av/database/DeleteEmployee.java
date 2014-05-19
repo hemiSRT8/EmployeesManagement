@@ -1,20 +1,18 @@
-package ua.av.database.delete;
+package ua.av.database;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.context.request.WebRequest;
-import ua.av.database.connector.ConnectorJDBC;
-import ua.av.exception.BusinessException;
 
 import javax.sql.DataSource;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import static java.lang.Long.*;
+import static java.lang.Long.valueOf;
 
 public class DeleteEmployee {
 
-    public void deleteEmployee(WebRequest request) {
+    public static boolean deleteEmployee(WebRequest request) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
         ConnectorJDBC connectorJDBC = (ConnectorJDBC) context.getBean("connectorJDBC");
         DataSource dataSource = connectorJDBC.getDataSource();
@@ -30,15 +28,16 @@ public class DeleteEmployee {
 
             callableStatement.executeUpdate();
 
+            return true;
         } catch (SQLException e) {
-            throw new BusinessException(e);
+            return false;
         } finally {
             try {
                 if (connection != null) {
                     connection.close();
                 }
             } catch (SQLException e) {
-                throw new BusinessException(e);
+                return false;
             }
         }
     }

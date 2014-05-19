@@ -1,4 +1,4 @@
-package ua.av.department;
+package ua.av.entities;
 
 import ua.av.entities.Employee;
 

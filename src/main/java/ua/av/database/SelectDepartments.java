@@ -1,45 +1,50 @@
-package ua.av.database.add;
+package ua.av.database;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.web.context.request.WebRequest;
-import ua.av.database.connector.ConnectorJDBC;
+import ua.av.entities.Department;
 import ua.av.exception.BusinessException;
 
 import javax.sql.DataSource;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-import static java.lang.Integer.*;
+public class SelectDepartments {
 
-public class AddDepartment {
-
-    public void addDepartment(WebRequest request) {
+    public static List<Department> selectDepartmentsFromDatabase() {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
         ConnectorJDBC connectorJDBC = (ConnectorJDBC) context.getBean("connectorJDBC");
         DataSource dataSource = connectorJDBC.getDataSource();
-        Connection connection = null;
 
-        String departmentName = request.getParameter("departmentName");
-        int amountOfEmployees = valueOf(request.getParameter("amountOfEmployees"));
+        Connection connection = null;
+        ResultSet departmentsResulSet;
+
+        List<Department> departmentList = new ArrayList<Department>();
 
         try {
             connection = dataSource.getConnection();
-            CallableStatement callableStatement = connection.prepareCall("{call addDepartment(?,?)}");
-            callableStatement.setString("departmentName", "'" + departmentName + "'");
-            callableStatement.setInt("amountOfEmployees", amountOfEmployees);
-            callableStatement.executeUpdate();
+            CallableStatement callableStatement = connection.prepareCall("{call selectDepartments}");
+            departmentsResulSet = callableStatement.executeQuery();
+
+            while (departmentsResulSet.next()) {
+                departmentList.add(new Department(departmentsResulSet.getString("name")));
+            }
+
         } catch (SQLException e) {
-            throw new BusinessException(e);
+            throw new BusinessException();
         } finally {
             try {
                 if (connection != null) {
                     connection.close();
                 }
             } catch (SQLException e) {
-                throw new BusinessException(e);
+                throw new BusinessException();
             }
         }
+
+        return departmentList;
     }
 }
-

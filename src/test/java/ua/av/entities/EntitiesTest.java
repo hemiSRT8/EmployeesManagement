@@ -2,13 +2,15 @@ package ua.av.entities;
 
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import static java.util.Calendar.*;
 import static org.junit.Assert.*;
-import static ua.av.constants.Constants.SIMPLE_DATE_FORMAT;
 
 public class EntitiesTest {
+
+    public static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
 
     @Test
     public void testEmployee() {

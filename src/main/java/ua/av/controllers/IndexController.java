@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import ua.av.database.select.SelectEmployees;
+import ua.av.database.SelectEmployees;
 import ua.av.entities.Employee;
 
 import java.util.List;
@@ -18,11 +18,10 @@ public class IndexController {
     public ModelAndView mainPage() {
 
         // logger.info("Index page is started!");
-        SelectEmployees selectEmployees = new SelectEmployees();
 
-        List<Employee> managers = selectEmployees.selectManagers();
-        List<Employee> developers = selectEmployees.selectDevelopers();
-        List<Employee> cleaners = selectEmployees.selectCleaners();
+        List<Employee> managers = SelectEmployees.selectManagers();
+        List<Employee> developers = SelectEmployees.selectDevelopers();
+        List<Employee> cleaners = SelectEmployees.selectCleaners();
 
         ModelMap modelMap = new ModelMap();
         modelMap.addAttribute("managers", managers);
