@@ -3,7 +3,7 @@
 <div id="container">
     <%@ include file="logotypeAndMenu.jsp" %>
       <div class="mainTableContainer">
-		<table class="employeesMainTable" cellspacing="0" >
+		<table class="mainTable" cellspacing="0" style="border-left : 1px solid #51626f;border-top : 1px solid #51626f;" >
 			<tr>
 				<th>Last name</th>
 				<th>First name</th>
