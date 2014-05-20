@@ -17,4 +17,5 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="js/upButton.js"></script>
     <script src="js/validator.js"></script>
+    <script src="js/hideAndShow.js"></script>
 </head>

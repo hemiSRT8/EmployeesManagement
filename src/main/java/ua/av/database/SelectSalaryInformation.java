@@ -1,6 +1,7 @@
 package ua.av.database;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import ua.av.exception.BusinessException;
 
 import javax.sql.DataSource;
@@ -9,13 +10,13 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Component
 public class SelectSalaryInformation {
 
-    private static ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
-    private static ConnectorJDBC connectorJDBC = (ConnectorJDBC) context.getBean("connectorJDBC");
-    private static DataSource dataSource = connectorJDBC.getDataSource();
+    @Autowired
+    private DataSource dataSource;
 
-    public static double selectSalaryExpense() {
+    public double selectSalaryExpense() {
         Connection connection = null;
         ResultSet resultSet;
         double expense = -1;
@@ -42,7 +43,7 @@ public class SelectSalaryInformation {
         return expense;
     }
 
-    public static double selectAverageSalary() {
+    public double selectAverageSalary() {
         Connection connection = null;
         ResultSet resultSet;
         double averageSalary = -1;
@@ -69,7 +70,7 @@ public class SelectSalaryInformation {
         return averageSalary;
     }
 
-    public static double selectMaxSalary() {
+    public double selectMaxSalary() {
         Connection connection = null;
         ResultSet resultSet;
         double maxSalary = -1;
@@ -96,7 +97,7 @@ public class SelectSalaryInformation {
         return maxSalary;
     }
 
-    public static double selectMinSalary() {
+    public double selectMinSalary() {
         Connection connection = null;
         ResultSet resultSet;
         double minSalary = -1;

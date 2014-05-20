@@ -1,5 +1,6 @@
 package ua.av.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,12 +17,19 @@ import java.util.List;
 @Controller
 public class AddEmployeesToDepartmentController {
 
+    @Autowired
+    private SelectEmployees selectEmployees;
+    @Autowired
+    private AddEmployeesToDepartment addEmployeesToDepartment;
+    @Autowired
+    private SelectDepartments selectDepartments;
+
     @RequestMapping(value = "/addEmployeesToDepartment.html")
     public ModelAndView addEmployeesToDepartment() {
-        List<Department> departments = SelectDepartments.selectDepartmentsFromDatabase();
-        List<Employee> managers = SelectEmployees.selectManagers();
-        List<Employee> developers = SelectEmployees.selectDevelopers();
-        List<Employee> cleaners = SelectEmployees.selectCleaners();
+        List<Department> departments = selectDepartments.selectDepartmentsFromDatabase();
+        List<Employee> managers = selectEmployees.selectManagers();
+        List<Employee> developers = selectEmployees.selectDevelopers();
+        List<Employee> cleaners = selectEmployees.selectCleaners();
 
         ModelMap modelMap = new ModelMap();
         modelMap.addAttribute("managers", managers);
@@ -34,7 +42,7 @@ public class AddEmployeesToDepartmentController {
 
     @RequestMapping(value = "/addEmployeesToDepartmentResult.html")
     public ModelAndView addEmployeesToDepartmentResult(WebRequest request) {
-        boolean result = AddEmployeesToDepartment.addEmployeesToDepartment(request);
+        boolean result = addEmployeesToDepartment.addEmployeesToDepartment(request);
 
         return new ModelAndView("addEmployeesToDepartmentResult", "result", result);
     }

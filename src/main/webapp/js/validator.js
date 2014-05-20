@@ -1,6 +1,17 @@
 function deleteConfirmation(param) {
-    if (confirm("Are you sure ?\nThis action is unchangeable"))
+    if (confirm("Are you sure ?\nThis action is unchangeable")) {
        param.submit();
+    }
+}
+
+function editDepartmentValidation (result) {
+    if (result) {
+        alert('Department was edited successfully');
+        window.location.href = "viewAllDepartments.html";
+    } else {
+        alert ('An error was occurred , please try again');
+        window.location.href = "index.html";
+    }
 }
 
 function deleteEmployeeValidation (result) {
@@ -21,6 +32,16 @@ function addDepartmentValidation(form) {
     }
 
     return true;
+}
+
+function deleteDepartmentValidation(result) {
+    if (result) {
+        alert('Department was deleted successfully');
+        window.location.href = "viewAllDepartments.html";
+    } else {
+        alert ('An error was occurred , please try again');
+        window.location.href = "index.html";
+    }
 }
 
 function editFormValidation (result) {
@@ -66,3 +87,5 @@ function addEmployeesToDepartmentValidation (result) {
         window.location.href = "addEmployeesToDepartment.html";
     }
 }
+
+

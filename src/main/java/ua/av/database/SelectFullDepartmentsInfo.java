@@ -1,6 +1,7 @@
 package ua.av.database;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import ua.av.exception.BusinessException;
 
 import javax.sql.DataSource;
@@ -13,12 +14,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class SelectFullDepartmentsInfo {
 
-    public static Map<String, List<Long>> selectFullDepartmentsInfo() {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
-        ConnectorJDBC connectorJDBC = (ConnectorJDBC) context.getBean("connectorJDBC");
-        DataSource dataSource = connectorJDBC.getDataSource();
+    @Autowired
+    private DataSource dataSource;
+
+    public Map<String, List<Long>> selectFullDepartmentsInfo() {
 
         Connection connection = null;
         ResultSet departmentsResulSet;

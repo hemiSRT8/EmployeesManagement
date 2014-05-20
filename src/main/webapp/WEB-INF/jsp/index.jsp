@@ -110,7 +110,7 @@
                             </button>
                         </form>
 
-                        <form class="deleteAction" action="deleteEmployee.html" method="POST">
+                        <form class="deleteAction" action="deleteEmployee.html" method="POST" onsubmit="deleteConfirmation(${developer.getId()});return false;">
                         	<button type = "submit" name = "deleteEmployeeId" value = "${developer.getId()}" title="Delete employee">
                         	        <img src="img/delete.png">
                         	</button>
@@ -159,7 +159,7 @@
                             </button>
                         </form>
 
-                        <form class="deleteAction" action="deleteEmployee.html" method="POST">
+                        <form class="deleteAction" action="deleteEmployee.html" method="POST" onsubmit="deleteConfirmation(${cleaner.getId()});return false;">
                         	<button type = "submit" name = "deleteEmployeeId" value = "${cleaner.getId()}" title="Delete employee">
                         	        <img src="img/delete.png">
                         	</button>

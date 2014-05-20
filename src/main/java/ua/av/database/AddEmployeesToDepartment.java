@@ -1,7 +1,9 @@
 package ua.av.database;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.WebRequest;
+import ua.av.exception.BusinessException;
 
 import javax.sql.DataSource;
 import java.sql.CallableStatement;
@@ -10,12 +12,13 @@ import java.sql.SQLException;
 
 import static java.lang.Long.valueOf;
 
+@Component
 public class AddEmployeesToDepartment {
 
-    public static boolean addEmployeesToDepartment(WebRequest request) {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
-        ConnectorJDBC connectorJDBC = (ConnectorJDBC) context.getBean("connectorJDBC");
-        DataSource dataSource = connectorJDBC.getDataSource();
+    @Autowired
+    private DataSource dataSource;
+
+    public boolean addEmployeesToDepartment(WebRequest request) {
         Connection connection = null;
 
         String[] stringIdsArray = request.getParameterValues("employeeId");
@@ -53,7 +56,7 @@ public class AddEmployeesToDepartment {
                             connection.close();
                         }
                     } catch (SQLException e) {
-                        return false;
+                        throw new BusinessException();
                     }
                 }
             }

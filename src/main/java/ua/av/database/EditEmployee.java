@@ -1,8 +1,10 @@
 package ua.av.database;
 
 import com.mysql.jdbc.MysqlDataTruncation;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.WebRequest;
+import ua.av.exception.BusinessException;
 
 import javax.sql.DataSource;
 import java.sql.CallableStatement;
@@ -13,12 +15,13 @@ import java.util.List;
 
 import static java.lang.Long.valueOf;
 
+@Component
 public class EditEmployee {
 
-    public static boolean editEmployee(WebRequest request) {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
-        ConnectorJDBC connectorJDBC = (ConnectorJDBC) context.getBean("connectorJDBC");
-        DataSource dataSource = connectorJDBC.getDataSource();
+    @Autowired
+    private DataSource dataSource;
+
+    public boolean editEmployee(WebRequest request) {
         Connection connection = null;
 
         Long id = valueOf(request.getParameter("id"));
@@ -68,7 +71,7 @@ public class EditEmployee {
                         connection.close();
                     }
                 } catch (SQLException e) {
-                    return false;
+                    throw new BusinessException();
                 }
             }
         }
