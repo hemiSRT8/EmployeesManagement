@@ -10,10 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class SearchEmployeeInDatabase {
+public class SearchEmployeeInDatabaseDao {
 
     @Autowired
-    private SelectEmployees selectEmployees;
+    private SelectEmployeesDao selectEmployeesDao;
 
     public List<Employee> searchEmployee(WebRequest request) {
         List<Employee> result = new ArrayList<Employee>();
@@ -23,7 +23,7 @@ public class SearchEmployeeInDatabase {
         /**
          * Search in managers
          */
-        temp = SearchEmployee.searchByLastName(lastName, selectEmployees.selectManagers());
+        temp = SearchEmployee.searchByLastName(lastName, selectEmployeesDao.selectManagers());
         if (!temp.isEmpty()) {
             for (Employee e : temp) {
                 result.add(e);
@@ -35,7 +35,7 @@ public class SearchEmployeeInDatabase {
         /**
          * Search in developers
          */
-        temp = SearchEmployee.searchByLastName(lastName, selectEmployees.selectDevelopers());
+        temp = SearchEmployee.searchByLastName(lastName, selectEmployeesDao.selectDevelopers());
         if (!temp.isEmpty()) {
             for (Employee e : temp) {
                 result.add(e);
@@ -47,7 +47,7 @@ public class SearchEmployeeInDatabase {
         /**
          * Search in cleaners
          */
-        temp = SearchEmployee.searchByLastName(lastName, selectEmployees.selectCleaners());
+        temp = SearchEmployee.searchByLastName(lastName, selectEmployeesDao.selectCleaners());
         if (!temp.isEmpty()) {
             for (Employee e : temp) {
                 result.add(e);

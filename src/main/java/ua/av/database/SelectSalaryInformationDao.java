@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @Component
-public class SelectSalaryInformation {
+public class SelectSalaryInformationDao {
 
     @Autowired
     private DataSource dataSource;

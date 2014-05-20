@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 @Component
-public class EditDepartment {
+public class EditDepartmentDao {
 
     @Autowired
     private DataSource dataSource;

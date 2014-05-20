@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Component
-public class SelectEmployees {
+public class SelectEmployeesDao {
 
     @Autowired
     private DataSource dataSource;
@@ -25,7 +25,8 @@ public class SelectEmployees {
         ResultSet managersResultSet;
         ResultSet departmentsResultSet;
 
-        Connection connection;
+        List<Employee> employees = null;
+        Connection connection = null;
 
         try {
             connection = dataSource.getConnection();
@@ -34,18 +35,29 @@ public class SelectEmployees {
 
             CallableStatement departmentsCallableStatement = connection.prepareCall("{call selectEmployeesDepartment}");
             departmentsResultSet = departmentsCallableStatement.executeQuery();
+            employees = employeeParser.parseManagers(managersResultSet, departmentsResultSet);
+
         } catch (SQLException e) {
             throw new BusinessException(e);
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                throw new BusinessException();
+            }
         }
 
-        return employeeParser.parseManagers(managersResultSet, departmentsResultSet);
+        return employees;
     }
 
     public List<Employee> selectDevelopers() {
         ResultSet developersResultSet;
         ResultSet departmentsResultSet;
 
-        Connection connection;
+        List<Employee> employees = null;
+        Connection connection = null;
 
         try {
             connection = dataSource.getConnection();
@@ -54,18 +66,28 @@ public class SelectEmployees {
 
             CallableStatement departmentsCallableStatement = connection.prepareCall("{call selectEmployeesDepartment}");
             departmentsResultSet = departmentsCallableStatement.executeQuery();
+            employees = employeeParser.parseDevelopers(developersResultSet, departmentsResultSet);
         } catch (SQLException e) {
             throw new BusinessException(e);
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                throw new BusinessException();
+            }
         }
 
-        return employeeParser.parseDevelopers(developersResultSet, departmentsResultSet);
+        return employees;
     }
 
     public List<Employee> selectCleaners() {
         ResultSet cleanersResultSet;
         ResultSet departmentsResultSet;
 
-        Connection connection;
+        List<Employee> employees = null;
+        Connection connection = null;
 
         try {
             connection = dataSource.getConnection();
@@ -74,10 +96,20 @@ public class SelectEmployees {
 
             CallableStatement departmentsCallableStatement = connection.prepareCall("{call selectEmployeesDepartment}");
             departmentsResultSet = departmentsCallableStatement.executeQuery();
+
+            employees = employeeParser.parseCleaners(cleanersResultSet, departmentsResultSet);
         } catch (SQLException e) {
             throw new BusinessException(e);
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                throw new BusinessException();
+            }
         }
 
-        return employeeParser.parseCleaners(cleanersResultSet, departmentsResultSet);
+        return employees;
     }
 }

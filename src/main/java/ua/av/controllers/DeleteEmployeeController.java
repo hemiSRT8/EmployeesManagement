@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
-import ua.av.database.DeleteEmployee;
+import ua.av.database.DeleteEmployeeDao;
 
 import static java.lang.Long.valueOf;
 
@@ -14,7 +14,7 @@ import static java.lang.Long.valueOf;
 public class DeleteEmployeeController {
 
     @Autowired
-    private DeleteEmployee deleteEmployee;
+    private DeleteEmployeeDao deleteEmployee;
 
     @RequestMapping(value = "/deleteEmployee.html", method = RequestMethod.POST)
     public ModelAndView deleteEmployee(WebRequest request) {

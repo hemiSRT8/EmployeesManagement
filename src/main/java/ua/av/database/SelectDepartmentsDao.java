@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class SelectDepartments {
+public class SelectDepartmentsDao {
 
     @Autowired
     private DataSource dataSource;

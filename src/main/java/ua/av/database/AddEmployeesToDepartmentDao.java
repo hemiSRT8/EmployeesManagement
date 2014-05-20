@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import static java.lang.Long.valueOf;
 
 @Component
-public class AddEmployeesToDepartment {
+public class AddEmployeesToDepartmentDao {
 
     @Autowired
     private DataSource dataSource;

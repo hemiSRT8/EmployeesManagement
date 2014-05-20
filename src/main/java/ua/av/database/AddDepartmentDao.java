@@ -12,7 +12,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 @Component
-public class AddDepartment {
+public class AddDepartmentDao {
 
     @Autowired
     private DataSource dataSource;

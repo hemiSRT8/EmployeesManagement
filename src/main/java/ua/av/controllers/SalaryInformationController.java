@@ -5,22 +5,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import ua.av.database.SelectSalaryInformation;
+import ua.av.database.SelectSalaryInformationDao;
 
 @Controller
 public class SalaryInformationController {
 
     @Autowired
-    private SelectSalaryInformation selectSalaryInformation;
+    private SelectSalaryInformationDao selectSalaryInformationDao;
 
     @RequestMapping(value = "/salaryInformation.html")
     public ModelAndView salaryInformation() {
         ModelMap map = new ModelMap();
 
-        double expense = selectSalaryInformation.selectSalaryExpense();
-        double averageSalary = selectSalaryInformation.selectAverageSalary();
-        double maxSalary = selectSalaryInformation.selectMaxSalary();
-        double minSalary = selectSalaryInformation.selectMinSalary();
+        double expense = selectSalaryInformationDao.selectSalaryExpense();
+        double averageSalary = selectSalaryInformationDao.selectAverageSalary();
+        double maxSalary = selectSalaryInformationDao.selectMaxSalary();
+        double minSalary = selectSalaryInformationDao.selectMinSalary();
 
         map.addAttribute("expense", expense);
         map.addAttribute("averageSalary", averageSalary);
