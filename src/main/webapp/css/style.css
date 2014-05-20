@@ -151,6 +151,16 @@
      height:21px;
 }
 
+/* For editDepartment page */
+#editActionButton button {
+     border : 0 none;
+     background : none;
+     cursor: pointer;
+     float:left;
+     width:28px;
+     height:21px;
+}
+
 .deleteAction button {
     border : 0 none;
     background : none;
@@ -289,4 +299,24 @@ select {
     font-size : 18px;
     white-space: nowrap;
     padding:3px;
+}
+
+#departmentsFullInfoContainer {
+    margin-top:50px;
+    background-color:#FAEBD7;
+    width:100%;
+    padding-bottom:20px;
+}
+
+#departmentsOnlyNamesContainer {
+    margin-top:50px;
+    background-color:#FAEBD7;
+    width:100%;
+    padding-bottom:20px;
+}
+
+.buttonsForDepartmentsInfo {
+    padding-top:55px;
+    margin-left:270px;
+    list-style-type:none;
 }

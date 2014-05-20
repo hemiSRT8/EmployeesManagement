@@ -1,5 +1,6 @@
 package ua.av.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,14 +15,17 @@ public class IndexController {
 
     // private static Logger logger = Logger.getRootLogger();
 
+    @Autowired
+    private SelectEmployees selectEmployees;
+
     @RequestMapping("/index.html")
     public ModelAndView mainPage() {
 
-        // logger.info("Index page is started!");
+        // logger.info("Index page is started!")
 
-        List<Employee> managers = SelectEmployees.selectManagers();
-        List<Employee> developers = SelectEmployees.selectDevelopers();
-        List<Employee> cleaners = SelectEmployees.selectCleaners();
+        List<Employee> managers = selectEmployees.selectManagers();
+        List<Employee> developers = selectEmployees.selectDevelopers();
+        List<Employee> cleaners = selectEmployees.selectCleaners();
 
         ModelMap modelMap = new ModelMap();
         modelMap.addAttribute("managers", managers);

@@ -1,6 +1,7 @@
 package ua.av.database;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.WebRequest;
 import ua.av.entities.Cleaner;
 import ua.av.entities.Developer;
@@ -16,12 +17,13 @@ import java.sql.SQLException;
 
 import static java.lang.Long.valueOf;
 
+@Component
 public class SelectSingleEmployee {
 
-    public static Employee selectSingleEmployee(WebRequest request, String profession) {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
-        ConnectorJDBC connectorJDBC = (ConnectorJDBC) context.getBean("connectorJDBC");
-        DataSource dataSource = connectorJDBC.getDataSource();
+    @Autowired
+    private DataSource dataSource;
+
+    public Employee selectSingleEmployee(WebRequest request, String profession) {
 
         long id = valueOf(request.getParameter("editEmployeeId"));
 

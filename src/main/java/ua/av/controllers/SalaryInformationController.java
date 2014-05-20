@@ -1,5 +1,6 @@
 package ua.av.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,14 +10,17 @@ import ua.av.database.SelectSalaryInformation;
 @Controller
 public class SalaryInformationController {
 
+    @Autowired
+    private SelectSalaryInformation selectSalaryInformation;
+
     @RequestMapping(value = "/salaryInformation.html")
     public ModelAndView salaryInformation() {
         ModelMap map = new ModelMap();
 
-        double expense = SelectSalaryInformation.selectSalaryExpense();
-        double averageSalary = SelectSalaryInformation.selectAverageSalary();
-        double maxSalary = SelectSalaryInformation.selectMaxSalary();
-        double minSalary = SelectSalaryInformation.selectMinSalary();
+        double expense = selectSalaryInformation.selectSalaryExpense();
+        double averageSalary = selectSalaryInformation.selectAverageSalary();
+        double maxSalary = selectSalaryInformation.selectMaxSalary();
+        double minSalary = selectSalaryInformation.selectMinSalary();
 
         map.addAttribute("expense", expense);
         map.addAttribute("averageSalary", averageSalary);

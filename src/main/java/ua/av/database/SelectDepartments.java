@@ -1,6 +1,7 @@
 package ua.av.database;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import ua.av.entities.Department;
 import ua.av.exception.BusinessException;
 
@@ -12,12 +13,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class SelectDepartments {
 
-    public static List<Department> selectDepartmentsFromDatabase() {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
-        ConnectorJDBC connectorJDBC = (ConnectorJDBC) context.getBean("connectorJDBC");
-        DataSource dataSource = connectorJDBC.getDataSource();
+    @Autowired
+    private DataSource dataSource;
+
+    public List<Department> selectDepartmentsFromDatabase() {
 
         Connection connection = null;
         ResultSet departmentsResulSet;
@@ -41,7 +43,7 @@ public class SelectDepartments {
                     connection.close();
                 }
             } catch (SQLException e) {
-                throw new BusinessException();
+                throw new BusinessException(e);
             }
         }
 
