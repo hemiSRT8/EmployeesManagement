@@ -320,3 +320,13 @@ select {
     margin-left:270px;
     list-style-type:none;
 }
+
+input[type="submit"] {
+    margin-bottom: 25px;
+    color: rgb(241, 14, 132);
+    background: blanchedalmond;
+    padding: 7px;
+    padding-left: 17px;
+    padding-right: 17px;
+    font-size: 17px;
+}

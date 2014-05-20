@@ -88,4 +88,34 @@ function addEmployeesToDepartmentValidation (result) {
     }
 }
 
+ function validateForm(from) {
+    if (frm.firstName.value == "") {
+        alert('First Name is required.');
+        frm.firstName.focus();
+        return false;
+    }
+    if (frm.lastName.value == "") {
+        alert('Last Name is required.');
+            frm.lastName.focus();
+            return false;
+    }
+
+    if (frm.dateOfBirth.value === "") {
+        alert('Date Of Birth is required.');
+        frm.dateOfBirth.focus();
+        return false;
+    }
+
+    if (!(/^(19|20)\d\d[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])$/.test(frm.dateOfBirth.value))) {
+		alert('Date Of Birth should be in yyyy-MM-dd format.\nBetween : 1900-01-01 and 2099-12-31');
+        frm.dateOfBirth.focus();
+        return false;
+    }
+	if (frm.wage.value == "") {
+		alert('wage is required.');
+		frm.wage.focus();
+		return false;
+	}
+    return true;
+}
 
