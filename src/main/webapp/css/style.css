@@ -1,9 +1,12 @@
+a {
+    text-decoration:none;
+}
+
 #container {
 	width:1100px;
     background:#FAEBD7;
 	margin: auto;
 	border:none;
-	text-decoration:none;
 }
 
 #signboard {
@@ -118,6 +121,12 @@
 	url(../fonts/cuprum.otf);
 }
 
+@font-face {
+	font-family: editDepButton;
+	src: local("editDepButton"),
+	url(../fonts/editDepButton.ttf);
+}
+
 .mainTableContainer {
     margin-top:50px;
     background-color:#FAEBD7;
@@ -152,14 +161,89 @@
 }
 
 /* For editDepartment page */
+#editDep button {
+     border : 0 none;
+     background : none;
+     cursor: pointer;
+     width:28px;
+     height:21px;
+}
+
 #editActionButton button {
      border : 0 none;
      background : none;
      cursor: pointer;
-     float:left;
      width:28px;
      height:21px;
+     float:left;
 }
+
+#deleteAction button {
+     border : 0 none;
+     background : none;
+     cursor: pointer;
+     width:28px;
+     height:21px;
+     float:left;
+}
+
+.submitEditDepartmentButton {
+     border : 0 none;
+     cursor: pointer;
+     width:28px;
+     height:21px;
+     background:none;
+     float:left;
+}
+
+.cancelEditDepartmentButton {
+     border : 0 none;
+     cursor: pointer;
+     width:28px;
+     height:21px;
+     background:none;
+}
+
+.editDepartmentMenu ul {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    width : 140px ;
+    margin-top:25px;
+}
+
+.editDepartmentMenu li {
+	background:#00BFFF;
+	width: 200px;
+	height: 30px;
+	border:none;
+    padding-top : 8px;
+    padding-left : 15px;
+    position:relative;
+    text-align:left;
+    font-family:editDepButton;
+    font-weight:900;
+    display: inline-block;
+    margin-left: 25px;
+}
+
+#departmentsFullInfoContainer {
+    margin-top:50px;
+    margin-left:120px;
+    background-color:#FAEBD7;
+    float:left;
+}
+
+#departmentsOnlyNamesContainer {
+    margin-top:50px;
+    background-color:#FAEBD7;
+    float:right;
+    border-left:1px solid black;
+    padding-right:175px;
+    padding-left:170px;
+}
+
+/* */
 
 .deleteAction button {
     border : 0 none;
@@ -260,12 +344,44 @@ input[type=search] {
 }
 
 .addDepartmentButton {
-    background:red;
+     border: 0;
+     background : url(../img/submitButton.png) no-repeat;
+     width:75px;
+     height:75px;
+     cursor: pointer;
+     margin-left:430px;
+     float:left;
+ }
+
+.cancelAddDepartmentButton {
+    border: 0;
+    background : url(../img/cancelButton.png) no-repeat;
+    width:75px;
+    height:75px;
+    cursor: pointer;
+    margin-top:15px;
+    margin-left:-370px;
+}
+
+.cancelAddEmployeesToDepartmentButton {
+    border: 0;
+    background : url(../img/cancelButton.png) no-repeat;
+    width:75px;
+    height:75px;
+    cursor: pointer;
+    margin-top:20px;
+    margin-left:70px;
+}
+
+.addEmployeesToDepartmentButton {
     border: 0;
     background : url(../img/submitButton.png) no-repeat;
     width:75px;
     height:75px;
     cursor: pointer;
+    float:left;
+    position:absolute;
+    margin-left:-70px;
 }
 
 select {
@@ -296,27 +412,10 @@ select {
     text-align:center;
     border-bottom: 1px solid #51626f;
     border-right: 1px solid #51626f;
-    font-size : 18px;
+    font-size : 15px;
     white-space: nowrap;
     padding:3px;
 }
 
-#departmentsFullInfoContainer {
-    margin-top:50px;
-    background-color:#FAEBD7;
-    width:100%;
-    padding-bottom:20px;
-}
 
-#departmentsOnlyNamesContainer {
-    margin-top:50px;
-    background-color:#FAEBD7;
-    width:100%;
-    padding-bottom:20px;
-}
 
-.buttonsForDepartmentsInfo {
-    padding-top:55px;
-    margin-left:270px;
-    list-style-type:none;
-}

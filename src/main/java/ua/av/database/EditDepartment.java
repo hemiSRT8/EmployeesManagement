@@ -30,6 +30,7 @@ public class EditDepartment {
             callableStatement.setString("newDepartmentName", "'" + newDepartmentName + "'");
 
             callableStatement.executeUpdate();
+
             return true;
 
         } catch (SQLException e) {

@@ -17,7 +17,8 @@
 
        <div style="margin-top:220px;margin-left:100px;position:absolute;height:20px;width:20px;">
             <form action="addEmployeesToDepartmentResult.html" method="POST">
-            <button type="submit" class="addDepartmentButton"></button>
+            <button type="submit" class="addEmployeesToDepartmentButton"></button>
+            <button type="button" class="cancelAddEmployeesToDepartmentButton" onclick="cancelAddEmployeesToDepartmentOperation();"></button>
        </div>
 
        <select name="department" multiple="multiple" style="height:200px;margin-left:30px;width:160px;">

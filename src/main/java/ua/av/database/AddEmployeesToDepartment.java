@@ -2,7 +2,6 @@ package ua.av.database;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.WebRequest;
 import ua.av.exception.BusinessException;
 
 import javax.sql.DataSource;
@@ -18,11 +17,8 @@ public class AddEmployeesToDepartment {
     @Autowired
     private DataSource dataSource;
 
-    public boolean addEmployeesToDepartment(WebRequest request) {
+    public boolean addEmployeesToDepartment(String[] stringIdsArray, String[] departmentsArray) {
         Connection connection = null;
-
-        String[] stringIdsArray = request.getParameterValues("employeeId");
-        String[] departmentsArray = request.getParameterValues("department");
 
         if (stringIdsArray == null) {
             return false;
@@ -47,6 +43,7 @@ public class AddEmployeesToDepartment {
                     CallableStatement callableStatement = connection.prepareCall("{call addEmployeesToDepartment(?,?)}");
                     callableStatement.setLong("employeeId", id);
                     callableStatement.setString("departmentName", "'" + department + "'");
+
                     callableStatement.executeUpdate();
                 } catch (SQLException e) {
                     return false;

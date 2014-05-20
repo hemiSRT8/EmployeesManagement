@@ -14,13 +14,11 @@ public class AddDepartmentController {
     private AddDepartment addDepartment;
 
     @RequestMapping(value = "/addDepartment.html")
-    public String addDepartment() {
-        return ("addDepartment");
-    }
-
-    @RequestMapping(value = "/addDepartmentResult.html")
     public ModelAndView addDepartmentResult(WebRequest request) {
-        boolean result = addDepartment.addDepartment(request);
-        return new ModelAndView("addDepartmentResult", "result", result);
+        String departmentName = request.getParameter("departmentName");
+
+        boolean result = addDepartment.addDepartment(departmentName);
+
+        return new ModelAndView("addDepartment", "result", result);
     }
 }

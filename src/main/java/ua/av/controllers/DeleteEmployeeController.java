@@ -8,6 +8,8 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 import ua.av.database.DeleteEmployee;
 
+import static java.lang.Long.valueOf;
+
 @Controller
 public class DeleteEmployeeController {
 
@@ -16,7 +18,10 @@ public class DeleteEmployeeController {
 
     @RequestMapping(value = "/deleteEmployee.html", method = RequestMethod.POST)
     public ModelAndView deleteEmployee(WebRequest request) {
-        boolean result = deleteEmployee.deleteEmployee(request);
+        long id = valueOf(request.getParameter("deleteEmployeeId"));
+
+        boolean result = deleteEmployee.deleteEmployee(id);
+
         return new ModelAndView("deleteEmployeeResult", "result", result);
     }
 }

@@ -42,7 +42,10 @@ public class AddEmployeesToDepartmentController {
 
     @RequestMapping(value = "/addEmployeesToDepartmentResult.html")
     public ModelAndView addEmployeesToDepartmentResult(WebRequest request) {
-        boolean result = addEmployeesToDepartment.addEmployeesToDepartment(request);
+        String[] stringIdsArray = request.getParameterValues("employeeId");
+        String[] departmentsArray = request.getParameterValues("department");
+
+        boolean result = addEmployeesToDepartment.addEmployeesToDepartment(stringIdsArray, departmentsArray);
 
         return new ModelAndView("addEmployeesToDepartmentResult", "result", result);
     }

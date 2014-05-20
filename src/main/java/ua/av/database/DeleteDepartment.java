@@ -28,8 +28,8 @@ public class DeleteDepartment {
             callableStatement.setString("departmentName", "'" + departmentName + "'");
 
             callableStatement.executeUpdate();
-            return true;
 
+            return true;
         } catch (SQLException e) {
             return false;
         } finally {

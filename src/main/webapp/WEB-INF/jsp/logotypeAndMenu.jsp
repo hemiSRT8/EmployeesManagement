@@ -7,12 +7,6 @@
     <ul class="menu">
         <li> <a href="salaryInformation.html"> Salary information </a> </li>
         <li> <a href="searchEmployee.html"> Search employee </a> </li>
-        <li> <a href=""> Departments <span id="menuPointer"> > </span> </a>
-            <ul>
-                <li> <a href="addDepartment.html"> Add department </a> </li>
-                <li> <a href="addEmployeesToDepartment.html"> Add employee to department </a> </li>
-                <li> <a href="viewAllDepartments.html"> View all departments </a> </li>
-            </ul>
-        </li>
+        <li> <a href="viewAllDepartments.html"> Departments <span id="menuPointer"> </span> </a> </li>
     </ul>
 </div>
