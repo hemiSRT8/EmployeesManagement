@@ -2,11 +2,7 @@
 <body style="background: url(img/background.jpg);">
 
 <div id="container" style="background-color:#FAEBD7;">
-
- <center>
-         <div id="employeesImg"> <img src="img/employees.png"> </div>
-         <div id="signboard"> Manage employees</div>
- </center>
+    <%@ include file="logotypeAndMenu.jsp" %>
 
    <center style="margin-bottom:50px;margin-top:20px;overflow:auto;">
            <c:choose>
@@ -75,13 +71,13 @@
 
                     				   <td>
                     				        <form class="editAction" action="editEmployee.html" method="POST">
-                                            	<input type="hidden" name="profession" value="manager"/>
+                                            	<input type="hidden" name="profession" value="${employee.getClass()}"/>
                                             	<button type = "submit" name = "editEmployeeId" value = "${employee.getId()}" title="Edit employee">
                                                         <img src="img/edit.png">
                                                 </button>
                                             </form>
 
-                                            <form class="deleteAction" action="deleteEmployee.html" method="POST" onsubmit="deleteConfirmation(${manager.getId()});return false;">
+                                            <form class="deleteAction" action="deleteEmployee.html" method="POST" onsubmit="deleteConfirmation(${employee.getId()});return false;">
                                             	<button type = "submit" name = "deleteEmployeeId" value = "${employee.getId()}" title="Delete employee">
                                             	        <img src="img/delete.png">
                                             	</button>

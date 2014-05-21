@@ -156,6 +156,16 @@ a {
      height:21px;
 }
 
+.infoAction button {
+    border : 0 none;
+    background : none;
+    cursor: pointer;
+    float:left;
+    width:28px;
+    height:21px;
+}
+
+
 /* editDepartment block */
 #editDep button {
      border : 0 none;
@@ -442,6 +452,57 @@ select {
     margin-left:615px;
     position:absolute;
     cursor:pointer;
+}
+/*End of sort employees block */
+
+.singleEmployeeTable {
+    width: 50%;
+}
+
+.singleEmployeeTable td,tr {
+    background-color:#FAEBD7;
+    border-collapse: collapse;
+    text-align:center;
+    border-bottom: 1px solid #51626f;
+    border-right: 1px solid #51626f;
+    font-size : 19px;
+    white-space: nowrap;
+}
+
+.singleEmployeeUL {
+    list-style-type: none;
+    font-size:17px;
+    margin:0;
+    padding:0;
+}
+
+.editActionSingleEmployee button {
+    border : 0 none;
+    background : none;
+    cursor: pointer;
+    width:28px;
+    height:21px;
+    position:absolute;
+    margin-top:15px;
+}
+
+
+.deleteActionSingleButton button {
+    border : 0 none;
+    background : none;
+    cursor: pointer;
+    float:left;
+    width:28px;
+    height:21px;
+    position:absolute;
+    margin-top:15px;
+    margin-left:40px;
+}
+
+#homePageButton {
+    position:absolute;
+    margin-left:1030px;
+    margin-top:-150px;
 }
 
 input[type="submit"] {

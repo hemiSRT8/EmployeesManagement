@@ -36,7 +36,7 @@ public class EmployeeParser {
                         manager.setPercentageOfSales(managers.getDouble("percentageOfSales"));
 
                         for (Long key : departmentsHashMap.keySet()) {
-                            if (key == managerId) {
+                            if (key.equals(managerId)) {
                                 List<Department> departmentList = departmentsHashMap.get(key);
                                 for (Department department : departmentList) {
                                     manager.setDepartment(department);
@@ -76,7 +76,7 @@ public class EmployeeParser {
                         developer.setLinesOfCode(linesOfCode);
 
                         for (Long key : departmentsHashMap.keySet()) {
-                            if (key == developerId) {
+                            if (key.equals(developerId)) {
                                 List<Department> departmentList = departmentsHashMap.get(key);
                                 for (Department department : departmentList) {
                                     developer.setDepartment(department);
@@ -116,7 +116,7 @@ public class EmployeeParser {
                         cleaner.setAmountOfCleanedOffices(amountOfCleanedOffices);
 
                         for (Long key : departmentsHashMap.keySet()) {
-                            if (key == cleanerId) {
+                            if (key.equals(cleanerId)) {
                                 List<Department> departmentList = departmentsHashMap.get(key);
                                 for (Department department : departmentList) {
                                     cleaner.setDepartment(department);

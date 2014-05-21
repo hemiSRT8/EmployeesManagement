@@ -18,3 +18,7 @@
         <li> <a href="viewAllDepartments.html"> Departments <span id="menuPointer"> </span> </a> </li>
     </ul>
 </div>
+
+<div id="homePageButton">
+    <a href="/index.html"> <img src="img/homePageButton.png"> </a>
+</div>
