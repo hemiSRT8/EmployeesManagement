@@ -1,5 +1,6 @@
 a {
     text-decoration:none;
+    color:black;
 }
 
 #container {
@@ -121,14 +122,9 @@ a {
 	url(../fonts/cuprum.otf);
 }
 
-@font-face {
-	font-family: editDepButton;
-	src: local("editDepButton"),
-	url(../fonts/editDepButton.ttf);
-}
 
 .mainTableContainer {
-    margin-top:50px;
+    margin-top:85px;
     background-color:#FAEBD7;
     width:100%;
 }
@@ -160,7 +156,7 @@ a {
      height:21px;
 }
 
-/* For editDepartment page */
+/* editDepartment block */
 #editDep button {
      border : 0 none;
      background : none;
@@ -208,23 +204,18 @@ a {
     list-style-type:none;
     margin:0;
     padding:0;
-    width : 140px ;
-    margin-top:25px;
 }
 
 .editDepartmentMenu li {
 	background:#00BFFF;
-	width: 200px;
-	height: 30px;
 	border:none;
-    padding-top : 8px;
-    padding-left : 15px;
+    padding : 5px;
     position:relative;
-    text-align:left;
-    font-family:editDepButton;
+    font-family:cuprum;
     font-weight:900;
-    display: inline-block;
+    display: inline;
     margin-left: 25px;
+    cursor:pointer;
 }
 
 #departmentsFullInfoContainer {
@@ -238,12 +229,12 @@ a {
     margin-top:50px;
     background-color:#FAEBD7;
     float:right;
-    border-left:1px solid black;
+    border-left:1px dotted grey;
     padding-right:175px;
-    padding-left:170px;
+    padding-left:120px;
 }
 
-/* */
+/* End of editDepartment block*/
 
 .deleteAction button {
     border : 0 none;
@@ -417,5 +408,39 @@ select {
     padding:3px;
 }
 
+/*Sort employees block */
+.sortEmployeesButton {
+    border:none;
+    font-family:cuprum;
+    font-weight:900;
+    margin-top:25px;
+    position:absolute;
+    text-align: center;
+    margin-left:522px;
+    color:red;
+}
 
+.fullNameSortOption {
+    font-weight:900;
+    margin-top:50px;
+    margin-left:410px;
+    position:absolute;
+    cursor:pointer;
+}
 
+.dateOfBirthSortOption {
+    font-weight:900;
+    margin-top:50px;
+    margin-left:505px;
+    position:absolute;
+    cursor:pointer;
+}
+
+.salarySortOption {
+    font-weight:900;
+    margin-top:50px;
+    margin-left:615px;
+    position:absolute;
+    cursor:pointer;
+}
+/*End of sort employees block */

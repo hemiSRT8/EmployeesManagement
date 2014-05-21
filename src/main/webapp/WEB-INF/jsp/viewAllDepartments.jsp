@@ -7,16 +7,16 @@
     <%@ include file="logotypeAndMenu.jsp" %>
 
     <center>
-        <ul class="editDepartmentMenu">
+        <ul class="editDepartmentMenu" style="border-bottom:1px solid grey;margin-top:30px;padding-bottom:25px;">
             <li style="width:160px;" onclick="addDepartment_onclick();"> ADD NEW DEPARTMENT </li>
             <li style="width:220px;" onclick="addEmployeesToDepartment_onclick();"> ADD EMPLOYEES TO DEPARTMENT </li>
         </ul>
     </center>
 
-    <div id="addDepartment" style="display:none;border-bottom:1px solid black;padding-bottom:20px;">
+    <div id="addDepartment" style="display:none;border-bottom:1px dotted grey;padding-bottom:20px;">
         <center style="padding-top:35px;font-weight:900;color:green;font-family:cuprum;font-size:20px;">
             <form action="addDepartment.html" method="POST" onSubmit="return addDepartmentValidation(this);">
-                <input style="width:200px;height:30px;" type="text" name="departmentName" value="" placeholder= "Name of the department"/>
+                <input style="width:200px;height:30px;" type="text" name="departmentName" value="" placeholder= "Name of the department" required=""/>
                 <br><br>
                 <button type="submit" class="addDepartmentButton"></button>
                 <button type="button" class="cancelAddDepartmentButton" onclick="hideAddDepartmentBlock();"></button>
