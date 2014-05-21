@@ -75,13 +75,13 @@
 
                     				   <td>
                     				        <form class="editAction" action="editEmployee.html" method="POST">
-                                            	<input type="hidden" name="profession" value="manager"/>
+                                            	<input type="hidden" name="profession" value="${employee.getClass()}"/>
                                             	<button type = "submit" name = "editEmployeeId" value = "${employee.getId()}" title="Edit employee">
                                                         <img src="img/edit.png">
                                                 </button>
                                             </form>
 
-                                            <form class="deleteAction" action="deleteEmployee.html" method="POST" onsubmit="deleteConfirmation(${manager.getId()});return false;">
+                                            <form class="deleteAction" action="deleteEmployee.html" method="POST" onsubmit="deleteConfirmation(${employee.getId()});return false;">
                                             	<button type = "submit" name = "deleteEmployeeId" value = "${employee.getId()}" title="Delete employee">
                                             	        <img src="img/delete.png">
                                             	</button>

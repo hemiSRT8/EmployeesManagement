@@ -10,6 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 import ua.av.database.EditEmployeeDao;
 import ua.av.database.SelectSingleEmployeeDao;
 
+import static java.lang.Long.valueOf;
+
 @Controller
 public class EditEmployeeController {
 
@@ -21,16 +23,20 @@ public class EditEmployeeController {
     @RequestMapping(value = "/editEmployee.html", method = RequestMethod.POST)
     public ModelAndView editEmployee(WebRequest request) {
         ModelMap map = new ModelMap();
-        if ("manager".equalsIgnoreCase(request.getParameter("profession"))) {
-            map.addAttribute("employee", selectSingleEmployeeDao.selectSingleEmployee(request, "manager"));
+
+        String profession = request.getParameter("profession");
+        long id = valueOf(request.getParameter("editEmployeeId"));
+
+        if (profession.contains("class ua.av.entities.Manager")) {
+            map.addAttribute("employee", selectSingleEmployeeDao.selectSingleEmployee(id, "manager"));
             map.addAttribute("profession", "manager");
             return new ModelAndView("editEmployee", map);
-        } else if ("developer".equalsIgnoreCase(request.getParameter("profession"))) {
-            map.addAttribute("employee", selectSingleEmployeeDao.selectSingleEmployee(request, "developer"));
+        } else if (profession.contains("class ua.av.entities.Developer")) {
+            map.addAttribute("employee", selectSingleEmployeeDao.selectSingleEmployee(id, "developer"));
             map.addAttribute("profession", "developer");
             return new ModelAndView("editEmployee", map);
-        } else if ("cleaner".equalsIgnoreCase(request.getParameter("profession"))) {
-            map.addAttribute("employee", selectSingleEmployeeDao.selectSingleEmployee(request, "cleaner"));
+        } else if (profession.contains("class ua.av.entities.Cleaner")) {
+            map.addAttribute("employee", selectSingleEmployeeDao.selectSingleEmployee(id, "cleaner"));
             map.addAttribute("profession", "cleaner");
             return new ModelAndView("editEmployee", map);
         } else {

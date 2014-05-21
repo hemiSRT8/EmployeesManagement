@@ -36,7 +36,6 @@ public class SelectEmployeesDao {
             CallableStatement departmentsCallableStatement = connection.prepareCall("{call selectEmployeesDepartment}");
             departmentsResultSet = departmentsCallableStatement.executeQuery();
             employees = employeeParser.parseManagers(managersResultSet, departmentsResultSet);
-
         } catch (SQLException e) {
             throw new BusinessException(e);
         } finally {
