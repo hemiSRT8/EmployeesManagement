@@ -1,6 +1,7 @@
 package ua.av.database;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.WebRequest;
 import ua.av.entities.Cleaner;
 import ua.av.entities.Developer;
@@ -16,7 +17,7 @@ import java.util.List;
 
 import static java.lang.Double.parseDouble;
 
-
+@Component
 public class AddEmployeeDao {
 
     @Autowired
