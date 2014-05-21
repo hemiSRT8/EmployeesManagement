@@ -6,6 +6,7 @@ import org.springframework.web.context.request.WebRequest;
 import ua.av.entities.Cleaner;
 import ua.av.entities.Developer;
 import ua.av.entities.Manager;
+import ua.av.exception.BusinessException;
 
 import javax.sql.DataSource;
 import java.sql.CallableStatement;
@@ -143,7 +144,6 @@ public class AddEmployeeDao {
 
             callableStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
             return 0;
         } finally {
             try {
@@ -151,7 +151,7 @@ public class AddEmployeeDao {
                     connection.close();
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                throw new BusinessException(e);
             }
         }
         return 1;

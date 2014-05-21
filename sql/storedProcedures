@@ -135,7 +135,7 @@ BEGIN
     DEALLOCATE PREPARE stmt;
 END//
 
-DELIMITER $$
+DELIMITER //
  CREATE DEFINER=`root`@`localhost` PROCEDURE `addManager`
  (
  lastName nvarchar(50),
@@ -159,11 +159,11 @@ DELIMITER $$
  VALUES(LAST_INSERT_ID(), amountOfSales, percentageOfSales);
  COMMIT;
  SET AUTOCOMMIT=1;
- END$$
+ END//
  DELIMITER ;
 
 
- DELIMITER $$
+ DELIMITER //
  CREATE DEFINER=`root`@`localhost` PROCEDURE `addCleaner`
  (
  lastName nvarchar(50),
@@ -186,10 +186,10 @@ amountOfCleanedOffices int
  VALUES(LAST_INSERT_ID(), amountOfCleanedOffices);
  COMMIT;
  SET AUTOCOMMIT=1;
- END$$
+ END//
  DELIMITER ;
 
- DELIMITER $$
+ DELIMITER //
  CREATE DEFINER=`root`@`localhost` PROCEDURE `addDeveloper`
  (
  lastName nvarchar(50),
@@ -212,6 +212,6 @@ linesOfCode int
  VALUES(LAST_INSERT_ID(), linesOfCode);
  COMMIT;
  SET AUTOCOMMIT=1;
- END$$
+ END//
  DELIMITER ;
 

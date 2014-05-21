@@ -14,7 +14,7 @@ import java.util.List;
 public class AddEmployee {
 
     @RequestMapping("/addEmployeeMenu.html")
-    public String addEmployeeMenu(WebRequest request) {
+    public String addEmployeeMenu() {
         return "addEmployeeMenu";
     }
 
@@ -31,7 +31,6 @@ public class AddEmployee {
 
         } else if("Developer".equals(type)) {
             employeeFields.add("Lines of code");
-            System.out.println(type + " is being added." );
 
         } else if("Cleaner".equals(type)) {
             employeeFields.add("Amount of cleaned offices");
