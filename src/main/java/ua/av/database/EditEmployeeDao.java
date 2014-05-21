@@ -16,7 +16,7 @@ import java.util.List;
 import static java.lang.Long.valueOf;
 
 @Component
-public class EditEmployee {
+public class EditEmployeeDao {
 
     @Autowired
     private DataSource dataSource;

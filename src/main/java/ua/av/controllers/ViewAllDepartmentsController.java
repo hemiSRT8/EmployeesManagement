@@ -5,23 +5,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import ua.av.database.SelectDepartments;
-import ua.av.database.SelectFullDepartmentsInfo;
+import ua.av.database.SelectDepartmentsDao;
+import ua.av.database.SelectFullDepartmentsInfoDao;
 
 @Controller
 public class ViewAllDepartmentsController {
 
     @Autowired
-    private SelectFullDepartmentsInfo selectFullDepartmentsInfo = new SelectFullDepartmentsInfo();
+    private SelectFullDepartmentsInfoDao selectFullDepartmentsInfoDao = new SelectFullDepartmentsInfoDao();
     @Autowired
-    private SelectDepartments selectDepartments = new SelectDepartments();
+    private SelectDepartmentsDao selectDepartmentsDao = new SelectDepartmentsDao();
 
     @RequestMapping(value = "/viewAllDepartments.html")
     public ModelAndView viewAllDepartments() {
         ModelMap modelmap = new ModelMap();
 
-        modelmap.addAttribute("departmentsMap", selectFullDepartmentsInfo.selectFullDepartmentsInfo()); //departments with employees
-        modelmap.addAttribute("departmentsNamesOnly", selectDepartments.selectDepartmentsFromDatabase()); //only department's names
+        modelmap.addAttribute("departmentsMap", selectFullDepartmentsInfoDao.selectFullDepartmentsInfo()); //departments with employees
+        modelmap.addAttribute("departmentsNamesOnly", selectDepartmentsDao.selectDepartmentsFromDatabase()); //only department's names
 
         return new ModelAndView("viewAllDepartments", modelmap);
     }

@@ -2,37 +2,43 @@ package ua.av.database;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ua.av.exception.BusinessException;
 
 import javax.sql.DataSource;
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @Component
-public class SelectEmployeesDepartment {
+public class DeleteEmployeeDao {
 
     @Autowired
     private DataSource dataSource;
 
-    public ResultSet selectEmployeesDepartment() {
+    public boolean deleteEmployee(Long id) {
+
         Connection connection = null;
-        ResultSet departmentsResultSet = null;
+
         try {
             connection = dataSource.getConnection();
-            CallableStatement departmentsCallableStatement = connection.prepareCall("{call selectEmployeesDepartment}");
-            departmentsResultSet = departmentsCallableStatement.executeQuery();
+
+            CallableStatement callableStatement = connection.prepareCall("{call deleteEmployee(?)}");
+            callableStatement.setLong("id", id);
+
+            callableStatement.executeUpdate();
+
+            return true;
+
         } catch (SQLException e) {
-            e.printStackTrace();
+            return false;
         } finally {
             try {
                 if (connection != null) {
                     connection.close();
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                throw new BusinessException();
             }
         }
-        return departmentsResultSet;
     }
 }

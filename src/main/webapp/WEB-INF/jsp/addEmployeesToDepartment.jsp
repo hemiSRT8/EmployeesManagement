@@ -17,17 +17,18 @@
 
        <div style="margin-top:220px;margin-left:100px;position:absolute;height:20px;width:20px;">
             <form action="addEmployeesToDepartmentResult.html" method="POST">
-            <button type="submit" class="addDepartmentButton"></button>
+            <button type="submit" class="addEmployeesToDepartmentButton"></button>
+            <button type="button" class="cancelAddEmployeesToDepartmentButton" onclick="cancelAddEmployeesToDepartmentOperation();"></button>
        </div>
 
-       <select name="department" multiple="multiple" style="height:200px;margin-left:30px;width:160px;">
+       <select required name="department" multiple="multiple" style="height:200px;margin-left:30px;width:160px;">
             <c:forEach items="${departments}" var="department">
                 <option value = "${department.getName()}"> ${department.getName()} </option>
             </c:forEach>
        </select>
    </div>
 
-  <div style="float:right;margin-left:50px;border-left: 1px solid black;">
+  <div style="float:right;margin-left:50px;border-left: 1px dotted grey;border-top: 1px dotted grey;">
       <div style="padding-left:100px;padding-right:70px;padding-bottom:15px;overflow:auto;">
         <span style="font-weight:900;"><span style="color:red;">E</span>mployees</span>
         <br>

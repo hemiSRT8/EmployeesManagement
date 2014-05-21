@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 @Component
-public class EditDepartment {
+public class EditDepartmentDao {
 
     @Autowired
     private DataSource dataSource;
@@ -30,6 +30,7 @@ public class EditDepartment {
             callableStatement.setString("newDepartmentName", "'" + newDepartmentName + "'");
 
             callableStatement.executeUpdate();
+
             return true;
 
         } catch (SQLException e) {

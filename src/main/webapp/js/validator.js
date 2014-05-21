@@ -10,7 +10,7 @@ function editDepartmentValidation (result) {
         window.location.href = "viewAllDepartments.html";
     } else {
         alert ('An error was occurred , please try again');
-        window.location.href = "index.html";
+        window.location.href = "viewAllDepartments.html";
     }
 }
 
@@ -69,11 +69,11 @@ function editFormDateOfBirthValidation (form) {
 function departmentAddValidation(result) {
     if (result) {
         alert ('Department was added successfully');
-        window.location.href = "addDepartment.html";
+        window.location.href = "viewAllDepartments.html";
     }
     else {
         alert ('An error was occurred , please try again');
-        window.location.href = "addDepartment.html";
+        window.location.href = "viewAllDepartments.html";
     }
 }
 

@@ -18,7 +18,7 @@ import java.sql.SQLException;
 import static java.lang.Long.valueOf;
 
 @Component
-public class SelectSingleEmployee {
+public class SelectSingleEmployeeDao {
 
     @Autowired
     private DataSource dataSource;

@@ -6,9 +6,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
-import ua.av.database.AddEmployeesToDepartment;
-import ua.av.database.SelectDepartments;
-import ua.av.database.SelectEmployees;
+import ua.av.database.AddEmployeesToDepartmentDao;
+import ua.av.database.SelectDepartmentsDao;
+import ua.av.database.SelectEmployeesDao;
 import ua.av.entities.Department;
 import ua.av.entities.Employee;
 
@@ -18,18 +18,18 @@ import java.util.List;
 public class AddEmployeesToDepartmentController {
 
     @Autowired
-    private SelectEmployees selectEmployees;
+    private SelectEmployeesDao selectEmployeesDao;
     @Autowired
-    private AddEmployeesToDepartment addEmployeesToDepartment;
+    private AddEmployeesToDepartmentDao addEmployeesToDepartmentDao;
     @Autowired
-    private SelectDepartments selectDepartments;
+    private SelectDepartmentsDao selectDepartmentsDao;
 
     @RequestMapping(value = "/addEmployeesToDepartment.html")
     public ModelAndView addEmployeesToDepartment() {
-        List<Department> departments = selectDepartments.selectDepartmentsFromDatabase();
-        List<Employee> managers = selectEmployees.selectManagers();
-        List<Employee> developers = selectEmployees.selectDevelopers();
-        List<Employee> cleaners = selectEmployees.selectCleaners();
+        List<Department> departments = selectDepartmentsDao.selectDepartmentsFromDatabase();
+        List<Employee> managers = selectEmployeesDao.selectManagers();
+        List<Employee> developers = selectEmployeesDao.selectDevelopers();
+        List<Employee> cleaners = selectEmployeesDao.selectCleaners();
 
         ModelMap modelMap = new ModelMap();
         modelMap.addAttribute("managers", managers);
@@ -42,7 +42,10 @@ public class AddEmployeesToDepartmentController {
 
     @RequestMapping(value = "/addEmployeesToDepartmentResult.html")
     public ModelAndView addEmployeesToDepartmentResult(WebRequest request) {
-        boolean result = addEmployeesToDepartment.addEmployeesToDepartment(request);
+        String[] stringIdsArray = request.getParameterValues("employeeId");
+        String[] departmentsArray = request.getParameterValues("department");
+
+        boolean result = addEmployeesToDepartmentDao.addEmployeesToDepartment(stringIdsArray, departmentsArray);
 
         return new ModelAndView("addEmployeesToDepartmentResult", "result", result);
     }

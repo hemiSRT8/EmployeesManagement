@@ -1,9 +1,13 @@
+a {
+    text-decoration:none;
+    color:black;
+}
+
 #container {
 	width:1100px;
     background:#FAEBD7;
 	margin: auto;
 	border:none;
-	text-decoration:none;
 }
 
 #signboard {
@@ -118,8 +122,9 @@
 	url(../fonts/cuprum.otf);
 }
 
+
 .mainTableContainer {
-    margin-top:50px;
+    margin-top:85px;
     background-color:#FAEBD7;
     width:100%;
 }
@@ -151,15 +156,85 @@
      height:21px;
 }
 
-/* For editDepartment page */
+/* editDepartment block */
+#editDep button {
+     border : 0 none;
+     background : none;
+     cursor: pointer;
+     width:28px;
+     height:21px;
+}
+
 #editActionButton button {
      border : 0 none;
      background : none;
      cursor: pointer;
-     float:left;
      width:28px;
      height:21px;
+     float:left;
 }
+
+#deleteAction button {
+     border : 0 none;
+     background : none;
+     cursor: pointer;
+     width:28px;
+     height:21px;
+     float:left;
+}
+
+.submitEditDepartmentButton {
+     border : 0 none;
+     cursor: pointer;
+     width:28px;
+     height:21px;
+     background:none;
+     float:left;
+}
+
+.cancelEditDepartmentButton {
+     border : 0 none;
+     cursor: pointer;
+     width:28px;
+     height:21px;
+     background:none;
+}
+
+.editDepartmentMenu ul {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+}
+
+.editDepartmentMenu li {
+	background:#00BFFF;
+	border:none;
+    padding : 5px;
+    position:relative;
+    font-family:cuprum;
+    font-weight:900;
+    display: inline;
+    margin-left: 25px;
+    cursor:pointer;
+}
+
+#departmentsFullInfoContainer {
+    margin-top:50px;
+    margin-left:120px;
+    background-color:#FAEBD7;
+    float:left;
+}
+
+#departmentsOnlyNamesContainer {
+    margin-top:50px;
+    background-color:#FAEBD7;
+    float:right;
+    border-left:1px dotted grey;
+    padding-right:175px;
+    padding-left:120px;
+}
+
+/* End of editDepartment block*/
 
 .deleteAction button {
     border : 0 none;
@@ -260,12 +335,44 @@ input[type=search] {
 }
 
 .addDepartmentButton {
-    background:red;
+     border: 0;
+     background : url(../img/submitButton.png) no-repeat;
+     width:75px;
+     height:75px;
+     cursor: pointer;
+     margin-left:430px;
+     float:left;
+ }
+
+.cancelAddDepartmentButton {
+    border: 0;
+    background : url(../img/cancelButton.png) no-repeat;
+    width:75px;
+    height:75px;
+    cursor: pointer;
+    margin-top:15px;
+    margin-left:-370px;
+}
+
+.cancelAddEmployeesToDepartmentButton {
+    border: 0;
+    background : url(../img/cancelButton.png) no-repeat;
+    width:75px;
+    height:75px;
+    cursor: pointer;
+    margin-top:20px;
+    margin-left:70px;
+}
+
+.addEmployeesToDepartmentButton {
     border: 0;
     background : url(../img/submitButton.png) no-repeat;
     width:75px;
     height:75px;
     cursor: pointer;
+    float:left;
+    position:absolute;
+    margin-left:-70px;
 }
 
 select {
@@ -296,29 +403,45 @@ select {
     text-align:center;
     border-bottom: 1px solid #51626f;
     border-right: 1px solid #51626f;
-    font-size : 18px;
+    font-size : 15px;
     white-space: nowrap;
     padding:3px;
 }
 
-#departmentsFullInfoContainer {
-    margin-top:50px;
-    background-color:#FAEBD7;
-    width:100%;
-    padding-bottom:20px;
+/*Sort employees block */
+.sortEmployeesButton {
+    border:none;
+    font-family:cuprum;
+    font-weight:900;
+    margin-top:25px;
+    position:absolute;
+    text-align: center;
+    margin-left:522px;
+    color:red;
 }
 
-#departmentsOnlyNamesContainer {
+.fullNameSortOption {
+    font-weight:900;
     margin-top:50px;
-    background-color:#FAEBD7;
-    width:100%;
-    padding-bottom:20px;
+    margin-left:410px;
+    position:absolute;
+    cursor:pointer;
 }
 
-.buttonsForDepartmentsInfo {
-    padding-top:55px;
-    margin-left:270px;
-    list-style-type:none;
+.dateOfBirthSortOption {
+    font-weight:900;
+    margin-top:50px;
+    margin-left:505px;
+    position:absolute;
+    cursor:pointer;
+}
+
+.salarySortOption {
+    font-weight:900;
+    margin-top:50px;
+    margin-left:615px;
+    position:absolute;
+    cursor:pointer;
 }
 
 input[type="submit"] {
@@ -330,3 +453,4 @@ input[type="submit"] {
     padding-right: 17px;
     font-size: 17px;
 }
+/*End of sort employees block */

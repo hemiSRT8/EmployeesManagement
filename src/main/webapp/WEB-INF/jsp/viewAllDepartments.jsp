@@ -2,70 +2,56 @@
 
 <body style="background: url(img/background.jpg);">
 
-<div id="container" style="background-color:#FAEBD7;height:450px;overflow:auto;">
+<div id="container" style="background-color:#FAEBD7;height:620px;overflow:auto;">
 
     <%@ include file="logotypeAndMenu.jsp" %>
 
-    <ul class="buttonsForDepartmentsInfo">
-        <li><button onClick=show2_onclick() style="font-weight:900;cursor: pointer;float:left;">
-            Show all departments </button>
-        </li>
-        <li><button onClick=show1_onclick() style="font-weight:900;cursor: pointer;float:left;margin-left:20px;">
-            Show departments which have employees </button>
-        </li>
-    </ul>
+    <center>
+        <ul class="editDepartmentMenu" style="border-bottom:1px solid grey;margin-top:30px;padding-bottom:25px;">
+            <li style="width:160px;" onclick="addDepartment_onclick();"> ADD NEW DEPARTMENT </li>
+            <li style="width:220px;" onclick="addEmployeesToDepartment_onclick();"> ADD EMPLOYEES TO DEPARTMENT </li>
+        </ul>
+    </center>
 
-<center>
+    <div id="addDepartment" style="display:none;border-bottom:1px dotted grey;padding-bottom:20px;">
+        <center style="padding-top:35px;font-weight:900;color:green;font-family:cuprum;font-size:20px;">
+            <form action="addDepartment.html" method="POST" onSubmit="return addDepartmentValidation(this);">
+                <input style="width:200px;height:30px;" type="text" name="departmentName" value="" placeholder= "Name of the department" required=""/>
+                <br><br>
+                <button type="submit" class="addDepartmentButton"></button>
+                <button type="button" class="cancelAddDepartmentButton" onclick="hideAddDepartmentBlock();"></button>
+            </form>
+        </center>
+    </div>
 
-   <div id="departmentsFullInfoContainer" style="display:none;">
+   <div id="departmentsFullInfoContainer">
         <table class="departmentsTable" cellspacing="0" style="border-left : 1px solid #51626f;border-top : 1px solid #51626f;">
+            <thead>
+              <tr>
+               <td colspan="3" style="font-weight:900;"> <span style="color:red;;">D</span>epartments which have employees </td>
+              </tr>
+             </thead>
+
             <tr>
-                <th> <span style="color:red;">D</span>epartment name </th>
-                <th> <span style="color:red;">A</span>mount of employess </th>
-                <th> <span style="color:red;">A</span>ction </th>
+                <th style="font-weight:500;"> Department name </th>
+                <th style="font-weight:500;"> Amount of employess </th>
             </tr>
 
            <c:forEach var="entry" items="${departmentsMap}">
                 <tr>
                     <td> ${entry.key} </td>
                     <td> ${entry.value.size()} </td>
-                    <td id="editActionButton">
-						<div id="editButton">
-							<button type = "submit" name = "oldDepartmentName" value = "${entry.key}" title="Edit employee"
-							onClick="editField_onclick();">
-								<img src="img/edit.png">
-							</button>
-						</div>
-						
-						<form class="editAction" action="editDepartment.html" method="POST">
-							<div id = "editField" style="display:none;">
-								<input type="hidden" name="oldDepartmentName" value="${entry.key}">
-								<input type="text" name="newDepartmentName" value="" placeholder= "New name">
-								<button type="submit"> Submit </button>
-							</div>
-						</form>
-	   
-						<div id="deleteButton">
-							<form class="deleteAction" action="deleteDepartment.html" method="POST"
-							onsubmit="deleteConfirmation(${entry.key});return false;">
-
-								<button type = "submit" name = "departmentName" value = "${entry.key}" title="Delete employee">
-									<img src="img/delete.png">
-								</button>
-							</form>
-						</div>
-                    </td>
                 </tr>
            </c:forEach>
 
         </table>
    </div>
 
-   <div id="departmentsOnlyNamesContainer" style="display:none;">
+   <div id="departmentsOnlyNamesContainer">
            <table class="departmentsTable" cellspacing="0" style="border-left : 1px solid #51626f;border-top : 1px solid #51626f;">
                <tr>
-                   <th> <span style="color:red;">D</span>epartment name </th>
-                   <th> <span style="color:red;">A</span>ction </th>
+                   <th><span style="color:red;">A</span>ll departments </th>
+				   <th> Action </th>
                </tr>
 
               <c:forEach var="department" items="${departmentsNamesOnly}" varStatus="index">
@@ -73,27 +59,28 @@
                     <td>
 						${department.getName()}
 					</td>
-                    <td id="editActionButton">
-
-						<div id="${index.count}" style="display:none;">
-							<form class="editAction" action="editDepartment.html" method="POST">
+					<td id="editDep">
+					
+					<div id="${index.count}" style="display:none;position:absolute;">
+							<form class="hiddenEditField" action="editDepartment.html" method="POST">
 								<input type="hidden" name="oldDepartmentName" value="${department.getName()}">
 								<input type="text" name="newDepartmentName" value="" placeholder= "New name">
-								<button type="submit"> Submit </button>
+								<button type="submit" title"Edit department"> <img src="img/success.gif"> </button>
+								<button type="button" title"Cancel" onclick="hideEditOperationBlock(${index.count});"> <img src="img/fail.png"> </button>
 							</form>
-						</div>
-
-						<div id="editButton">
-							<button type = "submit" name = "oldDepartmentName" value = "${department.getName()}" title="Edit employee" onclick="return editField_onclick(${index.count});">
+					</div>
+					
+						<div id="editActionButton">
+							<button type = "submit" name = "oldDepartmentName" value = "${department.getName()}" title="Edit department" onclick="return hiddenEditField_onclick(${index.count});">
 								<img src="img/edit.png">
 							</button>
 						</div>
 							
-						<div id="deleteButton">
+				        <div id="deleteActionButton">
 							<form class="deleteAction" action="deleteDepartment.html" method="POST"
 							onsubmit="deleteConfirmation(${entry.key});return false;">
 
-								<button type = "submit" name = "departmentName" value = "${department.getName()}" title="Delete employee">
+								<button type = "submit" name = "departmentName" value = "${department.getName()}" title="Delete department">
 									<img src="img/delete.png">
 								</button>
 							</form>
@@ -104,7 +91,6 @@
 
            </table>
       </div>
-</center>
 
 	<!-- Container end -->
 </div>

@@ -15,5 +15,6 @@
                 <li> <a href="viewAllDepartments.html"> View all departments </a> </li>
             </ul>
         </li>
+        <li> <a href="viewAllDepartments.html"> Departments <span id="menuPointer"> </span> </a> </li>
     </ul>
 </div>

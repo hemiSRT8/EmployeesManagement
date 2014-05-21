@@ -1,18 +1,23 @@
-function show1_onclick() {
-    document.getElementById('departmentsFullInfoContainer').style.display='';
-    document.getElementById('departmentsOnlyNamesContainer').style.display='none';
-    document.getElementById('container').style.height='450px';
-}
-
-function show2_onclick() {
-    document.getElementById('departmentsOnlyNamesContainer').style.display='';
-    document.getElementById('departmentsFullInfoContainer').style.display='none';
-    document.getElementById('container').style.height='450px';
-}
-
-function editField_onclick (divId) {
-    document.getElementById('deleteButton').style.display='none';
-    document.getElementById('editButton').style.display='none';
+function hiddenEditField_onclick (divId) {
     document.getElementById(divId).style.display='';
 }
 
+function addDepartment_onclick () {
+    document.getElementById('addDepartment').style.display='';
+}
+
+function addEmployeesToDepartment_onclick () {
+     window.location.href = "addEmployeesToDepartment.html";
+}
+
+function hideAddDepartmentBlock () {
+    document.getElementById('addDepartment').style.display='none';
+}
+
+function hideEditOperationBlock (divId) {
+    document.getElementById(divId).style.display='none';
+}
+
+function cancelAddEmployeesToDepartmentOperation () {
+    window.location.href = "viewAllDepartments.html";
+}

@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-public class SelectFullDepartmentsInfo {
+public class SelectFullDepartmentsInfoDao {
 
     @Autowired
     private DataSource dataSource;
