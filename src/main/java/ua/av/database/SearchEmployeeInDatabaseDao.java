@@ -2,7 +2,6 @@ package ua.av.database;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.WebRequest;
 import ua.av.entities.Employee;
 import ua.av.utils.SearchEmployee;
 
@@ -15,10 +14,9 @@ public class SearchEmployeeInDatabaseDao {
     @Autowired
     private SelectEmployeesDao selectEmployeesDao;
 
-    public List<Employee> searchEmployee(WebRequest request) {
+    public List<Employee> searchEmployee(String lastName) {
         List<Employee> result = new ArrayList<Employee>();
         List<Employee> temp;
-        String lastName = request.getParameter("lastName");
 
         /**
          * Search in managers

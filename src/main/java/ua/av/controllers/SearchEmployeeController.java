@@ -21,9 +21,10 @@ public class SearchEmployeeController {
 
     @RequestMapping(value = "searchEmployeeResult.html")
     public ModelAndView searchEmployeeResult(WebRequest request) {
+        String lastName = request.getParameter("lastName");
         ModelMap modelMap = new ModelMap();
 
-        modelMap.addAttribute("foundEmployees", searchEmployeeInDatabaseDao.searchEmployee(request));
+        modelMap.addAttribute("foundEmployees", searchEmployeeInDatabaseDao.searchEmployee(lastName));
         modelMap.addAttribute("lastName", request.getParameter("lastName"));
 
         return new ModelAndView("searchEmployeeResult", modelMap);
