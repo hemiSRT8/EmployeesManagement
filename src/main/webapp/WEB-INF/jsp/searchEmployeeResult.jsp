@@ -2,11 +2,7 @@
 <body style="background: url(img/background.jpg);">
 
 <div id="container" style="background-color:#FAEBD7;">
-
- <center>
-         <div id="employeesImg"> <img src="img/employees.png"> </div>
-         <div id="signboard"> Manage employees</div>
- </center>
+    <%@ include file="logotypeAndMenu.jsp" %>
 
    <center style="margin-bottom:50px;margin-top:20px;overflow:auto;">
            <c:choose>
