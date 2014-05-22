@@ -5,10 +5,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
-import ua.av.database.AddEmployeeDao;
+import ua.av.entities.Cleaner;
+import ua.av.entities.Developer;
+import ua.av.entities.Employee;
+import ua.av.entities.Manager;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.lang.Double.parseDouble;
 
 @Controller
 public class AddEmployee {
@@ -20,28 +26,41 @@ public class AddEmployee {
 
     @RequestMapping(value = "/addEmployee.html")
     public ModelAndView addEmployee(WebRequest request) {
+        Employee employee = null;
         String type = request.getParameter("type");
-        List<String> employeeFields = new ArrayList<String>();
-
-        employeeFields.add(type);
 
         if("Manager".equals(type)) {
-            employeeFields.add("Amount of sales");
-            employeeFields.add("Percentage of sales");
+            employee = new Manager(request.getParameter("lastName"),
+                    request.getParameter("firstName"),
+                    Date.valueOf(request.getParameter("dateOfBirth")),
+                    parseDouble(request.getParameter("wage")),
+                    parseDouble(request.getParameter("bonus")),
+                    parseDouble(request.getParameter("penalty")),
+                    parseDouble(request.getParameter("salary")),
+                    parseDouble(request.getParameter("Amount of sales")),
+                    parseDouble(request.getParameter("Percentage of sales")));
 
         } else if("Developer".equals(type)) {
-            employeeFields.add("Lines of code");
+            employee = new Developer(request.getParameter("lastName"),
+                    request.getParameter("firstName"),
+                    Date.valueOf(request.getParameter("dateOfBirth")),
+                    parseDouble(request.getParameter("wage")),
+                    parseDouble(request.getParameter("bonus")),
+                    parseDouble(request.getParameter("penalty")),
+                    parseDouble(request.getParameter("salary")),
+                    Integer.parseInt(request.getParameter("Lines of code")));
 
         } else if("Cleaner".equals(type)) {
-            employeeFields.add("Amount of cleaned offices");
+            employee = new Cleaner(request.getParameter("lastName"),
+                    request.getParameter("firstName"),
+                    Date.valueOf(request.getParameter("dateOfBirth")),
+                    parseDouble(request.getParameter("wage")),
+                    parseDouble(request.getParameter("bonus")),
+                    parseDouble(request.getParameter("penalty")),
+                    parseDouble(request.getParameter("salary")),
+                    Integer.parseInt(request.getParameter("Amount of cleaned offices")));
         }
-        return new ModelAndView ("addEmployee", "employeeFields", employeeFields);
+        return new ModelAndView ("addEmployee", "employeeFields", employee);
     }
 
-    @RequestMapping(value="/addEmployeeResult.html", method = RequestMethod.POST)
-    public ModelAndView addEmployeeResult(WebRequest request) {
-        int result = new AddEmployeeDao().addEmployee(request);
-
-        return new ModelAndView("addEmployeeResult", "addResult", result);
-    }
 }

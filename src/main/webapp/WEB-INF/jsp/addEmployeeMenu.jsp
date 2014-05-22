@@ -4,41 +4,36 @@
 
 <div id="container" style="background : #FAEBD7;">
  <%@ include file="logotypeAndMenu.jsp" %>
-
+<div id="addEmployeeMenu">
     <center>
-        <div id="employeesImg"> <img src="img/employees.png"> </div>
-        <div id="signboard">Manage employees</div>
-    </center>
 
-    <ul class="professions">
-        <li>
-            <center>
+        <li class="addEmployeeList">
+         <img src="img/manager.png">
+
 
                 <form action="addEmployee.html" method="POST">
-                    <button type="submit" name="type" value = "Manager">ADD MANAGER</button>
+                    <button class="addEmployeeButton" type="submit" name="type" value="Manager">ADD MANAGER</button>
                 </form>
 
-            </center>
         </li>
 
-        <li>
-             <center>
+        <li class="addEmployeeList">
+         <img src="img/developer.png">
 
                  <form action="addEmployee.html" method="POST">
-                     <button type="submit" name="type" value = "Developer">ADD DEVELOPER</button>
+                     <button class="addEmployeeButton" type="submit" name="type" value = "Developer">ADD DEVELOPER</button>
                  </form>
-             </center>
         </li>
 
-        <li>
-             <center>
+        <li class="addEmployeeList">
+         <img src="img/cleaner.png">
 
                  <form action="addEmployee.html" method="POST">
-                     <button type="submit" name="type" value = "Cleaner">ADD CLEANER</button>
+                     <button class="addEmployeeButton" type="submit" name="type" value = "Cleaner">ADD CLEANER</button>
                  </form>
-             </center>
         </li>
-    </ul>
+    </center>
+</div>
 
 	<!-- Container end -->
 </div>
