@@ -8,6 +8,7 @@ a {
     background:#FAEBD7;
 	margin: auto;
 	border:none;
+	height:700px;
 }
 
 #signboard {
@@ -19,7 +20,7 @@ a {
 #mainMenuContainer {
     position:absolute;
     float:left;
-    margin-top: -160px;
+    margin-top: -150px;
     color:red;
 }
 
@@ -504,3 +505,52 @@ select {
     margin-left:1030px;
     margin-top:-150px;
 }
+
+#addEmployeeMenu {
+    padding: 5%;
+    padding-top: 10%;
+    padding-bottom: 15%;
+}
+
+.addEmployeeList {
+    list-style-type: none;
+    display: inline-table;
+    padding-left: 6%;
+    padding-right: 6%;
+}
+
+.addEmployeeButton {
+    border: none;
+    background: transparent;
+    padding-top: 10%;
+    font-size: inherit;
+}
+.addEmployeeButton:hover {
+    color: red;
+}
+
+h4 {
+    color: hotpink;
+    font-size: 20px;
+    margin: 15px;
+}
+
+.addEmployeesSubmit {
+    border: 0;
+       background : url(../img/submitButton.png) no-repeat;
+       width:75px;
+       height:75px;
+       cursor: pointer;
+       float:left;
+       position:absolute;
+       margin-left:-70px;
+
+
+}
+
+.addEmployee td,tr {
+    padding: 3px;
+    text-align: -webkit-left;
+}
+
+/*End of sort employees block */

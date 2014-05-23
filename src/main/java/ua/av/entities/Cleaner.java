@@ -17,6 +17,13 @@ public class Cleaner extends Employee {
         this.amountOfCleanedOffices = amountOfCleanedOffices;
     }
 
+    public Cleaner(String lastName, String firstName, Date dateOfBirth,
+                   double wage, double bonus, double penalty, double salary,
+                   int amountOfCleanedOffices) {
+        super(lastName, firstName, dateOfBirth, wage, bonus, penalty, salary);
+        this.amountOfCleanedOffices = amountOfCleanedOffices;
+    }
+
     @Override
     public double calculateSalary() {
         return super.calculateSalary() + amountOfCleanedOffices * 10;

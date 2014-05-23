@@ -22,9 +22,21 @@ public abstract class Employee {
     }
 
     protected Employee(long id, String lastName, String firstName, Date dateOfBirth,
-                       double wage, double bonus, double penalty, double salary) {
+                        double wage, double bonus, double penalty, double salary) {
 
         this.id = id;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.dateOfBirth = dateOfBirth;
+        this.wage = wage;
+        this.bonus = bonus;
+        this.penalty = penalty;
+        this.salary = salary;
+    }
+
+    protected Employee(String lastName, String firstName, Date dateOfBirth,
+                       double wage, double bonus, double penalty, double salary) {
+
         this.lastName = lastName;
         this.firstName = firstName;
         this.dateOfBirth = dateOfBirth;

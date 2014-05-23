@@ -46,14 +46,14 @@ public class SelectFullDepartmentsInfoDao {
             }
 
         } catch (SQLException e) {
-            throw new BusinessException();
+            throw new BusinessException(e);
         } finally {
             try {
                 if (connection != null) {
                     connection.close();
                 }
             } catch (SQLException e) {
-                throw new BusinessException();
+                throw new BusinessException(e);
             }
         }
 

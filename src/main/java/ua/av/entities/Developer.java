@@ -18,6 +18,14 @@ public class Developer extends Employee {
         this.linesOfCode = linesOfCode;
     }
 
+    public Developer(String lastName, String firstName, Date dateOfBirth,
+                     double wage, double bonus, double penalty, double salary,
+                     int linesOfCode) {
+
+        super(lastName, firstName, dateOfBirth, wage, bonus, penalty, salary);
+        this.linesOfCode = linesOfCode;
+    }
+
     @Override
     public double calculateSalary() {
         return super.calculateSalary()

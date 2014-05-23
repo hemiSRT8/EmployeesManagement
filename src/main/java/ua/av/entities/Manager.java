@@ -20,6 +20,15 @@ public class Manager extends Employee {
         this.percentageOfSales = percentageOfSales;
     }
 
+    public Manager(String lastName, String firstName, Date dateOfBirth,
+                   double wage, double bonus, double penalty, double salary,
+                   double amountOfSales, double percentageOfSales) {
+
+        super(lastName, firstName, dateOfBirth, wage, bonus, penalty, salary);
+        this.amountOfSales = amountOfSales;
+        this.percentageOfSales = percentageOfSales;
+    }
+
     @Override
     public double calculateSalary() {
         return super.calculateSalary()
