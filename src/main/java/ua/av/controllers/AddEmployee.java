@@ -1,66 +1,73 @@
 package ua.av.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
-import ua.av.entities.Cleaner;
-import ua.av.entities.Developer;
-import ua.av.entities.Employee;
-import ua.av.entities.Manager;
+import ua.av.database.AddEmployeeDao;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.Double.parseDouble;
 
 @Controller
 public class AddEmployee {
+
+    @Autowired
+    private AddEmployeeDao addEmployeeDao;
 
     @RequestMapping("/addEmployeeMenu.html")
     public String addEmployeeMenu() {
         return "addEmployeeMenu";
     }
 
+
     @RequestMapping(value = "/addEmployee.html")
     public ModelAndView addEmployee(WebRequest request) {
-        Employee employee = null;
         String type = request.getParameter("type");
+        List<String> employeeFields = new ArrayList<String>();
 
-        if("Manager".equals(type)) {
-            employee = new Manager(request.getParameter("lastName"),
-                    request.getParameter("firstName"),
-                    Date.valueOf(request.getParameter("dateOfBirth")),
-                    parseDouble(request.getParameter("wage")),
-                    parseDouble(request.getParameter("bonus")),
-                    parseDouble(request.getParameter("penalty")),
-                    parseDouble(request.getParameter("salary")),
-                    parseDouble(request.getParameter("Amount of sales")),
-                    parseDouble(request.getParameter("Percentage of sales")));
+        employeeFields.add(type);
 
-        } else if("Developer".equals(type)) {
-            employee = new Developer(request.getParameter("lastName"),
-                    request.getParameter("firstName"),
-                    Date.valueOf(request.getParameter("dateOfBirth")),
-                    parseDouble(request.getParameter("wage")),
-                    parseDouble(request.getParameter("bonus")),
-                    parseDouble(request.getParameter("penalty")),
-                    parseDouble(request.getParameter("salary")),
-                    Integer.parseInt(request.getParameter("Lines of code")));
+        if ("Manager".equals(type)) {
+            employeeFields.add("Amount of sales");
+            employeeFields.add("Percentage of sales");
 
-        } else if("Cleaner".equals(type)) {
-            employee = new Cleaner(request.getParameter("lastName"),
-                    request.getParameter("firstName"),
-                    Date.valueOf(request.getParameter("dateOfBirth")),
-                    parseDouble(request.getParameter("wage")),
-                    parseDouble(request.getParameter("bonus")),
-                    parseDouble(request.getParameter("penalty")),
-                    parseDouble(request.getParameter("salary")),
-                    Integer.parseInt(request.getParameter("Amount of cleaned offices")));
+        } else if ("Developer".equals(type)) {
+            employeeFields.add("Lines of code");
+
+        } else if ("Cleaner".equals(type)) {
+            employeeFields.add("Amount of cleaned offices");
         }
-        return new ModelAndView ("addEmployee", "employeeFields", employee);
+        return new ModelAndView("addEmployee", "employeeFields", employeeFields);
+    }
+
+    @RequestMapping(value = "/addEmployeeResult.html", method = RequestMethod.POST)
+    public ModelAndView addEmployeeResult(WebRequest request) {
+        List<String> employeeFields = new ArrayList<String>();
+
+        String type = request.getParameter("type");
+        employeeFields.add(request.getParameter("type"));
+        employeeFields.add(request.getParameter("lastName"));
+        employeeFields.add(request.getParameter("firstName"));
+        employeeFields.add(request.getParameter("dateOfBirth"));
+        employeeFields.add(request.getParameter("wage"));
+        employeeFields.add(request.getParameter("bonus"));
+        employeeFields.add(request.getParameter("penalty"));
+        employeeFields.add(request.getParameter("salary"));
+
+        if ("Manager".equals(type)) {
+            employeeFields.add(request.getParameter("Amount of sales"));
+            employeeFields.add(request.getParameter("Percentage of sales"));
+        } else if ("Developer".equals(type)) {
+            employeeFields.add(request.getParameter("Lines of code"));
+        } else if ("Cleaner".equals(type)) {
+            employeeFields.add(request.getParameter("Amount of cleaned offices"));
+        }
+
+        return new ModelAndView("addEmployeeResult", "isEmployeeAdded", addEmployeeDao.addEmployee(employeeFields));
     }
 
 }

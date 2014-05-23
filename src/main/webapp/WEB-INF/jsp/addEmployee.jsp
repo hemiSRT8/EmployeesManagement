@@ -5,12 +5,7 @@
 <div id="container" style="background : #FAEBD7;">
  <%@ include file="logotypeAndMenu.jsp" %>
 
-    <center>
-        <div id="employeesImg"> <img src="img/employees.png"> </div>
-        <div id="signboard">Manage employees</div>
-    </center>
-
-    <form action="addEmployeeResult.html" method="POST" onsubmit="return validateForm(this);">
+    <form action="addEmployeeResult.html" method="POST" onSubmit="return validateForm(this);">
 
         <center>
             <table class="addEmployee">
@@ -29,42 +24,51 @@
                     <td><input type="text" name="lastName"  value=""/></td>
                 </tr>
                 <tr>
-                    <td>Date of birthday [yyyy-mm-dd]</td>
+                    <td>Date of birth [yyyy-mm-dd]</td>
                     <td><input type="text" name="dateOfBirth"
                         placeholder="yyyy-mm-dd"  value=""/></td>
                 </tr>
                 <tr>
                     <td>Wage</td>
-                    <td><input type="text" name="wage" min="0" value="0.0"/></td>
+                    <td><input
+                    type="text" name="wage" min="0" value="0"
+                    onFocus="if(this.value == '0') { this.value = '';}"
+                     onBlur="if(this.value == '') { this.value = '0';}"/></td>
                 </tr>
                 <tr>
                     <td>Bonus</td>
-                    <td><input type="text" name="bonus" min="0" value="0.0" /></td>
+                    <td><input type="text" name="bonus" min="0" value="0"
+                    onFocus="if(this.value == '0') { this.value = '';}"
+                    onBlur="if(this.value == '') { this.value = '0';}"/></td>
                 </tr>
                 <tr>
                     <td>Penalty</td>
-                    <td><input type="text" name="penalty" min="0" value="0.0" /></td>
+                    <td><input type="text" name="penalty" min="0" value="0"
+                    onFocus="if(this.value == '0') { this.value = '';}"
+                    onBlur="if(this.value == '') { this.value = '0';}"/></td>
                 </tr>
                 <tr>
                     <td>Salary</td>
-                    <td><input type="text" name="salary" min="0" value="0.0" /></td>
+                    <td><input type="text" name="salary" min="0" value="0"
+                    onFocus="if(this.value == '0') { this.value = '';}"
+                    onBlur="if(this.value == '') { this.value = '0';}"/></td>
                 </tr>
-
 
                 <c:forEach begin="1" end="${employeeFields.size()-1}" var="j">
 
-                  <tr><input type="hidden" name="type" value="${employeeFields[0]}">
+                    <tr><input type="hidden" name="type" value="${employeeFields[0]}">
                         <td>${employeeFields[j]}</td>
-                        <td><input type="text" min="0"  value="0.0"
-                                   name="${employeeFields[j]}"/></td>
-                  </tr>
-
+                        <td><input type="text" min="0" value="0"
+                                   name="${employeeFields[j]}"
+                                   onFocus="if(this.value == '0') { this.value = '';}"
+                                   onBlur="if(this.value == '') { this.value = '0';}"/></td>
+                    </tr>
                 </c:forEach>
-
                 </tbody>
-
             </table>
-            <input type="submit" value="Submit" />
+            <div style="padding: 50px;">
+                <button class="addEmployeesSubmit" type="submit"></button>
+            </div>
         </center>
     </form>
 

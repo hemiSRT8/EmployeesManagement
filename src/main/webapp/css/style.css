@@ -8,6 +8,7 @@ a {
     background:#FAEBD7;
 	margin: auto;
 	border:none;
+	height:700px;
 }
 
 #signboard {
@@ -19,7 +20,7 @@ a {
 #mainMenuContainer {
     position:absolute;
     float:left;
-    margin-top: -10%;
+    margin-top: -150px;
     color:red;
 }
 
@@ -507,7 +508,7 @@ select {
 
 #addEmployeeMenu {
     padding: 5%;
-    padding-top: 17%;
+    padding-top: 10%;
     padding-bottom: 15%;
 }
 
@@ -526,6 +527,30 @@ select {
 }
 .addEmployeeButton:hover {
     color: red;
+}
+
+h4 {
+    color: hotpink;
+    font-size: 20px;
+    margin: 15px;
+}
+
+.addEmployeesSubmit {
+    border: 0;
+       background : url(../img/submitButton.png) no-repeat;
+       width:75px;
+       height:75px;
+       cursor: pointer;
+       float:left;
+       position:absolute;
+       margin-left:-70px;
+
+
+}
+
+.addEmployee td,tr {
+    padding: 3px;
+    text-align: -webkit-left;
 }
 
 /*End of sort employees block */

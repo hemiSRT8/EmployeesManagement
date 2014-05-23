@@ -88,7 +88,7 @@ function addEmployeesToDepartmentValidation (result) {
     }
 }
 
- function validateForm(from) {
+ function validateForm(frm) {
     if (frm.firstName.value == "") {
         alert('First Name is required.');
         frm.firstName.focus();
@@ -100,7 +100,7 @@ function addEmployeesToDepartmentValidation (result) {
             return false;
     }
 
-    if (frm.dateOfBirth.value === "") {
+    if (frm.dateOfBirth.value == "") {
         alert('Date Of Birth is required.');
         frm.dateOfBirth.focus();
         return false;
@@ -111,11 +111,18 @@ function addEmployeesToDepartmentValidation (result) {
         frm.dateOfBirth.focus();
         return false;
     }
-	if (frm.wage.value == "") {
-		alert('wage is required.');
-		frm.wage.focus();
-		return false;
-	}
     return true;
+}
+
+function isEmployeeAdded(addResult) {
+    if(addResult) {
+        alert("Employee was added.");
+
+    } else {
+        alert("Error is occurred.\nTry again..");
+    }
+
+     window.location.href = "addEmployeeMenu.html";
+
 }
 
