@@ -1,50 +1,8 @@
 package ua.av.utils;
 
-import org.springframework.web.context.request.WebRequest;
-
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class AddEmployeeFeature {
-
-    public static List<String> getEmployeeFields(WebRequest request) {
-
-        String type = request.getParameter("type");
-
-        List<String> fields = new ArrayList<String>();
-
-        fields.add(request.getParameter("type"));
-        fields.add(request.getParameter("lastName"));
-        fields.add(request.getParameter("firstName"));
-
-        fields.add(request.getParameter("dateOfBirth"));
-
-        fields.add(request.getParameter("wage"));
-        fields.add(request.getParameter("bonus"));
-        fields.add(request.getParameter("penalty"));
-        fields.add(request.getParameter("salary"));
-
-        if ("Manager".equals(type)) {
-            fields.add(request.getParameter("Amount of sales"));
-            fields.add(request.getParameter("Percentage of sales"));
-
-        } else if ("Developer".equals(type)) {
-            fields.add(request.getParameter("Lines of code"));
-
-        } else if ("Cleaner".equals(type)) {
-            fields.add(request.getParameter("Amount of cleaned offices"));
-        }
-        for (String s : fields) {
-            System.out.println(s);
-        }
-
-        return fields;
-    }
 
     public static boolean isValid(List<String> listToValidate) {
     boolean result;
@@ -72,7 +30,6 @@ public class AddEmployeeFeature {
         }
         return result;
     }
-
 
     public static boolean isDateValid(String date) {
         int year = Integer.parseInt(date.substring(0, 4));
