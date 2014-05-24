@@ -12,9 +12,9 @@ import ua.av.database.SelectFullDepartmentsInfoDao;
 public class ViewAllDepartmentsController {
 
     @Autowired
-    private SelectFullDepartmentsInfoDao selectFullDepartmentsInfoDao = new SelectFullDepartmentsInfoDao();
+    private SelectFullDepartmentsInfoDao selectFullDepartmentsInfoDao;
     @Autowired
-    private SelectDepartmentsDao selectDepartmentsDao = new SelectDepartmentsDao();
+    private SelectDepartmentsDao selectDepartmentsDao;
 
     @RequestMapping(value = "/viewAllDepartments.html")
     public ModelAndView viewAllDepartments() {

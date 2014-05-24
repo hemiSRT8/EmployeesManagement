@@ -10,8 +10,6 @@ import ua.av.entities.Employee;
 
 import java.util.List;
 
-import static java.lang.Long.*;
-
 @Controller
 public class InfoAboutEmployeeController {
 
@@ -20,11 +18,9 @@ public class InfoAboutEmployeeController {
 
     @RequestMapping(value = "/infoAboutEmployee.html")
     public ModelAndView infoAboutEmployee(WebRequest request) {
-        Long id = valueOf(request.getParameter("infoActionId"));
-        String profession = request.getParameter("profession");
 
-        List<Employee> employee = selectSingleEmployeeDao.selectSingleEmployee(id, profession);
-
-        return new ModelAndView("infoAboutEmployee", "employee", employee);
+        return new ModelAndView("infoAboutEmployee", "employee",
+                selectSingleEmployeeDao.selectSingleEmployee(Long.valueOf(request.getParameter("infoActionId")),
+                                                                          request.getParameter("profession")));
     }
 }

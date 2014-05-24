@@ -16,7 +16,7 @@ public class SearchEmployeeController {
 
     @RequestMapping(value = "/searchEmployee.html")
     public String searchEmployee() {
-        return ("searchEmployee");
+        return "searchEmployee";
     }
 
     @RequestMapping(value = "searchEmployeeResult.html")
@@ -25,7 +25,7 @@ public class SearchEmployeeController {
         ModelMap modelMap = new ModelMap();
 
         modelMap.addAttribute("foundEmployees", searchEmployeeInDatabaseDao.searchEmployee(lastName));
-        modelMap.addAttribute("lastName", request.getParameter("lastName"));
+        modelMap.addAttribute("lastName", lastName);
 
         return new ModelAndView("searchEmployeeResult", modelMap);
     }

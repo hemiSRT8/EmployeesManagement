@@ -15,8 +15,6 @@ import java.util.List;
 @Controller
 public class IndexController {
 
-    // private static Logger logger = Logger.getRootLogger();
-
     @Autowired
     private SelectEmployeesDao selectEmployeesDao;
 

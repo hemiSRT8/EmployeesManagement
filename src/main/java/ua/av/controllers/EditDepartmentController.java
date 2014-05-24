@@ -15,11 +15,9 @@ public class EditDepartmentController {
 
     @RequestMapping(value = "/editDepartment.html")
     public ModelAndView editEmployee(WebRequest request) {
-        String oldDepartmentName = request.getParameter("oldDepartmentName");
-        String newDepartmentName = request.getParameter("newDepartmentName");
 
-        boolean result = editDepartmentDao.editDepartment(oldDepartmentName, newDepartmentName);
-
-        return new ModelAndView("editDepartment", "result", result);
+        return new ModelAndView("editDepartment", "result",
+                    editDepartmentDao.editDepartment(request.getParameter("oldDepartmentName"),
+                                                     request.getParameter("newDepartmentName")));
     }
 }

@@ -66,7 +66,8 @@ public class AddEmployee {
             employeeFields.add(request.getParameter("Amount of cleaned offices"));
         }
 
-        return new ModelAndView("addEmployeeResult", "isEmployeeAdded", addEmployeeDao.addEmployee(employeeFields));
+        return new ModelAndView("addEmployeeResult", "isEmployeeAdded",
+                                 addEmployeeDao.addEmployee(employeeFields));
     }
 
 }

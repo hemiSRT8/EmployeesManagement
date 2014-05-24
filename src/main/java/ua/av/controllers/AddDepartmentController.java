@@ -15,10 +15,8 @@ public class AddDepartmentController {
 
     @RequestMapping(value = "/addDepartment.html")
     public ModelAndView addDepartmentResult(WebRequest request) {
-        String departmentName = request.getParameter("departmentName");
 
-        boolean result = addDepartmentDao.addDepartment(departmentName);
-
-        return new ModelAndView("addDepartment", "result", result);
+        return new ModelAndView("addDepartment", "result",
+                addDepartmentDao.addDepartment(request.getParameter("departmentName")));
     }
 }

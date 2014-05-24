@@ -16,16 +16,10 @@ public class SalaryInformationController {
     @RequestMapping(value = "/salaryInformation.html")
     public ModelAndView salaryInformation() {
         ModelMap map = new ModelMap();
-
-        double expense = selectSalaryInformationDao.selectSalaryExpense();
-        double averageSalary = selectSalaryInformationDao.selectAverageSalary();
-        double maxSalary = selectSalaryInformationDao.selectMaxSalary();
-        double minSalary = selectSalaryInformationDao.selectMinSalary();
-
-        map.addAttribute("expense", expense);
-        map.addAttribute("averageSalary", averageSalary);
-        map.addAttribute("maxSalary", maxSalary);
-        map.addAttribute("minSalary", minSalary);
+        map.addAttribute("expense", selectSalaryInformationDao.selectSalaryExpense());
+        map.addAttribute("averageSalary", selectSalaryInformationDao.selectAverageSalary());
+        map.addAttribute("maxSalary", selectSalaryInformationDao.selectMaxSalary());
+        map.addAttribute("minSalary", selectSalaryInformationDao.selectMinSalary());
 
         return new ModelAndView("salaryInformation", map);
     }

@@ -10,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 import ua.av.database.EditEmployeeDao;
 import ua.av.database.SelectSingleEmployeeDao;
 
-import static java.lang.Long.valueOf;
 
 @Controller
 public class EditEmployeeController {
@@ -25,7 +24,7 @@ public class EditEmployeeController {
         ModelMap map = new ModelMap();
 
         String profession = request.getParameter("profession");
-        long id = valueOf(request.getParameter("editEmployeeId"));
+        long id = Long.valueOf(request.getParameter("editEmployeeId"));
 
         if (profession.contains("class ua.av.entities.Manager")) {
             map.addAttribute("employee", selectSingleEmployeeDao.selectSingleEmployee(id, "manager"));
@@ -46,7 +45,6 @@ public class EditEmployeeController {
 
     @RequestMapping(value = "/editEmployeeResult.html", method = RequestMethod.POST)
     public ModelAndView editEmployeeResult(WebRequest request) {
-        boolean result = editEmployeeDao.editEmployee(request);
-        return new ModelAndView("editEmployeeResult", "result", result);
+        return new ModelAndView("editEmployeeResult", "result", editEmployeeDao.editEmployee(request));
     }
 }

@@ -26,27 +26,20 @@ public class AddEmployeesToDepartmentController {
 
     @RequestMapping(value = "/addEmployeesToDepartment.html")
     public ModelAndView addEmployeesToDepartment() {
-        List<Department> departments = selectDepartmentsDao.selectDepartmentsFromDatabase();
-        List<Employee> managers = selectEmployeesDao.selectManagers();
-        List<Employee> developers = selectEmployeesDao.selectDevelopers();
-        List<Employee> cleaners = selectEmployeesDao.selectCleaners();
-
         ModelMap modelMap = new ModelMap();
-        modelMap.addAttribute("managers", managers);
-        modelMap.addAttribute("developers", developers);
-        modelMap.addAttribute("cleaners", cleaners);
-        modelMap.addAttribute("departments", departments);
+        modelMap.addAttribute("managers", selectEmployeesDao.selectManagers());
+        modelMap.addAttribute("developers", selectEmployeesDao.selectDevelopers());
+        modelMap.addAttribute("cleaners", selectEmployeesDao.selectCleaners());
+        modelMap.addAttribute("departments", selectDepartmentsDao.selectDepartmentsFromDatabase());
 
         return new ModelAndView("addEmployeesToDepartment", modelMap);
     }
 
     @RequestMapping(value = "/addEmployeesToDepartmentResult.html")
     public ModelAndView addEmployeesToDepartmentResult(WebRequest request) {
-        String[] stringIdsArray = request.getParameterValues("employeeId");
-        String[] departmentsArray = request.getParameterValues("department");
 
-        boolean result = addEmployeesToDepartmentDao.addEmployeesToDepartment(stringIdsArray, departmentsArray);
-
-        return new ModelAndView("addEmployeesToDepartmentResult", "result", result);
+        return new ModelAndView("addEmployeesToDepartmentResult", "result",
+                addEmployeesToDepartmentDao.addEmployeesToDepartment(request.getParameterValues("employeeId"),
+                                                                     request.getParameterValues("department")));
     }
 }
