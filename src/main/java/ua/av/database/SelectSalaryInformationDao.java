@@ -1,5 +1,7 @@
 package ua.av.database;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ua.av.exception.BusinessException;
@@ -12,6 +14,8 @@ import java.sql.SQLException;
 
 @Component
 public class SelectSalaryInformationDao {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(SelectSalaryInformationDao.class);
 
     @Autowired
     private DataSource dataSource;
@@ -29,15 +33,23 @@ public class SelectSalaryInformationDao {
                 expense = resultSet.getDouble("salaryExpense");
             }
         } catch (SQLException e) {
+            LOGGER.error("SQL exception", e);
             throw new BusinessException(e);
         } finally {
             try {
                 if (connection != null) {
                     connection.close();
+                } else {
+                    LOGGER.info("connection is null while closing");
                 }
             } catch (SQLException e) {
+                LOGGER.error("SQL exception while connection closing", e);
                 throw new BusinessException(e);
             }
+        }
+
+        if (expense < 0) {
+            LOGGER.error("Salary expense was less then 0");
         }
 
         return expense;
@@ -56,15 +68,23 @@ public class SelectSalaryInformationDao {
                 averageSalary = resultSet.getDouble("average");
             }
         } catch (SQLException e) {
+            LOGGER.error("SQL exception", e);
             throw new BusinessException(e);
         } finally {
             try {
                 if (connection != null) {
                     connection.close();
+                } else {
+                    LOGGER.info("connection is null while closing");
                 }
             } catch (SQLException e) {
+                LOGGER.error("SQL exception while connection closing", e);
                 throw new BusinessException(e);
             }
+        }
+
+        if (averageSalary < 0) {
+            LOGGER.error("averageSalary was less then 0");
         }
 
         return averageSalary;
@@ -83,15 +103,23 @@ public class SelectSalaryInformationDao {
                 maxSalary = resultSet.getDouble("maxSalary");
             }
         } catch (SQLException e) {
+            LOGGER.error("SQL exception", e);
             throw new BusinessException(e);
         } finally {
             try {
                 if (connection != null) {
                     connection.close();
+                } else {
+                    LOGGER.info("connection is null while closing");
                 }
             } catch (SQLException e) {
+                LOGGER.error("SQL exception while connection closing", e);
                 throw new BusinessException(e);
             }
+        }
+
+        if (maxSalary < 0) {
+            LOGGER.error("maxSalary was less then 0");
         }
 
         return maxSalary;
@@ -110,15 +138,23 @@ public class SelectSalaryInformationDao {
                 minSalary = resultSet.getDouble("minSalary");
             }
         } catch (SQLException e) {
+            LOGGER.error("SQL exception", e);
             throw new BusinessException(e);
         } finally {
             try {
                 if (connection != null) {
                     connection.close();
+                } else {
+                    LOGGER.info("connection is null while closing");
                 }
             } catch (SQLException e) {
+                LOGGER.error("SQL exception while connection closing", e);
                 throw new BusinessException(e);
             }
+        }
+
+        if (minSalary < 0) {
+            LOGGER.error("minSalary was less then 0");
         }
 
         return minSalary;

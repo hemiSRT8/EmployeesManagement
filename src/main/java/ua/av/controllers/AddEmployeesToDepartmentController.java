@@ -1,5 +1,7 @@
 package ua.av.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,6 +18,8 @@ import java.util.List;
 
 @Controller
 public class AddEmployeesToDepartmentController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(AddEmployeesToDepartmentController.class);
 
     @Autowired
     private SelectEmployeesDao selectEmployeesDao;
@@ -37,6 +41,7 @@ public class AddEmployeesToDepartmentController {
         modelMap.addAttribute("cleaners", cleaners);
         modelMap.addAttribute("departments", departments);
 
+        LOGGER.info("Add employees to department page was loaded successfully");
         return new ModelAndView("addEmployeesToDepartment", modelMap);
     }
 
@@ -46,6 +51,12 @@ public class AddEmployeesToDepartmentController {
         String[] departmentsArray = request.getParameterValues("department");
 
         boolean result = addEmployeesToDepartmentDao.addEmployeesToDepartment(stringIdsArray, departmentsArray);
+
+        if (result) {
+            LOGGER.info("Employee (s) was (were) added to department successfully");
+        } else {
+            LOGGER.info("Employee (s) was (were) failed");
+        }
 
         return new ModelAndView("addEmployeesToDepartmentResult", "result", result);
     }

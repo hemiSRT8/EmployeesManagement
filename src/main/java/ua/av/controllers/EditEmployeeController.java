@@ -1,5 +1,7 @@
 package ua.av.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,6 +16,8 @@ import static java.lang.Long.valueOf;
 
 @Controller
 public class EditEmployeeController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(EditEmployeeController.class);
 
     @Autowired
     private EditEmployeeDao editEmployeeDao;
@@ -47,6 +51,13 @@ public class EditEmployeeController {
     @RequestMapping(value = "/editEmployeeResult.html", method = RequestMethod.POST)
     public ModelAndView editEmployeeResult(WebRequest request) {
         boolean result = editEmployeeDao.editEmployee(request);
+
+        if (result) {
+            LOGGER.info("Employee was edited successfully");
+        } else {
+            LOGGER.info("Employee's edit was failed");
+        }
+
         return new ModelAndView("editEmployeeResult", "result", result);
     }
 }

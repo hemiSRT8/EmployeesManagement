@@ -1,5 +1,7 @@
 package ua.av.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,11 +13,15 @@ import ua.av.database.SearchEmployeeInDatabaseDao;
 @Controller
 public class SearchEmployeeController {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(SearchEmployeeController.class);
+
     @Autowired
     private SearchEmployeeInDatabaseDao searchEmployeeInDatabaseDao;
 
     @RequestMapping(value = "/searchEmployee.html")
     public String searchEmployee() {
+        LOGGER.info("Search employee page was loaded successfully");
+
         return ("searchEmployee");
     }
 
@@ -26,6 +32,8 @@ public class SearchEmployeeController {
 
         modelMap.addAttribute("foundEmployees", searchEmployeeInDatabaseDao.searchEmployee(lastName));
         modelMap.addAttribute("lastName", request.getParameter("lastName"));
+
+        LOGGER.info("Search employee result's page was loaded successfully,last name was: " + lastName);
 
         return new ModelAndView("searchEmployeeResult", modelMap);
     }

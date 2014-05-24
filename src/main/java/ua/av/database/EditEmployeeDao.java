@@ -1,6 +1,8 @@
 package ua.av.database;
 
 import com.mysql.jdbc.MysqlDataTruncation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.WebRequest;
@@ -17,6 +19,8 @@ import static java.lang.Long.valueOf;
 
 @Component
 public class EditEmployeeDao {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(EditEmployeeDao.class);
 
     @Autowired
     private DataSource dataSource;
@@ -37,6 +41,11 @@ public class EditEmployeeDao {
 
         String professionOfEmployee = request.getParameter("type");
 
+        if (professionOfEmployee == null) {
+            LOGGER.error("professionOfEmployee was null");
+            return false;
+        }
+
         if ("manager".equalsIgnoreCase(professionOfEmployee)) {
             parameters.add("amountOfSales");
             parameters.add("percentageOfSales");
@@ -44,6 +53,9 @@ public class EditEmployeeDao {
             parameters.add("linesOfCode");
         } else if ("cleaner".equalsIgnoreCase(professionOfEmployee)) {
             parameters.add("amountOfCleanedOffices");
+        } else {
+            LOGGER.info("type was not instance of employee");
+            return false;
         }
 
         for (String parameter : parameters) {
@@ -62,15 +74,20 @@ public class EditEmployeeDao {
                 callableStatement.executeUpdate();
 
             } catch (MysqlDataTruncation e) {
+                LOGGER.error("SQL exception", e);
                 return false;
             } catch (SQLException e) {
+                LOGGER.error("SQL exception", e);
                 return false;
             } finally {
                 try {
                     if (connection != null) {
                         connection.close();
+                    } else {
+                        LOGGER.info("connection is null while closing");
                     }
                 } catch (SQLException e) {
+                    LOGGER.error("SQL exception while connection closing", e);
                     throw new BusinessException();
                 }
             }

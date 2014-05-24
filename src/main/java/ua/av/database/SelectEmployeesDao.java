@@ -1,5 +1,7 @@
 package ua.av.database;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ua.av.entities.Employee;
@@ -15,6 +17,8 @@ import java.util.List;
 
 @Component
 public class SelectEmployeesDao {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(SelectEmployeesDao.class);
 
     @Autowired
     private DataSource dataSource;
@@ -37,13 +41,17 @@ public class SelectEmployeesDao {
             departmentsResultSet = departmentsCallableStatement.executeQuery();
             employees = employeeParser.parseManagers(managersResultSet, departmentsResultSet);
         } catch (SQLException e) {
+            LOGGER.error("SQL exception", e);
             throw new BusinessException(e);
         } finally {
             try {
                 if (connection != null) {
                     connection.close();
+                } else {
+                    LOGGER.info("connection is null while closing");
                 }
             } catch (SQLException e) {
+                LOGGER.error("SQL exception while connection closing", e);
                 throw new BusinessException();
             }
         }
@@ -67,13 +75,17 @@ public class SelectEmployeesDao {
             departmentsResultSet = departmentsCallableStatement.executeQuery();
             employees = employeeParser.parseDevelopers(developersResultSet, departmentsResultSet);
         } catch (SQLException e) {
+            LOGGER.error("SQL exception", e);
             throw new BusinessException(e);
         } finally {
             try {
                 if (connection != null) {
                     connection.close();
+                } else {
+                    LOGGER.info("connection is null while closing");
                 }
             } catch (SQLException e) {
+                LOGGER.error("SQL exception while connection closing", e);
                 throw new BusinessException();
             }
         }
@@ -98,13 +110,17 @@ public class SelectEmployeesDao {
 
             employees = employeeParser.parseCleaners(cleanersResultSet, departmentsResultSet);
         } catch (SQLException e) {
+            LOGGER.error("SQL exception", e);
             throw new BusinessException(e);
         } finally {
             try {
                 if (connection != null) {
                     connection.close();
+                } else {
+                    LOGGER.info("connection is null while closing");
                 }
             } catch (SQLException e) {
+                LOGGER.error("SQL exception while connection closing", e);
                 throw new BusinessException();
             }
         }

@@ -1,0 +1,6 @@
+2014-05-24 20:45:19,662 [INFO ][-bio-8080-exec-1][a.av.controllers.ViewAllDepartmentsController] - View all departments page was loaded successfully
+2014-05-24 20:45:25,173 [INFO ][-bio-8080-exec-9][ua.av.controllers.IndexController            ] - Main page was loaded successfully
+2014-05-24 20:45:27,263 [INFO ][-bio-8080-exec-9][ua.av.controllers.SearchEmployeeController   ] - Search employee page was loaded successfully
+2014-05-24 20:45:29,463 [INFO ][-bio-8080-exec-9][ua.av.controllers.SearchEmployeeController   ] - Search employee result's page was loaded successfully,last name was: 
+2014-05-24 20:45:35,615 [INFO ][-bio-8080-exec-9][ua.av.controllers.SearchEmployeeController   ] - Search employee page was loaded successfully
+2014-05-24 20:45:37,291 [INFO ][-bio-8080-exec-9][ua.av.controllers.SearchEmployeeController   ] - Search employee result's page was loaded successfully,last name was: qw
