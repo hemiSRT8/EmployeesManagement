@@ -27,7 +27,8 @@ a {
 .menu {
     list-style-type:none;
     margin:0;
-    padding:0;
+    padding: 5%;
+    padding-top: 10%;
     width : 140px ;
 }
 

@@ -2,7 +2,6 @@ package ua.av.database;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ua.av.exception.BusinessException;
 import ua.av.utils.AddEmployeeFeature;
 
 import javax.sql.DataSource;
