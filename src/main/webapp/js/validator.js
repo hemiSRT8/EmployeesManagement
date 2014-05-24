@@ -92,6 +92,19 @@ function addEmployeesToDepartmentValidation (result) {
             frm.lastName.focus();
             return false;
     }
+    if(frm.firstName.value.length > 46) {
+     alert('First Name length should be less than 46.');
+            frm.firstName.focus();
+            return false;
+
+    }
+
+    if(frm.lastName.value.length > 46) {
+          alert('Last Name length should be less than 46.');
+                frm.firstName.focus();
+                return false;
+
+    }
 
     if (frm.dateOfBirth.value == "") {
         alert('Date Of Birth is required.');

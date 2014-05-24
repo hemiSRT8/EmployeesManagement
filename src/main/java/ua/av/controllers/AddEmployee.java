@@ -23,7 +23,6 @@ public class AddEmployee {
         return "addEmployeeMenu";
     }
 
-
     @RequestMapping(value = "/addEmployee.html")
     public ModelAndView addEmployee(WebRequest request) {
         String type = request.getParameter("type");

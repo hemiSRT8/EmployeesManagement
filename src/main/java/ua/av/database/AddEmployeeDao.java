@@ -19,8 +19,6 @@ public class AddEmployeeDao {
     @Autowired
     private DataSource dataSource;
 
-
-
     public boolean addEmployee(List<String> employeeFields) {
         Connection connection = null;
         String type = employeeFields.get(0);
