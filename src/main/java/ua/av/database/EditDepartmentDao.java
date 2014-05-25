@@ -41,7 +41,7 @@ public class EditDepartmentDao {
                     connection.close();
                 }
             } catch (SQLException e) {
-                throw new BusinessException();
+                throw new BusinessException(e);
             }
         }
     }

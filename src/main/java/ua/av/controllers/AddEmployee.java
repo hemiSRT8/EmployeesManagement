@@ -25,6 +25,7 @@ public class AddEmployee {
 
     @RequestMapping(value = "/addEmployee.html")
     public ModelAndView addEmployee(WebRequest request) {
+
         String type = request.getParameter("type");
         List<String> employeeFields = new ArrayList<String>();
 

@@ -1,8 +1,10 @@
 package ua.av.utils;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class AddEmployeeFeature {
+    private static final Pattern P = Pattern.compile("\\d+\\.?\\d*$");
 
     public static boolean isValid(List<String> listToValidate) {
     boolean result;
@@ -21,13 +23,12 @@ public class AddEmployeeFeature {
             return false;
         }
         for (int i = 4; i < listToValidate.size() - 4; i++) {
-            if(!listToValidate.get(i).isEmpty()) {
-                if (Double.parseDouble(listToValidate.get(i)) < 0 ) {
-
+            if(listToValidate.get(i).isEmpty()) {
+                return false;
+            } else if(!P.matcher(listToValidate.get(i)).matches()) {
                     return false;
                 }
             }
-        }
         return result;
     }
 
