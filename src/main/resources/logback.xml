@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <appender name="fileAppender" class="ch.qos.logback.core.FileAppender">
-        <file>logFile.log</file>
+        <file>logs/logFile.log</file>
         <append>false</append>
         <encoder>
             <pattern>%d{ISO8601} [%-5p][%-16.16t][%-45.45c] - %m%n</pattern>

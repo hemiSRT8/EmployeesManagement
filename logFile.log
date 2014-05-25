@@ -1,4 +1,0 @@
-2014-05-25 18:40:11,966 [INFO ][-bio-8080-exec-1][ua.av.database.SelectFullDepartmentsInfoDao  ] - Full info about departments was selected , size: 5
-2014-05-25 19:02:00,919 [INFO ][-bio-8080-exec-8][ua.av.database.SelectEmployeesDao            ] - managers for main page was selected successfully,size was: 6
-2014-05-25 19:02:00,929 [INFO ][-bio-8080-exec-8][ua.av.database.SelectEmployeesDao            ] - developers for main page was selected successfully,size was: 10
-2014-05-25 19:02:00,938 [INFO ][-bio-8080-exec-8][ua.av.database.SelectEmployeesDao            ] - cleaners for main page was selected successfully,size was: 7
