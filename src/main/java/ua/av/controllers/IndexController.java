@@ -1,7 +1,5 @@
 package ua.av.controllers;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,8 +14,6 @@ import java.util.List;
 
 @Controller
 public class IndexController {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(IndexController.class);
 
     @Autowired
     private SelectEmployeesDao selectEmployeesDao;
@@ -66,8 +62,6 @@ public class IndexController {
 
             return new ModelAndView("index", modelMap);
         }
-
-        LOGGER.info("Main page was loaded successfully");
 
         return new ModelAndView("index", modelMap);
     }

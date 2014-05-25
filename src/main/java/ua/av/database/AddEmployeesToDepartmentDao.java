@@ -28,7 +28,7 @@ public class AddEmployeesToDepartmentDao {
             LOGGER.error("ids array was null");
             return false;
         } else if (departmentsArray == null) {
-            LOGGER.error("departments array was null");
+            LOGGER.error("departmentsArray was null");
             return false;
         }
 
@@ -36,7 +36,7 @@ public class AddEmployeesToDepartmentDao {
         for (int i = 0; i < stringIdsArray.length; i++) {
             String stringId = stringIdsArray[i];
             if (stringId == null) {
-                LOGGER.error("stringId was null");
+                LOGGER.error("id on index {} was null", i);
                 return false;
             }
             Long id = valueOf(stringId);
@@ -69,6 +69,7 @@ public class AddEmployeesToDepartmentDao {
                 }
             }
         }
+        LOGGER.info("Employee(s) was(were) added to department(s) successfully");
         return true;
     }
 }

@@ -64,6 +64,7 @@ public class SelectFullDepartmentsInfoDao {
             }
         }
 
+        LOGGER.info("Request about all departments was made , departments list size: {}", departmentsHashMap.size());
         return departmentsHashMap;
     }
 }

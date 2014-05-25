@@ -72,7 +72,7 @@ public class SelectSingleEmployeeDao {
                 throw new BusinessException(e);
             }
         }
-
+        LOGGER.info("Request about single employee was made , employee list size: {}", employees.size());
         return employees;
     }
 }

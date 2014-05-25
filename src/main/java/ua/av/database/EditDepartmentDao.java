@@ -21,9 +21,11 @@ public class EditDepartmentDao {
 
     public boolean editDepartment(String oldDepartmentName, String newDepartmentName) {
 
-        if (oldDepartmentName == null || newDepartmentName == null) {
-            LOGGER.error("oldDepartmentName or newDepartmentName were null");
+        if (oldDepartmentName == null) {
+            LOGGER.error("oldDepartmentName was null");
             return false;
+        } else if (newDepartmentName == null) {
+            LOGGER.error("newDepartmentName was null");
         }
 
         Connection connection = null;
@@ -36,6 +38,7 @@ public class EditDepartmentDao {
 
             callableStatement.executeUpdate();
 
+            LOGGER.info("{} department was renamed to {}", oldDepartmentName, newDepartmentName);
             return true;
 
         } catch (SQLException e) {

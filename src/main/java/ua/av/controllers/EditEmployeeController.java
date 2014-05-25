@@ -1,7 +1,5 @@
 package ua.av.controllers;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,12 +10,13 @@ import org.springframework.web.servlet.ModelAndView;
 import ua.av.database.EditEmployeeDao;
 import ua.av.database.SelectSingleEmployeeDao;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static java.lang.Long.valueOf;
 
 @Controller
 public class EditEmployeeController {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(EditEmployeeController.class);
 
     @Autowired
     private EditEmployeeDao editEmployeeDao;
@@ -50,13 +49,30 @@ public class EditEmployeeController {
 
     @RequestMapping(value = "/editEmployeeResult.html", method = RequestMethod.POST)
     public ModelAndView editEmployeeResult(WebRequest request) {
-        boolean result = editEmployeeDao.editEmployee(request);
 
-        if (result) {
-            LOGGER.info("Employee was edited successfully");
-        } else {
-            LOGGER.info("Employee's edit was failed");
+        Long id = valueOf(request.getParameter("id"));
+        String professionOfEmployee = request.getParameter("type");
+
+        Map<String, String> fieldsAndValues = new HashMap<String, String>();
+
+        fieldsAndValues.put("lastName", request.getParameter("lastName"));
+        fieldsAndValues.put("firstName", request.getParameter("firstName"));
+        fieldsAndValues.put("dateOfBirth", request.getParameter("dateOfBirth"));
+        fieldsAndValues.put("wage", request.getParameter("wage"));
+        fieldsAndValues.put("bonus", request.getParameter("bonus"));
+        fieldsAndValues.put("penalty", request.getParameter("penalty"));
+        fieldsAndValues.put("salary", request.getParameter("salary"));
+
+        if ("manager".equalsIgnoreCase(professionOfEmployee)) {
+            fieldsAndValues.put("amountOfSales", request.getParameter("amountOfSales"));
+            fieldsAndValues.put("percentageOfSales", request.getParameter("percentageOfSales"));
+        } else if ("developer".equalsIgnoreCase(professionOfEmployee)) {
+            fieldsAndValues.put("linesOfCode", request.getParameter("linesOfCode"));
+        } else if ("cleaner".equalsIgnoreCase(professionOfEmployee)) {
+            fieldsAndValues.put("amountOfCleanedOffices", request.getParameter("amountOfCleanedOffices"));
         }
+
+        boolean result = editEmployeeDao.editEmployee(id, professionOfEmployee, fieldsAndValues);
 
         return new ModelAndView("editEmployeeResult", "result", result);
     }

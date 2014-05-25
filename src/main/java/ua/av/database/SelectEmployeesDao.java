@@ -29,7 +29,7 @@ public class SelectEmployeesDao {
         ResultSet managersResultSet;
         ResultSet departmentsResultSet;
 
-        List<Employee> employees = null;
+        List<Employee> managers = null;
         Connection connection = null;
 
         try {
@@ -39,7 +39,7 @@ public class SelectEmployeesDao {
 
             CallableStatement departmentsCallableStatement = connection.prepareCall("{call selectEmployeesDepartment}");
             departmentsResultSet = departmentsCallableStatement.executeQuery();
-            employees = employeeParser.parseManagers(managersResultSet, departmentsResultSet);
+            managers = employeeParser.parseManagers(managersResultSet, departmentsResultSet);
         } catch (SQLException e) {
             LOGGER.error("SQL exception", e);
             throw new BusinessException(e);
@@ -56,14 +56,19 @@ public class SelectEmployeesDao {
             }
         }
 
-        return employees;
+        int managersListSize = managers.size();
+        if (managersListSize > 1) {
+            LOGGER.info("managers for main page was selected successfully,size was: {}", managersListSize);
+        }
+
+        return managers;
     }
 
     public List<Employee> selectDevelopers() {
         ResultSet developersResultSet;
         ResultSet departmentsResultSet;
 
-        List<Employee> employees = null;
+        List<Employee> developers = null;
         Connection connection = null;
 
         try {
@@ -73,7 +78,7 @@ public class SelectEmployeesDao {
 
             CallableStatement departmentsCallableStatement = connection.prepareCall("{call selectEmployeesDepartment}");
             departmentsResultSet = departmentsCallableStatement.executeQuery();
-            employees = employeeParser.parseDevelopers(developersResultSet, departmentsResultSet);
+            developers = employeeParser.parseDevelopers(developersResultSet, departmentsResultSet);
         } catch (SQLException e) {
             LOGGER.error("SQL exception", e);
             throw new BusinessException(e);
@@ -90,14 +95,20 @@ public class SelectEmployeesDao {
             }
         }
 
-        return employees;
+        int developersListSize = developers.size();
+
+        if (developersListSize > 1) {
+            LOGGER.info("developers for main page was selected successfully,size was: {}", developersListSize);
+        }
+
+        return developers;
     }
 
     public List<Employee> selectCleaners() {
         ResultSet cleanersResultSet;
         ResultSet departmentsResultSet;
 
-        List<Employee> employees = null;
+        List<Employee> cleaners = null;
         Connection connection = null;
 
         try {
@@ -108,7 +119,7 @@ public class SelectEmployeesDao {
             CallableStatement departmentsCallableStatement = connection.prepareCall("{call selectEmployeesDepartment}");
             departmentsResultSet = departmentsCallableStatement.executeQuery();
 
-            employees = employeeParser.parseCleaners(cleanersResultSet, departmentsResultSet);
+            cleaners = employeeParser.parseCleaners(cleanersResultSet, departmentsResultSet);
         } catch (SQLException e) {
             LOGGER.error("SQL exception", e);
             throw new BusinessException(e);
@@ -125,6 +136,12 @@ public class SelectEmployeesDao {
             }
         }
 
-        return employees;
+        int cleanersListSize = cleaners.size();
+
+        if (cleanersListSize > 1) {
+            LOGGER.info("cleaners for main page was selected successfully,size was: {}", cleanersListSize);
+        }
+
+        return cleaners;
     }
 }

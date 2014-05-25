@@ -34,7 +34,9 @@ public class DeleteDepartmentDao {
 
             callableStatement.executeUpdate();
 
+            LOGGER.info("{} department was deleted successfully", departmentName);
             return true;
+
         } catch (SQLException e) {
             LOGGER.error("SQL exception", e);
             return false;

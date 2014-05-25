@@ -36,6 +36,7 @@ public class DeleteEmployeeDao {
 
             callableStatement.executeUpdate();
 
+            LOGGER.info("Employee with id {} was deleted successfully", id);
             return true;
 
         } catch (SQLException e) {

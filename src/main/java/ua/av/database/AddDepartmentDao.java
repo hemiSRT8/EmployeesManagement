@@ -31,7 +31,9 @@ public class AddDepartmentDao {
             callableStatement.setString("departmentName", "'" + departmentName + "'");
             callableStatement.executeUpdate();
 
+            LOGGER.info("{} department was added successfully", departmentName);
             return true;
+
         } catch (MysqlDataTruncation e) {
             LOGGER.error("SQL exception: MySQL date format", e);
             return false;

@@ -52,6 +52,7 @@ public class SelectSalaryInformationDao {
             LOGGER.error("Salary expense was less then 0");
         }
 
+        LOGGER.info("Salary expense for all employees was selected, sum = {}", expense);
         return expense;
     }
 
@@ -87,6 +88,7 @@ public class SelectSalaryInformationDao {
             LOGGER.error("averageSalary was less then 0");
         }
 
+        LOGGER.info("averageSalary of all employees was selected, value = {}", averageSalary);
         return averageSalary;
     }
 
@@ -122,6 +124,7 @@ public class SelectSalaryInformationDao {
             LOGGER.error("maxSalary was less then 0");
         }
 
+        LOGGER.info("maxSalary of all employees was selected, value = {}", maxSalary);
         return maxSalary;
     }
 
@@ -157,6 +160,7 @@ public class SelectSalaryInformationDao {
             LOGGER.error("minSalary was less then 0");
         }
 
+        LOGGER.info("minSalary of all employees was selected, value = {}", minSalary);
         return minSalary;
     }
 }
