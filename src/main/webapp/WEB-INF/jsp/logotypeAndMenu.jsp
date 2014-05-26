@@ -13,7 +13,6 @@
             </ul>
         </li>
         <li><a href="salaryInformation.html"> Salary information </a></li>
-        <li><a href="searchEmployee.html"> Search employee </a></li>
         <li><a href="viewAllDepartments.html"> Departments </a></li>
     </ul>
 </div>

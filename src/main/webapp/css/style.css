@@ -289,13 +289,6 @@ a {
     font-weight: 900;
 }
 
-input[type=search] {
-    padding: 10px;
-    border: 1px solid black;
-    height: 25px;
-    width: 222px;
-}
-
 .editActionSearchForm button {
     border: 0 none;
     background: none;
@@ -483,7 +476,7 @@ select {
 
 #singEmployeeEditButtons {
     margin-top: 25px;
-    margin-left:500px;
+    margin-left: 500px;
 }
 
 .singleEmployeeButtons ul {
@@ -502,6 +495,7 @@ select {
     list-style-type: disc;
     font-size: 17px;
 }
+
 /*End of single employee information block*/
 
 .editActionSingleEmployee button {
@@ -524,6 +518,30 @@ select {
     position: absolute;
     margin-left: 1030px;
     margin-top: -150px;
+}
+
+#searchForm {
+    position: absolute;
+    margin-left: 927px;
+    margin-top: 54px;
+}
+
+#searchFormButton {
+    position: absolute;
+    margin-left: 1075px;
+    margin-top: 49px;
+}
+
+#searchFormButton button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+input[type="search"] {
+    height: 20px;
+    width: 140px;
+    cursor: pointer;
 }
 
 .addeEmployeeTable {

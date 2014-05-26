@@ -3,6 +3,20 @@
 <div id="container">
 <%@ include file="logotypeAndMenu.jsp" %>
 
+<div id="searchForm">
+    <form action="searchEmployee.html" method="POST">
+        <input type="search" id="searchFormBlock" name="lastName" value=""
+               placeholder="Search by last name"
+               pattern="^[A-Za-z]{1,15}$"
+               required="">
+
+</div>
+
+<div id="searchFormButton">
+    <button style="margin-left:-10px;margin-top:5px;" type="submit"><img src="img/searchLoop.gif"></button>
+</div>
+
+</form>
 <div class="sortEmployeesButton">
     SORT BY :
 </div>

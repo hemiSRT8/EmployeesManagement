@@ -18,4 +18,5 @@
     <script src="js/upButton.js"></script>
     <script src="js/validator.js"></script>
     <script src="js/hideAndShow.js"></script>
+    <script src="js/redirector.js"></script>
 </head>

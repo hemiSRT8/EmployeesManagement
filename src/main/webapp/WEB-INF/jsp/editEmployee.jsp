@@ -23,13 +23,13 @@
 
                 <tr style="font-weight:900;">
                     <td>Last Name</td>
-                    <td><input pattern="^[a-z]{1,15}$" type="text" name="lastName" value=""
+                    <td><input pattern="^[A-Za-z]{1,15}$" type="text" name="lastName" value=""
                                placeholder="${employee.get(0).getLastName()}"/></td>
                 </tr>
 
                 <tr>
                     <td>First Name</td>
-                    <td><input pattern="^[a-z]{1,15}$" type="text" name="firstName" value=""
+                    <td><input pattern="^[A-Za-z]{1,15}$" type="text" name="firstName" value=""
                                placeholder="${employee.get(0).getFirstName()}"/></td>
                 </tr>
 

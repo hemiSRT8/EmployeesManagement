@@ -19,7 +19,7 @@
                 <input style="width:200px;height:30px;"
                        type="text" name="departmentName" value=""
                        placeholder="Name of the department"
-                       required pattern="^[a-z]{1,15}$"/>
+                       required pattern="^[A-Za-z]{1,15}$"/>
                 <br><br>
                 <button type="submit" class="addDepartmentButton"></button>
                 <button type="button" class="cancelAddDepartmentButton" onclick="hideAddDepartmentBlock();"></button>
@@ -71,7 +71,7 @@
                             <form class="hiddenEditField" action="editDepartment.html" method="POST">
                                 <input type="hidden" name="oldDepartmentName" value="${department.getName()}">
                                 <input type="text" name="newDepartmentName" value="" placeholder="New name"
-                                       pattern="^[a-z]{1,15}$">
+                                       pattern="^[A-Za-z]{1,15}$">
                                 <button type="submit" title="Edit department">
                                     <img src="img/success.gif">
                                 </button>
