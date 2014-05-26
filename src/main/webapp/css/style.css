@@ -1,311 +1,312 @@
 a {
-    text-decoration:none;
-    color:black;
+    text-decoration: none;
+    color: black;
 }
 
 #container {
-	width:1100px;
-    background:#FAEBD7;
-	margin: auto;
-	border:none;
+    width: 1100px;
+    background: #FAEBD7;
+    margin: auto;
+    border: none;
 }
 
 #signboard {
-	color:black;
-	font-size:30px;
-	font-family : garlfield ;
+    color: black;
+    font-size: 30px;
+    font-family: garlfield;
 }
 
 #mainMenuContainer {
-    position:absolute;
-    float:left;
+    position: absolute;
+    float: left;
     margin-top: -160px;
-    color:red;
 }
 
 .menu {
-    list-style-type:none;
-    margin:0;
-    padding:0;
-    width : 140px ;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 175px;
 }
 
 .menu li {
-	background: url(../img/menuButton.png) no-repeat 0 0;
-	width: 200px;
-	height: 30px;
-	border:none;
-    padding-top : 8px;
-    padding-left : 15px;
-    position:relative;
+    background: url(../img/menuButton.png) no-repeat 0 0;
+    height: 30px;
+    border: none;
+    padding-top: 15px;
+    padding-left: 15px;
+    position: relative;
+    color: #909090;
+    font-weight: 900;
+    font-size: 12px;
+    text-decoration: none;
 }
 
 .menu a {
-	color:#909090;
-    font-weight : 900;
-    font-size:12px;
-	text-decoration:none;
+    color: #909090;
+    font-weight: 900;
+    font-size: 12px;
+    text-decoration: none;
 }
 
-.menu li a:hover{
-	width: 200px;
-	height: 30px;
-	color:black;
+.menu li a:hover {
+    width: 200px;
+    height: 30px;
+    color: black;
 }
 
 #menuPointer {
-    padding-left:75px;
-    font-weight:900;
-    font-size:15px;
+    padding-left: 67px;
+    font-weight: 900;
+    font-size: 15px;
 }
 
 /* Drop menu */
-.menu li ul {
-    list-style-type:none;
-    position: absolute; 
+.menu li > ul {
+    list-style-type: none;
+    position: absolute;
     display: none;
-    top: 0px;
-    left: 132px;
+    top: 0;
+    left: 175px;
+    color: #909090;
+    font-weight: 900;
+    font-size: 12px;
+    text-decoration: none;
+    width: 200px;
 }
 
 .menu li:hover ul {
-   display: block;
+    display: block;
 }
 
-.menu li ul li{
-  background: url(../img/menuButton.png) no-repeat 0 0;
+.menu li > ul > li {
+    background: url(../img/menuButton.png) no-repeat 0 0;
+    padding-top: 17px;
+    margin-left: -40px;
 }
 
-.menu li ul li:hover {
+.menu li > ul > li:hover {
     width: 200px;
     height: 30px;
-    color:black;
+    color: black;
 }
 
-.menu li ul li a{
-  color:#909090;
-  text-decoration:none;
-  font-size:12px;
+.menu li > ul > li a {
+    color: #909090;
+    text-decoration: none;
+    font-size: 12px;
+    cursor: pointer;
 }
 
-.menu li ul li a:hover{
-  color: black;
-  text-decoration:none;
+.menu li > ul > li a:hover {
+    color: black;
+    text-decoration: none;
 }
 
 /* End of drop menu*/
 
 #copyright {
-	margin-top:10px;
-	color:#E5E5E5;
-	opacity: 0.3;
-	font-weight:bold;
-	text-align:center;
-	font-family: imperator;
+    margin-top: 10px;
+    color: #E5E5E5;
+    opacity: 0.3;
+    font-weight: bold;
+    text-align: center;
+    font-family: imperator;
 }
 
 @font-face {
-	font-family: garlfield;
-	src: local("garlfield"),
-	url(../fonts/garlfield.ttf);
+    font-family: garlfield;
+    src: local("garlfield"),
+    url(../fonts/garlfield.ttf);
 }
 
 @font-face {
-	font-family: imperator;
-	src: local("imperator"),
-	url(../fonts/imperator.ttf);
+    font-family: imperator;
+    src: local("imperator"),
+    url(../fonts/imperator.ttf);
 }
 
 @font-face {
-	font-family: cuprum;
-	src: local("cuprum"),
-	url(../fonts/cuprum.otf);
+    font-family: cuprum;
+    src: local("cuprum"),
+    url(../fonts/cuprum.otf);
 }
-
 
 .mainTableContainer {
-    margin-top:85px;
-    background-color:#FAEBD7;
-    width:100%;
+    margin-top: 85px;
+    background-color: #FAEBD7;
+    width: 100%;
 }
 
 .mainTable {
-    width:100%
+    width: 100%
 }
 
 .mainTable td, tr {
-    background : #FAEBD7;
+    background: #FAEBD7;
     border-collapse: collapse;
-    text-align:center;
+    text-align: center;
     border-bottom: 1px solid #51626f;
     border-right: 1px solid #51626f;
-    font-size:12px;
+    font-size: 12px;
     white-space: nowrap;
 }
 
 .mainTable th {
-    font-size:12px;
-    font-weight:bold;
+    font-size: 12px;
+    font-weight: bold;
 }
+
 .editAction button {
-     border : 0 none;
-     background : none;
-     cursor: pointer;
-     float:left;
-     width:28px;
-     height:21px;
+    border: 0 none;
+    background: none;
+    cursor: pointer;
+    width: 28px;
+    height: 21px;
+    margin-left: -55px;
+}
+
+.deleteAction button {
+    border: 0 none;
+    background: none;
+    cursor: pointer;
+    width: 28px;
+    height: 21px;
+    margin-left: -15px;
 }
 
 .infoAction button {
-    border : 0 none;
-    background : none;
+    border: 0 none;
+    background: none;
     cursor: pointer;
-    float:left;
-    width:28px;
-    height:21px;
+    width: 28px;
+    height: 21px;
+    margin-right: -15px;
 }
-
 
 /* editDepartment block */
 #editDep button {
-     border : 0 none;
-     background : none;
-     cursor: pointer;
-     width:28px;
-     height:21px;
+    border: 0 none;
+    background: none;
+    cursor: pointer;
+    width: 28px;
+    height: 21px;
 }
 
 #editActionButton button {
-     border : 0 none;
-     background : none;
-     cursor: pointer;
-     width:28px;
-     height:21px;
-     float:left;
-}
-
-#deleteAction button {
-     border : 0 none;
-     background : none;
-     cursor: pointer;
-     width:28px;
-     height:21px;
-     float:left;
+    border: 0 none;
+    background: none;
+    cursor: pointer;
+    width: 28px;
+    height: 21px;
+    float: left;
 }
 
 .submitEditDepartmentButton {
-     border : 0 none;
-     cursor: pointer;
-     width:28px;
-     height:21px;
-     background:none;
-     float:left;
+    border: 0 none;
+    cursor: pointer;
+    width: 28px;
+    height: 21px;
+    background: none;
+    float: left;
 }
 
 .cancelEditDepartmentButton {
-     border : 0 none;
-     cursor: pointer;
-     width:28px;
-     height:21px;
-     background:none;
+    border: 0 none;
+    cursor: pointer;
+    width: 28px;
+    height: 21px;
+    background: none;
 }
 
 .editDepartmentMenu ul {
-    list-style-type:none;
-    margin:0;
-    padding:0;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 .editDepartmentMenu li {
-	background:#00BFFF;
-	border:none;
-    padding : 5px;
-    position:relative;
-    font-family:cuprum;
-    font-weight:900;
+    background: #00BFFF;
+    border: none;
+    padding: 5px;
+    position: relative;
+    font-family: cuprum;
+    font-weight: 900;
     display: inline;
     margin-left: 25px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 #departmentsFullInfoContainer {
-    margin-top:50px;
-    margin-left:120px;
-    background-color:#FAEBD7;
-    float:left;
+    margin-top: 50px;
+    margin-left: 120px;
+    background-color: #FAEBD7;
+    float: left;
 }
 
 #departmentsOnlyNamesContainer {
-    margin-top:50px;
-    background-color:#FAEBD7;
-    float:right;
-    border-left:1px dotted grey;
-    padding-right:175px;
-    padding-left:120px;
+    margin-top: 50px;
+    background-color: #FAEBD7;
+    float: right;
+    border-left: 1px dotted grey;
+    padding-right: 120px;
+    padding-left: 128px;
 }
 
 /* End of editDepartment block*/
 
-.deleteAction button {
-    border : 0 none;
-    background : none;
-    cursor: pointer;
-    width:28px;
-    height:21px;
-}
-
 .salaryTable {
     table-layout: fixed;
-    width : 1000px;
-    background-color:#FAEBD7;
+    width: 1000px;
+    background-color: #FAEBD7;
 }
 
 .salaryTable td, tr, th {
     padding: 25px;
     border-collapse: collapse;
-    text-align:center;
+    text-align: center;
     border-bottom: 1px solid #51626f;
     border-right: 1px solid #51626f;
-    font-size : 15px;
+    font-size: 15px;
 }
 
 .editEmployeeTable {
-     table-layout: fixed;
-     width : 600px;
-     background-color:#FAEBD7;
+    table-layout: fixed;
+    width: 600px;
+    background-color: #FAEBD7;
 }
 
 .editEmployeeTable td, tr, th {
     padding: 5px;
     border-collapse: collapse;
-    text-align:center;
+    text-align: center;
     border-bottom: 1px solid #51626f;
     border-right: 1px solid #51626f;
-    font-size : 15px;
+    font-size: 15px;
 }
 
 .editEmployeeTable td {
-    font-weight:900;
+    font-weight: 900;
 }
 
 input[type=search] {
     padding: 10px;
     border: 1px solid black;
-    height:25px;
-    width:222px;
+    height: 25px;
+    width: 222px;
 }
 
 .editActionSearchForm button {
-     border : 0 none;
-     background : none;
-     cursor: pointer;
-     margin-bottom:10px;
+    border: 0 none;
+    background: none;
+    cursor: pointer;
+    margin-bottom: 10px;
 }
 
 .deleteActionSearchForm button {
-     border : 0 none;
-     background : none;
-     cursor: pointer;
+    border: 0 none;
+    background: none;
+    cursor: pointer;
 }
 
 .successOperationContainer {
@@ -319,24 +320,24 @@ input[type=search] {
 }
 
 .failOperationContainer {
-     border: 1px solid #F08080 !important;
-     background: url(../img/fail.png) no-repeat scroll 12px 12px #FF6347 !important;
-     color: black !important;
-     padding: 15px 0 0 40px;
-     font-weight: bold;
-     overflow: hidden;
-     border-radius: 3px;
+    border: 1px solid #F08080 !important;
+    background: url(../img/fail.png) no-repeat scroll 12px 12px #FF6347 !important;
+    color: black !important;
+    padding: 15px 0 0 40px;
+    font-weight: bold;
+    overflow: hidden;
+    border-radius: 3px;
 }
 
 .scrollup {
-    width:40px;
-    height:40px;
-    opacity:0.5;
-    position:fixed;
-    bottom:50px;
-    right:50px;
-    display:none;
-    text-indent:-9999px;
+    width: 40px;
+    height: 40px;
+    opacity: 0.5;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    display: none;
+    text-indent: -9999px;
     background: url(../img/upButton.png) no-repeat;
 }
 
@@ -345,162 +346,212 @@ input[type=search] {
 }
 
 .addDepartmentButton {
-     border: 0;
-     background : url(../img/submitButton.png) no-repeat;
-     width:75px;
-     height:75px;
-     cursor: pointer;
-     margin-left:430px;
-     float:left;
- }
+    border: 0;
+    background: url(../img/submitButton.png) no-repeat;
+    width: 75px;
+    height: 75px;
+    cursor: pointer;
+    margin-left: 430px;
+    float: left;
+}
 
 .cancelAddDepartmentButton {
     border: 0;
-    background : url(../img/cancelButton.png) no-repeat;
-    width:75px;
-    height:75px;
+    background: url(../img/cancelButton.png) no-repeat;
+    width: 75px;
+    height: 75px;
     cursor: pointer;
-    margin-top:15px;
-    margin-left:-370px;
+    margin-top: 15px;
+    margin-left: -370px;
 }
 
 .cancelAddEmployeesToDepartmentButton {
     border: 0;
-    background : url(../img/cancelButton.png) no-repeat;
-    width:75px;
-    height:75px;
+    background: url(../img/cancelButton.png) no-repeat;
+    width: 75px;
+    height: 75px;
     cursor: pointer;
-    margin-top:20px;
-    margin-left:70px;
+    margin-top: 20px;
+    margin-left: 70px;
 }
 
 .addEmployeesToDepartmentButton {
     border: 0;
-    background : url(../img/submitButton.png) no-repeat;
-    width:75px;
-    height:75px;
+    background: url(../img/submitButton.png) no-repeat;
+    width: 75px;
+    height: 75px;
     cursor: pointer;
-    float:left;
-    position:absolute;
-    margin-left:-70px;
+    float: left;
+    position: absolute;
+    margin-left: -70px;
+}
+
+.addEmployeeButton {
+    border: 0;
+    background: url(../img/submitButton.png) no-repeat;
+    width: 75px;
+    height: 75px;
+    cursor: pointer;
+    margin-top: 20px;
 }
 
 select {
-    width:25px;
+    width: 25px;
 }
 
 .addEmployeesToDepartmentTable {
-    width:100%
+    width: 100%
 }
 
 .addEmployeesToDepartmentTable td, tr {
-    background-color:#FAEBD7;
+    background-color: #FAEBD7;
     border-collapse: collapse;
-    text-align:center;
+    text-align: center;
     border-bottom: 1px solid #51626f;
     border-right: 1px solid #51626f;
-    font-size : 15px;
+    font-size: 15px;
     white-space: nowrap;
 }
 
 .departmentsTable {
-    width:35%;
+    width: 300px;
 }
 
-.departmentsTable td, tr{
-    background-color:#FAEBD7;
+.departmentsTable td, tr {
+    background-color: #FAEBD7;
     border-collapse: collapse;
-    text-align:center;
+    text-align: center;
     border-bottom: 1px solid #51626f;
     border-right: 1px solid #51626f;
-    font-size : 15px;
+    font-size: 15px;
     white-space: nowrap;
-    padding:3px;
+    padding: 3px;
 }
 
 /*Sort employees block */
 .sortEmployeesButton {
-    border:none;
-    font-family:cuprum;
-    font-weight:900;
-    margin-top:25px;
-    position:absolute;
+    border: none;
+    font-family: cuprum;
+    font-weight: 900;
+    margin-top: 25px;
+    position: absolute;
     text-align: center;
-    margin-left:522px;
-    color:red;
+    margin-left: 522px;
+    color: red;
 }
 
 .fullNameSortOption {
-    font-weight:900;
-    margin-top:50px;
-    margin-left:410px;
-    position:absolute;
-    cursor:pointer;
+    font-weight: 900;
+    margin-top: 50px;
+    margin-left: 410px;
+    position: absolute;
+    cursor: pointer;
 }
 
 .dateOfBirthSortOption {
-    font-weight:900;
-    margin-top:50px;
-    margin-left:505px;
-    position:absolute;
-    cursor:pointer;
+    font-weight: 900;
+    margin-top: 50px;
+    margin-left: 505px;
+    position: absolute;
+    cursor: pointer;
 }
 
 .salarySortOption {
-    font-weight:900;
-    margin-top:50px;
-    margin-left:615px;
-    position:absolute;
-    cursor:pointer;
+    font-weight: 900;
+    margin-top: 50px;
+    margin-left: 615px;
+    position: absolute;
+    cursor: pointer;
 }
+
 /*End of sort employees block */
 
+/*Single employee information block*/
 .singleEmployeeTable {
     width: 50%;
 }
 
-.singleEmployeeTable td,tr {
-    background-color:#FAEBD7;
+.singleEmployeeTable td, tr {
+    background-color: #FAEBD7;
     border-collapse: collapse;
-    text-align:center;
+    text-align: center;
     border-bottom: 1px solid #51626f;
     border-right: 1px solid #51626f;
-    font-size : 19px;
+    font-size: 19px;
     white-space: nowrap;
 }
 
-.singleEmployeeUL {
-    list-style-type: none;
-    font-size:17px;
-    margin:0;
-    padding:0;
+#singEmployeeEditButtons {
+    margin-top: 25px;
+    margin-left:500px;
 }
+
+.singleEmployeeButtons ul {
+    list-style-type: none;
+}
+
+.singleEmployeeButtons li {
+    border: none;
+    position: relative;
+    display: inline;
+    cursor: pointer;
+    float: left;
+}
+
+.singleEmployeeDepartmentsUL {
+    list-style-type: disc;
+    font-size: 17px;
+}
+/*End of single employee information block*/
 
 .editActionSingleEmployee button {
-    border : 0 none;
-    background : none;
+    border: 0 none;
+    background: none;
     cursor: pointer;
-    width:28px;
-    height:21px;
-    position:absolute;
-    margin-top:15px;
+    width: 28px;
+    height: 21px;
 }
 
-
 .deleteActionSingleButton button {
-    border : 0 none;
-    background : none;
+    border: 0 none;
+    background: none;
     cursor: pointer;
-    float:left;
-    width:28px;
-    height:21px;
-    position:absolute;
-    margin-top:15px;
-    margin-left:40px;
+    width: 28px;
+    height: 21px;
 }
 
 #homePageButton {
-    position:absolute;
-    margin-left:1030px;
-    margin-top:-150px;
+    position: absolute;
+    margin-left: 1030px;
+    margin-top: -150px;
+}
+
+.addeEmployeeTable {
+    width: 50%;
+}
+
+.addeEmployeeTable td, tr {
+    background-color: #FAEBD7;
+    border-collapse: collapse;
+    text-align: center;
+    border-bottom: 1px solid #51626f;
+    border-right: 1px solid #51626f;
+    font-size: 19px;
+    white-space: nowrap;
+}
+
+.actionButtonsMenu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.actionButtonsMenu li {
+    border: none;
+    position: relative;
+    font-family: cuprum;
+    font-weight: 900;
+    display: inline;
+    cursor: pointer;
+    float: left;
 }
