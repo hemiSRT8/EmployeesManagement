@@ -1,14 +1,24 @@
 package ua.av.utils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ua.av.entities.Employee;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 public class SortEmployees {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(SortEmployees.class);
+
     public List<Employee> sortByFullName(List<Employee> employeesToSort) {
+        if (employeesToSort == null) {
+            LOGGER.error("employeesToSort was null , empty list was returned");
+            return new ArrayList<Employee>();
+        }
+
         Collections.sort(employeesToSort, new Comparator<Employee>() {
             @Override
             public int compare(Employee o1, Employee o2) {
@@ -26,6 +36,11 @@ public class SortEmployees {
     }
 
     public List<Employee> sortByDateOfBirth(List<Employee> employeesToSort) {
+        if (employeesToSort == null) {
+            LOGGER.error("employeesToSort was null , empty list was returned");
+            return new ArrayList<Employee>();
+        }
+
         Collections.sort(employeesToSort, new Comparator<Employee>() {
             @Override
             public int compare(Employee o1, Employee o2) {
@@ -43,6 +58,11 @@ public class SortEmployees {
     }
 
     public List<Employee> sortBySalary(List<Employee> employeesToSort) {
+        if (employeesToSort == null) {
+            LOGGER.error("employeesToSort was null , empty list was returned");
+            return new ArrayList<Employee>();
+        }
+
         Collections.sort(employeesToSort, new Comparator<Employee>() {
             @Override
             public int compare(Employee o1, Employee o2) {

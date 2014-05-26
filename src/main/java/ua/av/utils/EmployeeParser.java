@@ -1,5 +1,7 @@
 package ua.av.utils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ua.av.entities.*;
 import ua.av.exception.BusinessException;
 
@@ -11,6 +13,8 @@ import java.util.List;
 import java.util.Map;
 
 public class EmployeeParser {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeParser.class);
 
     public List<Employee> parseManagers(ResultSet managers, ResultSet departments) {
         List<Employee> managersList = new ArrayList<Employee>();
@@ -47,9 +51,11 @@ public class EmployeeParser {
                     }
                 }
             } catch (SQLException e) {
+                LOGGER.error("SQL exception", e);
                 throw new BusinessException(e);
             }
         }
+
         return managersList;
     }
 
@@ -87,9 +93,11 @@ public class EmployeeParser {
                     }
                 }
             } catch (SQLException e) {
+                LOGGER.error("SQL exception", e);
                 throw new BusinessException(e);
             }
         }
+
         return developersList;
     }
 
@@ -127,9 +135,11 @@ public class EmployeeParser {
                     }
                 }
             } catch (SQLException e) {
+                LOGGER.error("SQL exception", e);
                 throw new BusinessException(e);
             }
         }
+
         return cleanersList;
     }
 
@@ -151,6 +161,7 @@ public class EmployeeParser {
                 }
             }
         } catch (SQLException e) {
+            LOGGER.error("SQL exception", e);
             throw new BusinessException(e);
         }
         return departmentsHashMap;

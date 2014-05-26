@@ -16,6 +16,7 @@ public class DeleteDepartmentController {
     @RequestMapping(value = "/deleteDepartment.html")
     public ModelAndView deleteDepartment(WebRequest request) {
         String departmentName = request.getParameter("departmentName");
+
         boolean result = deleteDepartmentDao.deleteDepartment(departmentName);
 
         return new ModelAndView("deleteDepartmentResult", "result", result);

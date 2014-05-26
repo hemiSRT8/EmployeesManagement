@@ -14,12 +14,7 @@ public class SearchEmployeeController {
     @Autowired
     private SearchEmployeeInDatabaseDao searchEmployeeInDatabaseDao;
 
-    @RequestMapping(value = "/searchEmployee.html")
-    public String searchEmployee() {
-        return ("searchEmployee");
-    }
-
-    @RequestMapping(value = "searchEmployeeResult.html")
+    @RequestMapping(value = "searchEmployee.html")
     public ModelAndView searchEmployeeResult(WebRequest request) {
         String lastName = request.getParameter("lastName");
         ModelMap modelMap = new ModelMap();
@@ -27,6 +22,6 @@ public class SearchEmployeeController {
         modelMap.addAttribute("foundEmployees", searchEmployeeInDatabaseDao.searchEmployee(lastName));
         modelMap.addAttribute("lastName", request.getParameter("lastName"));
 
-        return new ModelAndView("searchEmployeeResult", modelMap);
+        return new ModelAndView("searchEmployee", modelMap);
     }
 }

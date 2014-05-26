@@ -19,9 +19,9 @@ CREATE TABLE IF NOT EXISTS `employees`.`employee` (
   `lastName` VARCHAR(45) NOT NULL,
   `firstName` VARCHAR(45) NOT NULL,
   `dateOfBirth` DATE NOT NULL,
-  `wage` INT NOT NULL DEFAULT 0,
-  `bonus` INT NOT NULL DEFAULT 0,
-  `penalty` INT NOT NULL DEFAULT 0,
+  `wage` DOUBLE NOT NULL DEFAULT 0,
+  `bonus` DOUBLE NOT NULL DEFAULT 0,
+  `penalty` DOUBLE NOT NULL DEFAULT 0,
   `salary` DOUBLE NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC))
@@ -33,7 +33,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `employees`.`manager` (
   `id` BIGINT NOT NULL,
-  `amountOfSales` INT NOT NULL DEFAULT 0,
+  `amountOfSales` DOUBLE NOT NULL DEFAULT 0,
   `percentageOfSales` DOUBLE NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `employee_id_UNIQUE` (`id` ASC),
