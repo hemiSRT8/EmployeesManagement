@@ -27,14 +27,10 @@ public class AddEmployeesToDepartmentController {
     @RequestMapping(value = "/addEmployeesToDepartment.html")
     public ModelAndView addEmployeesToDepartment() {
         List<Department> departments = selectDepartmentsDao.selectDepartmentsFromDatabase();
-        List<Employee> managers = selectEmployeesDao.selectManagers();
-        List<Employee> developers = selectEmployeesDao.selectDevelopers();
-        List<Employee> cleaners = selectEmployeesDao.selectCleaners();
+        List<Employee> employees = selectEmployeesDao.selectAllEmployees();
 
         ModelMap modelMap = new ModelMap();
-        modelMap.addAttribute("managers", managers);
-        modelMap.addAttribute("developers", developers);
-        modelMap.addAttribute("cleaners", cleaners);
+        modelMap.addAttribute("employees", employees);
         modelMap.addAttribute("departments", departments);
 
         return new ModelAndView("addEmployeesToDepartment", modelMap);

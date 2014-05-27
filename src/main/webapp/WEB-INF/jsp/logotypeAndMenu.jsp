@@ -18,5 +18,5 @@
 </div>
 
 <div id="homePageButton">
-    <a href="/index.html"> <img src="img/homePageButton.png"> </a>
+    <a href="index.html"> <img src="img/homePageButton.png"> </a>
 </div>

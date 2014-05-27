@@ -16,10 +16,15 @@
     <div id="addDepartment" style="display:none;border-bottom:1px dotted grey;padding-bottom:20px;">
         <center style="padding-top:35px;font-weight:900;color:green;font-family:cuprum;font-size:20px;">
             <form action="addDepartment.html" method="POST">
+
+                <span style="color:black;font-weight:300;font-size:15px;font-family:none;"><i>example : Logistic</i></span>
+
+                <br>
+
                 <input style="width:200px;height:30px;"
                        type="text" name="departmentName" value=""
                        placeholder="Name of the department"
-                       required pattern="^[A-Za-z]{1,15}$"/>
+                       required pattern="^[A-z][a-z]{1,14}$"/>
                 <br><br>
                 <button type="submit" class="addDepartmentButton"></button>
                 <button type="button" class="cancelAddDepartmentButton" onclick="hideAddDepartmentBlock();"></button>
@@ -71,7 +76,7 @@
                             <form class="hiddenEditField" action="editDepartment.html" method="POST">
                                 <input type="hidden" name="oldDepartmentName" value="${department.getName()}">
                                 <input type="text" name="newDepartmentName" value="" placeholder="New name"
-                                       pattern="^[A-Za-z]{1,15}$">
+                                       pattern="^[A-z][a-z]{1,14}$">
                                 <button type="submit" title="Edit department">
                                     <img src="img/success.gif">
                                 </button>

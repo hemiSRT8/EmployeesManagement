@@ -19,11 +19,11 @@
                 <tbody>
                 <tr>
                     <td>Last Name</td>
-                    <td><input required pattern="^[A-Za-z]{1,15}$" type="text" name="lastName" value=""/></td>
+                    <td><input required pattern="^[A-z][a-z]{1,14}$" type="text" name="lastName" value=""/></td>
                 </tr>
                 <tr>
                     <td>First Name</td>
-                    <td><input required pattern="^[A-Za-z]{1,15}$" type="text" name="firstName" value=""/></td>
+                    <td><input required pattern="^[A-z][a-z]{1,14}$" type="text" name="firstName" value=""/></td>
                 </tr>
                 <tr>
                     <td>Date of birthday <br> <span style="font-weight:300;">( year / month / day )</span></td>

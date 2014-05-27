@@ -13,7 +13,8 @@
                     No employees were found with "${lastName}" last name
                 </div>
 
-                    <img style="cursor:pointer;" onclick="searchAgain();" src="img/tryAgainButton.png">
+                <img style="cursor:pointer;margin-top:20px;margin-bottom:20px;  " onclick="searchAgain();"
+                     src="img/backButton.png">
 
             </c:when>
 
@@ -73,21 +74,37 @@
                                 </c:if>
 
                                 <td>
-                                    <form class="editAction" action="editEmployee.html" method="POST">
-                                        <input type="hidden" name="profession" value="${employee.getClass()}"/>
-                                        <button type="submit" name="editEmployeeId" value="${employee.getId()}"
-                                                title="Edit employee">
-                                            <img src="img/edit.png">
-                                        </button>
-                                    </form>
-
-                                    <form class="deleteAction" action="deleteEmployee.html" method="POST"
-                                          onsubmit="deleteConfirmation(${employee.getId()});return false;">
-                                        <button type="submit" name="deleteEmployeeId" value="${employee.getId()}"
-                                                title="Delete employee">
-                                            <img src="img/delete.png">
-                                        </button>
-                                    </form>
+                                    <ul class="actionButtonsMenu">
+                                        <li>
+                                            <form class="editActionSingleEmployee" action="editEmployee.html"
+                                                  method="POST">
+                                                <c:if test="${employee.getClass().name == 'ua.av.entities.Manager'}">
+                                                    <input type="hidden" name="profession" value="Manager"/>
+                                                </c:if>
+                                                <c:if test="${employee.getClass().name == 'ua.av.entities.Developer'}">
+                                                    <input type="hidden" name="profession" value="Developer"/>
+                                                </c:if>
+                                                <c:if test="${employee.getClass().name == 'ua.av.entities.Manager'}">
+                                                    <input type="hidden" name="profession" value="Cleaner"/>
+                                                </c:if>
+                                                <button type="submit" name="editEmployeeId" value="${employee.getId()}"
+                                                        title="Edit employee">
+                                                    <img src="img/edit.png">
+                                                </button>
+                                            </form>
+                                        </li>
+                                        <li>
+                                            <form class="deleteActionSingleButton" action="deleteEmployee.html"
+                                                  method="POST"
+                                                  onsubmit="deleteConfirmation(${employee.getId()});return false;">
+                                                <button type="submit" name="deleteEmployeeId"
+                                                        value="${employee.getId()}"
+                                                        title="Delete employee">
+                                                    <img src="img/delete.png">
+                                                </button>
+                                            </form>
+                                        </li>
+                                    </ul>
                                 </td>
                             </tr>
                         </c:forEach>
