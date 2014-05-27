@@ -19,15 +19,8 @@ public class AddEmployeeDao {
     private DataSource dataSource;
 
     public boolean addEmployee(Map<String, String> employeeFields) {
-        if (employeeFields == null) {
-            LOGGER.error("employeeFields was null");
-            return false;
-        }
-
         Connection connection = null;
         String profession = employeeFields.get("profession");
-        String lastName = employeeFields.get("lastName");
-        String firstName = employeeFields.get("firstName");
 
         try {
             CallableStatement callableStatement = null;
@@ -43,20 +36,22 @@ public class AddEmployeeDao {
             } else if ("Cleaner".equals(profession)) {
                 callableStatement = connection.prepareCall("{call addCleaner(?,?,?,?,?,?,?,?)}");
                 callableStatement.setString("amountOfCleanedOffices", employeeFields.get("amountOfCleanedOffices"));
+            } else {
+                throw new IllegalArgumentException("Invalid employee type");
             }
 
-            if (callableStatement != null) {
-                callableStatement.setString("firstName", firstName);
-                callableStatement.setString("lastName", lastName);
-                callableStatement.setString("dateOfBirth", employeeFields.get("dateOfBirth"));
-                callableStatement.setString("wage", employeeFields.get("wage"));
-                callableStatement.setString("bonus", employeeFields.get("bonus"));
-                callableStatement.setString("penalty", employeeFields.get("penalty"));
-                callableStatement.setString("salary", employeeFields.get("salary"));
+            String lastName = employeeFields.get("lastName");
+            String firstName = employeeFields.get("firstName");
+            callableStatement.setString("firstName", firstName);
+            callableStatement.setString("lastName", lastName);
+            callableStatement.setString("dateOfBirth", employeeFields.get("dateOfBirth"));
+            callableStatement.setString("wage", employeeFields.get("wage"));
+            callableStatement.setString("bonus", employeeFields.get("bonus"));
+            callableStatement.setString("penalty", employeeFields.get("penalty"));
+            callableStatement.setString("salary", employeeFields.get("salary"));
 
-                callableStatement.executeUpdate();
-                LOGGER.info("employee {} {} was added successfully", lastName, firstName);
-            }
+            callableStatement.executeUpdate();
+            LOGGER.info("employee {} {} was added successfully", lastName, firstName);
         } catch (SQLException e) {
             LOGGER.error("SQL exception", e);
             return false;
@@ -64,12 +59,9 @@ public class AddEmployeeDao {
             try {
                 if (connection != null) {
                     connection.close();
-                } else {
-                    LOGGER.error("Connection is null while closing");
                 }
             } catch (SQLException e) {
                 LOGGER.error("SQL exception while connecting closing", e);
-                e.printStackTrace();
             }
         }
 

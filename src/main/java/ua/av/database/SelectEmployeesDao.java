@@ -4,9 +4,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ua.av.database.parser.DepartmentParser;
+import ua.av.entities.Department;
 import ua.av.entities.Employee;
 import ua.av.exception.BusinessException;
-import ua.av.utils.EmployeeParser;
+import ua.av.database.parser.EmployeeParser;
+import ua.av.utils.EmployeeToDepartmentLinker;
 
 import javax.sql.DataSource;
 import java.sql.CallableStatement;
@@ -23,7 +26,14 @@ public class SelectEmployeesDao {
     @Autowired
     private DataSource dataSource;
 
-    private EmployeeParser employeeParser = new EmployeeParser();
+    @Autowired
+    private EmployeeParser employeeParser;
+
+    @Autowired
+    private DepartmentParser departmentParser;
+
+    @Autowired
+    private EmployeeToDepartmentLinker employeeToDepartmentLinker;
 
     public List<Employee> selectAllEmployees() {
         ResultSet employeesResultSet;
@@ -41,8 +51,8 @@ public class SelectEmployeesDao {
             CallableStatement departmentsCallableStatement = connection.prepareCall("{call selectEmployeesDepartment}");
             departmentsResultSet = departmentsCallableStatement.executeQuery();
 
-            employees = employeeParser.parseEmployees(employeesResultSet,departmentsResultSet);
-
+            employees = employeeToDepartmentLinker.linkDeparmentsToEmployees(employeeParser.parseEmployees(employeesResultSet),
+                    departmentParser.parseDepartments(departmentsResultSet));
         } catch (SQLException e) {
             LOGGER.error("SQL exception", e);
             throw new BusinessException(e);
