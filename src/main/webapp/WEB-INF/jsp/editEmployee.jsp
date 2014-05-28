@@ -2,7 +2,7 @@
 
 <body style="background: url(img/background.jpg);">
 
-<div id="container" style="background-color:#FAEBD7;height:600px;padding-bottom:15px;">
+<div id="container" style="background-color:#FAEBD7;height:650px;padding-bottom:15px;">
 
     <%@ include file="logotypeAndMenu.jsp" %>
 
@@ -18,19 +18,19 @@
 
                 <tbody>
                 <tr style="display:none;">
-                    <td><input type="text" name="id" value="${employee.get(0).getId()}"/></td>
+                    <td><input type="text" name="id" value="${employee.getId()}"/></td>
                 </tr>
 
                 <tr style="font-weight:900;">
                     <td>Last Name</td>
-                    <td><input pattern="^[A-Za-z]{1,15}$" type="text" name="lastName" value=""
-                               placeholder="${employee.get(0).getLastName()}"/></td>
+                    <td><input pattern="^[A-z][a-z]{1,14}$" type="text" name="lastName" value=""
+                               placeholder="${employee.getLastName()}"/></td>
                 </tr>
 
                 <tr>
                     <td>First Name</td>
-                    <td><input pattern="^[A-Za-z]{1,15}$" type="text" name="firstName" value=""
-                               placeholder="${employee.get(0).getFirstName()}"/></td>
+                    <td><input pattern="^[A-z][a-z]{1,14}$" type="text" name="firstName" value=""
+                               placeholder="${employee.getFirstName()}"/></td>
                 </tr>
 
                 <tr>
@@ -38,7 +38,7 @@
                     <td><input pattern="^(19|20)\d\d[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])$"
                                type="text" name="dateOfBirth"
                                value=""
-                               placeholder="${employee.get(0).getDateOfBirth()}"/>
+                               placeholder="${employee.getDateOfBirth()}"/>
                     </td>
                 </tr>
 
@@ -47,7 +47,7 @@
                     <td><input
                             pattern="^([0-9]{0,7}?[.]?[0-9]{0,3})$"
                             type="text" name="wage" value=""
-                            placeholder="${employee.get(0).getWage()}"/></td>
+                            placeholder="${employee.getWage()}"/></td>
                 </tr>
 
                 <tr>
@@ -55,7 +55,7 @@
                     <td><input
                             pattern="^([0-9]{0,7}?[.]?[0-9]{0,3})$"
                             type="text" name="bonus" value=""
-                            placeholder="${employee.get(0).getBonus()}"/></td>
+                            placeholder="${employee.getBonus()}"/></td>
                 </tr>
 
                 <tr>
@@ -63,7 +63,7 @@
                     <td><input
                             pattern="^([0-9]{0,7}?[.]?[0-9]{0,3})$"
                             type="text" name="penalty" value=""
-                            placeholder="${employee.get(0).getPenalty()} "/></td>
+                            placeholder="${employee.getPenalty()} "/></td>
                 </tr>
 
                 <tr>
@@ -71,7 +71,7 @@
                     <td><input
                             pattern="^([0-9]{0,7}?[.]?[0-9]{0,3})$"
                             type="text" name="salary" value=""
-                            placeholder="${employee.get(0).getSalary()}"/></td>
+                            placeholder="${employee.getSalary()}"/></td>
                 </tr>
 
                 <c:choose>
@@ -85,7 +85,7 @@
                             <td>Amount of Sales</td>
                             <td><input type="text" name="amountOfSales" value=""
                                        pattern="^([0-9]{0,7}?[.]?[0-9]{0,3})$"
-                                       placeholder="${employee.get(0).getAmountOfSales()}"/>
+                                       placeholder="${employee.getAmountOfSales()}"/>
                             </td>
                         </tr>
 
@@ -93,7 +93,7 @@
                             <td>Percentage of sales</td>
                             <td><input type="text" name="percentageOfSales" value=""
                                        pattern="^([0-9]{0,7}?[.]?[0-9]{0,3})$"
-                                       placeholder="${employee.get(0).getPercentageOfSales()}"/>
+                                       placeholder="${employee.getPercentageOfSales()}"/>
                             </td>
                         </tr>
                     </c:when>
@@ -108,7 +108,7 @@
                             <td>Lines of code</td>
                             <td><input type="text" name="linesOfCode" value=""
                                        pattern="^([0-9]{1,7})$"
-                                       placeholder="${employee.get(0).getLinesOfCode()}"/>
+                                       placeholder="${employee.getLinesOfCode()}"/>
                             </td>
                         </tr>
                     </c:when>
@@ -122,7 +122,7 @@
                             <td>Amount of cleaned offices</td>
                             <td><input type="text" name="amountOfCleanedOffices" value=""
                                        pattern="^([0-9]{1,7})$"
-                                       placeholder="${employee.get(0).getAmountOfCleanedOffices()}"/>
+                                       placeholder="${employee.getAmountOfCleanedOffices()}"/>
                             </td>
                         </tr>
                     </c:when>
@@ -130,8 +130,10 @@
                 </tbody>
             </table>
 
-            <input type="submit" value="Submit"
-                   style="margin-top:20px;margin-bottom:20px;color:green;font-weight:900;"/>
+            <button type="submit" class="saveEmployeeEditResults"
+                    title="Save employee">
+                <img src="img/save.png">
+            </button>
 
         </center>
         <!-- Container end -->

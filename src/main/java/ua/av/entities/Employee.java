@@ -118,7 +118,11 @@ public abstract class Employee {
         return department;
     }
 
-    public void setDepartment(Department department) {
+    public void setDepartment(List<Department> department) {
+        this.department = department;
+    }
+
+    public void addDepartment(Department department) {
         this.department.add(department);
     }
 }

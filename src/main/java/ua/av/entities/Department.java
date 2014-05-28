@@ -1,13 +1,12 @@
 package ua.av.entities;
 
-import ua.av.entities.Employee;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class Department {
 
     private String name;
-    private List<Employee> listOfEmployees;
+    private List<Employee> listOfEmployees = new ArrayList<Employee>();
 
     public Department(String name) {
         this.name = name;
@@ -23,5 +22,9 @@ public class Department {
 
     public List<Employee> getListOfEmployees() {
         return listOfEmployees;
+    }
+
+    public void setListOfEmployees(List<Employee> listOfEmployees) {
+        this.listOfEmployees = listOfEmployees;
     }
 }

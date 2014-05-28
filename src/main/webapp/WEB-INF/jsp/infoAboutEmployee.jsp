@@ -16,59 +16,59 @@
                    style="border-left : 1px solid #51626f;border-top : 1px solid #51626f;">
                 <tr>
                     <td style="font-weight:900;font-family:cuprum;">Profession</td>
-                    <c:if test="${employee.get(0).getClass().name == 'ua.av.entities.Manager'}">
+                    <c:if test="${employee.getClass().name == 'ua.av.entities.Manager'}">
                         <td>Manager</td>
                     </c:if>
-                    <c:if test="${employee.get(0).getClass().name == 'ua.av.entities.Developer'}">
+                    <c:if test="${employee.getClass().name == 'ua.av.entities.Developer'}">
                         <td>Developer</td>
                     </c:if>
-                    <c:if test="${employee.get(0).getClass().name == 'ua.av.entities.Cleaner'}">
+                    <c:if test="${employee.getClass().name == 'ua.av.entities.Cleaner'}">
                         <td>Cleaner</td>
                     </c:if>
                 </tr>
 
                 <tr>
                     <td style="font-weight:900;font-family:cuprum;">Last name</td>
-                    <td>${employee.get(0).getLastName()}</td>
+                    <td>${employee.getLastName()}</td>
                 </tr>
                 <tr>
                     <td style="font-weight:900;font-family:cuprum;">First name</td>
-                    <td>${employee.get(0).getFirstName()}</td>
+                    <td>${employee.getFirstName()}</td>
                 </tr>
                 <tr>
                     <td style="font-weight:900;font-family:cuprum;">Date of birth</td>
-                    <td>${employee.get(0).getDateOfBirth()}</td>
+                    <td>${employee.getDateOfBirth()}</td>
                 </tr>
                 <tr>
                     <td style="font-weight:900;font-family:cuprum;">Wage</td>
-                    <td>${employee.get(0).getWage()}</td>
+                    <td>${employee.getWage()}</td>
                 </tr>
                 <tr>
                     <td style="font-weight:900;font-family:cuprum;">Bonus</td>
-                    <td>${employee.get(0).getBonus()}</td>
+                    <td>${employee.getBonus()}</td>
                 </tr>
                 <tr>
                     <td style="font-weight:900;font-family:cuprum;">Penalty</td>
-                    <td>${employee.get(0).getPenalty()}</td>
+                    <td>${employee.getPenalty()}</td>
                 </tr>
                 <tr>
                     <td style="font-weight:900;font-family:cuprum;">Salary</td>
-                    <td>${employee.get(0).getSalary()}</td>
+                    <td>${employee.getSalary()}</td>
                 </tr>
                 <tr>
                     <td style="font-weight:900;font-family:cuprum;">Departments</td>
                     <td style="text-align:left;">
                         <c:choose>
-                            <c:when test="${employee.get(0).getDepartment().size() > 0}">
+                            <c:when test="${employee.getDepartment().size() > 0}">
                                 <ul class="singleEmployeeDepartmentsUL">
-                                    <c:forEach items="${employee.get(0).getDepartment()}" var="department">
+                                    <c:forEach items="${employee.getDepartment()}" var="department">
                                         <li> ${department.getName()} </li>
                                     </c:forEach>
                                 </ul>
                             </c:when>
 
                             <c:otherwise>
-                                -
+
                             </c:otherwise>
                         </c:choose>
                     </td>
@@ -82,8 +82,16 @@
         <ul class="singleEmployeeButtons">
             <li>
                 <form class="editActionSingleEmployee" action="editEmployee.html" method="POST">
-                    <input type="hidden" name="profession" value="${employee.get(0).getClass()}"/>
-                    <button type="submit" name="editEmployeeId" value="${employee.get(0).getId()}"
+                    <c:if test="${employee.getClass().name == 'ua.av.entities.Manager'}">
+                        <input type="hidden" name="profession" value="Manager"/>
+                    </c:if>
+                    <c:if test="${employee.getClass().name == 'ua.av.entities.Developer'}">
+                        <input type="hidden" name="profession" value="Developer"/>
+                    </c:if>
+                    <c:if test="${employee.getClass().name == 'ua.av.entities.Manager'}">
+                        <input type="hidden" name="profession" value="Cleaner"/>
+                    </c:if>
+                    <button type="submit" name="editEmployeeId" value="${employee.getId()}"
                             title="Edit employee">
                         <img src="img/edit.png">
                     </button>
@@ -91,8 +99,8 @@
             </li>
             <li>
                 <form class="deleteActionSingleButton" action="deleteEmployee.html" method="POST"
-                      onsubmit="deleteConfirmation(${employee.get(0).getId()});return false;">
-                    <button type="submit" name="deleteEmployeeId" value="${employee.get(0).getId()}"
+                      onsubmit="deleteConfirmation(${employee.getId()});return false;">
+                    <button type="submit" name="deleteEmployeeId" value="${employee.getId()}"
                             title="Delete employee">
                         <img src="img/delete.png">
                     </button>

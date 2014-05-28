@@ -10,11 +10,11 @@
         <img src="img/salary.png">
         <table class="salaryTable" cellspacing="0"
                style="border-left : 1px solid #51626f;border-top : 1px solid #51626f;">
-            <tr style="font-weight:900;">
-                <th> Salary expense</th>
-                <th> Average salary</th>
-                <th> Max salary</th>
-                <th> Min salary</th>
+            <tr style="font-size:15px;font-weight:900;font-family: cuprum;letter-spacing: 1px;word-spacing: 2px;">
+                <th> <span style="color:red;">S</span>alary expense</th>
+                <th> <span style="color:red;">A</span>verage salary</th>
+                <th> <span style="color:red;">M</span>ax salary</th>
+                <th> <span style="color:red;">M</span>in salary</th>
             </tr>
 
             <tr>

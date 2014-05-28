@@ -1,7 +1,10 @@
 package ua.av.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
@@ -14,6 +17,8 @@ import java.util.Map;
 
 @Controller
 public class AddEmployeeController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(AddEmployeeController.class);
 
     @Autowired
     private AddEmployeeDao addEmployeeDao;
@@ -57,7 +62,12 @@ public class AddEmployeeController {
             employeeFields.put("amountOfCleanedOffices", request.getParameter("amountOfCleanedOffices"));
         }
 
-        boolean result = addEmployeeDao.addEmployee(employeeFields);
+        boolean result = false;
+        if (!CollectionUtils.isEmpty(employeeFields)) {
+            result = addEmployeeDao.addEmployee(employeeFields);
+        }else {
+            LOGGER.error("employeeFields was null");
+        }
 
         return new ModelAndView("addEmployeeResult", "result", result);
     }

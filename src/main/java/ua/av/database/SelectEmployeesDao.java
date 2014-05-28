@@ -4,9 +4,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ua.av.database.parser.DepartmentParser;
+import ua.av.entities.Department;
 import ua.av.entities.Employee;
 import ua.av.exception.BusinessException;
-import ua.av.utils.EmployeeParser;
+import ua.av.database.parser.EmployeeParser;
+import ua.av.utils.EmployeeToDepartmentLinker;
 
 import javax.sql.DataSource;
 import java.sql.CallableStatement;
@@ -23,23 +26,33 @@ public class SelectEmployeesDao {
     @Autowired
     private DataSource dataSource;
 
-    private EmployeeParser employeeParser = new EmployeeParser();
+    @Autowired
+    private EmployeeParser employeeParser;
 
-    public List<Employee> selectManagers() {
-        ResultSet managersResultSet;
+    @Autowired
+    private DepartmentParser departmentParser;
+
+    @Autowired
+    private EmployeeToDepartmentLinker employeeToDepartmentLinker;
+
+    public List<Employee> selectAllEmployees() {
+        ResultSet employeesResultSet;
         ResultSet departmentsResultSet;
 
-        List<Employee> managers = null;
+        List<Employee> employees = null;
         Connection connection = null;
 
         try {
             connection = dataSource.getConnection();
-            CallableStatement managersCallableStatement = connection.prepareCall("{call selectManagers}");
-            managersResultSet = managersCallableStatement.executeQuery();
+
+            CallableStatement employeesCallableStatement = connection.prepareCall("{call selectAllEmployees}");
+            employeesResultSet = employeesCallableStatement.executeQuery();
 
             CallableStatement departmentsCallableStatement = connection.prepareCall("{call selectEmployeesDepartment}");
             departmentsResultSet = departmentsCallableStatement.executeQuery();
-            managers = employeeParser.parseManagers(managersResultSet, departmentsResultSet);
+
+            employees = employeeToDepartmentLinker.linkDeparmentsToEmployees(employeeParser.parseEmployees(employeesResultSet),
+                    departmentParser.parseDepartments(departmentsResultSet));
         } catch (SQLException e) {
             LOGGER.error("SQL exception", e);
             throw new BusinessException(e);
@@ -56,92 +69,11 @@ public class SelectEmployeesDao {
             }
         }
 
-        int managersListSize = managers.size();
-        if (managersListSize > 1) {
-            LOGGER.info("managers for main page was selected successfully,size was: {}", managersListSize);
+        int employeesListSize = employees.size();
+        if (employeesListSize > 0) {
+            LOGGER.info("employees for main page was selected successfully,size was: {}", employeesListSize);
         }
 
-        return managers;
-    }
-
-    public List<Employee> selectDevelopers() {
-        ResultSet developersResultSet;
-        ResultSet departmentsResultSet;
-
-        List<Employee> developers = null;
-        Connection connection = null;
-
-        try {
-            connection = dataSource.getConnection();
-            CallableStatement managersCallableStatement = connection.prepareCall("{call selectDevelopers}");
-            developersResultSet = managersCallableStatement.executeQuery();
-
-            CallableStatement departmentsCallableStatement = connection.prepareCall("{call selectEmployeesDepartment}");
-            departmentsResultSet = departmentsCallableStatement.executeQuery();
-            developers = employeeParser.parseDevelopers(developersResultSet, departmentsResultSet);
-        } catch (SQLException e) {
-            LOGGER.error("SQL exception", e);
-            throw new BusinessException(e);
-        } finally {
-            try {
-                if (connection != null) {
-                    connection.close();
-                } else {
-                    LOGGER.info("connection is null while closing");
-                }
-            } catch (SQLException e) {
-                LOGGER.error("SQL exception while connection closing", e);
-                throw new BusinessException();
-            }
-        }
-
-        int developersListSize = developers.size();
-
-        if (developersListSize > 1) {
-            LOGGER.info("developers for main page was selected successfully,size was: {}", developersListSize);
-        }
-
-        return developers;
-    }
-
-    public List<Employee> selectCleaners() {
-        ResultSet cleanersResultSet;
-        ResultSet departmentsResultSet;
-
-        List<Employee> cleaners = null;
-        Connection connection = null;
-
-        try {
-            connection = dataSource.getConnection();
-            CallableStatement managersCallableStatement = connection.prepareCall("{call selectCleaners}");
-            cleanersResultSet = managersCallableStatement.executeQuery();
-
-            CallableStatement departmentsCallableStatement = connection.prepareCall("{call selectEmployeesDepartment}");
-            departmentsResultSet = departmentsCallableStatement.executeQuery();
-
-            cleaners = employeeParser.parseCleaners(cleanersResultSet, departmentsResultSet);
-        } catch (SQLException e) {
-            LOGGER.error("SQL exception", e);
-            throw new BusinessException(e);
-        } finally {
-            try {
-                if (connection != null) {
-                    connection.close();
-                } else {
-                    LOGGER.info("connection is null while closing");
-                }
-            } catch (SQLException e) {
-                LOGGER.error("SQL exception while connection closing", e);
-                throw new BusinessException();
-            }
-        }
-
-        int cleanersListSize = cleaners.size();
-
-        if (cleanersListSize > 1) {
-            LOGGER.info("cleaners for main page was selected successfully,size was: {}", cleanersListSize);
-        }
-
-        return cleaners;
+        return employees;
     }
 }

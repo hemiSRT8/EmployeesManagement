@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 import ua.av.database.EditEmployeeDao;
-import ua.av.database.SelectSingleEmployeeDao;
+import ua.av.database.SelectEmployeesDao;
+import ua.av.entities.Employee;
+import ua.av.utils.SearchEmployee;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static java.lang.Long.valueOf;
@@ -21,7 +24,7 @@ public class EditEmployeeController {
     @Autowired
     private EditEmployeeDao editEmployeeDao;
     @Autowired
-    private SelectSingleEmployeeDao selectSingleEmployeeDao;
+    private SelectEmployeesDao selectEmployeesDao;
 
     @RequestMapping(value = "/editEmployee.html", method = RequestMethod.POST)
     public ModelAndView editEmployee(WebRequest request) {
@@ -30,21 +33,19 @@ public class EditEmployeeController {
         String profession = request.getParameter("profession");
         long id = valueOf(request.getParameter("editEmployeeId"));
 
-        if (profession.contains("class ua.av.entities.Manager")) {
-            map.addAttribute("employee", selectSingleEmployeeDao.selectSingleEmployee(id, "manager"));
+        List<Employee> list = selectEmployeesDao.selectAllEmployees();
+
+        map.addAttribute("employee", SearchEmployee.searchById(id, list));
+
+        if (profession.equals("Manager")) {
             map.addAttribute("profession", "manager");
-            return new ModelAndView("editEmployee", map);
-        } else if (profession.contains("class ua.av.entities.Developer")) {
-            map.addAttribute("employee", selectSingleEmployeeDao.selectSingleEmployee(id, "developer"));
+        } else if ((profession.equals("Developer"))) {
             map.addAttribute("profession", "developer");
-            return new ModelAndView("editEmployee", map);
-        } else if (profession.contains("class ua.av.entities.Cleaner")) {
-            map.addAttribute("employee", selectSingleEmployeeDao.selectSingleEmployee(id, "cleaner"));
+        } else if ((profession.equals("Cleaner"))) {
             map.addAttribute("profession", "cleaner");
-            return new ModelAndView("editEmployee", map);
-        } else {
-            return new ModelAndView("redirect:/index.html");
         }
+
+        return new ModelAndView("editEmployee", map);
     }
 
     @RequestMapping(value = "/editEmployeeResult.html", method = RequestMethod.POST)
