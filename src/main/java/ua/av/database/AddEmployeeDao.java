@@ -23,7 +23,7 @@ public class AddEmployeeDao {
         String profession = employeeFields.get("profession");
 
         try {
-            CallableStatement callableStatement = null;
+            CallableStatement callableStatement;
             connection = dataSource.getConnection();
 
             if ("Manager".equals(profession)) {
