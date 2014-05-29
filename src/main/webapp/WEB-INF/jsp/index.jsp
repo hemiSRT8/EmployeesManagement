@@ -128,7 +128,7 @@
                                         <c:if test="${employee.getClass().name == 'ua.av.entities.Developer'}">
                                             <input type="hidden" name="profession" value="Developer"/>
                                         </c:if>
-                                        <c:if test="${employee.getClass().name == 'ua.av.entities.Manager'}">
+                                        <c:if test="${employee.getClass().name == 'ua.av.entities.Cleaner'}">
                                             <input type="hidden" name="profession" value="Cleaner"/>
                                         </c:if>
                                         <button type="submit" name="editEmployeeId" value="${employee.getId()}"

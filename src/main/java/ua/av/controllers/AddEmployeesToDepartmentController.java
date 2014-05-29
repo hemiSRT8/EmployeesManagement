@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 import ua.av.database.AddEmployeesToDepartmentDao;
-import ua.av.database.SelectDepartmentsDao;
-import ua.av.database.SelectEmployeesDao;
+import ua.av.database.DepartmentCRUDDao;
+import ua.av.database.EmployeeCRUDDao;
 import ua.av.entities.Department;
 import ua.av.entities.Employee;
 
@@ -25,16 +25,16 @@ public class AddEmployeesToDepartmentController {
     private static final Logger LOGGER = LoggerFactory.getLogger(AddEmployeesToDepartmentController.class);
 
     @Autowired
-    private SelectEmployeesDao selectEmployeesDao;
+    private EmployeeCRUDDao employeeCRUDDao;
     @Autowired
     private AddEmployeesToDepartmentDao addEmployeesToDepartmentDao;
     @Autowired
-    private SelectDepartmentsDao selectDepartmentsDao;
+    private DepartmentCRUDDao departmentCRUDDao;
 
     @RequestMapping(value = "/addEmployeesToDepartment.html")
     public ModelAndView addEmployeesToDepartment() {
-        List<Department> departments = selectDepartmentsDao.selectDepartmentsFromDatabase();
-        List<Employee> employees = selectEmployeesDao.selectAllEmployees();
+        List<Department> departments = departmentCRUDDao.selectDepartmentsFromDatabase();
+        List<Employee> employees = employeeCRUDDao.selectAllEmployees();
 
         ModelMap modelMap = new ModelMap();
         modelMap.addAttribute("employees", employees);
@@ -51,7 +51,7 @@ public class AddEmployeesToDepartmentController {
 
         if (ArrayUtils.isEmpty(stringIdsArray) || ArrayUtils.contains(stringIdsArray, null)) {
             LOGGER.error("employees ids are not populated");
-        } else if (ArrayUtils.isEmpty(departmentsArray)  || ArrayUtils.contains(departmentsArray, null)) {
+        } else if (ArrayUtils.isEmpty(departmentsArray) || ArrayUtils.contains(departmentsArray, null)) {
             LOGGER.error("departments ids are not populated");
         } else {
             isSuccess = addEmployeesToDepartmentDao.addEmployeesToDepartment(new ArrayList<String>(Arrays.asList(stringIdsArray)),

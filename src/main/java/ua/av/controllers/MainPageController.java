@@ -6,24 +6,24 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
-import ua.av.database.SelectEmployeesDao;
+import ua.av.database.EmployeeCRUDDao;
 import ua.av.entities.Employee;
 import ua.av.utils.SortEmployees;
 
 import java.util.List;
 
 @Controller
-public class IndexController {
+public class MainPageController {
 
     @Autowired
-    private SelectEmployeesDao selectEmployeesDao;
+    private EmployeeCRUDDao employeeCRUDDao;
 
     @RequestMapping(value = "/index.html")
     public ModelAndView mainPage(WebRequest request) {
         String sortType = request.getParameter("sortType");
         ModelMap modelMap = new ModelMap();
 
-        List<Employee> employees = selectEmployeesDao.selectAllEmployees();
+        List<Employee> employees = employeeCRUDDao.selectAllEmployees();
 
         if (sortType == null) { //Shall return default index.html page
             modelMap.addAttribute("employees", employees);

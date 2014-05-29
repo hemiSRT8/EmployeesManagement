@@ -9,9 +9,7 @@ import ua.av.exception.BusinessException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Component
 public class EmployeeParser {
@@ -22,6 +20,7 @@ public class EmployeeParser {
         List<Employee> allEmployeesList = new ArrayList<Employee>();
 
         if (employees != null) {
+            LOGGER.info("Parsing employees started");
             try {
                 while (employees.next()) {
                     /**
@@ -50,6 +49,7 @@ public class EmployeeParser {
                 LOGGER.error("SQL exception", e);
                 throw new BusinessException(e);
             }
+            LOGGER.info("Parsing employees finished");
         }
 
         return allEmployeesList;
@@ -100,7 +100,7 @@ public class EmployeeParser {
         return developer;
     }
 
-    private Cleaner parseCleaners(ResultSet cleaners, int amountOfCleanedOffices                                  ) {
+    private Cleaner parseCleaners(ResultSet cleaners, int amountOfCleanedOffices) {
 
         Cleaner cleaner = new Cleaner();
         try {
