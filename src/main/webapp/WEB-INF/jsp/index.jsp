@@ -48,6 +48,15 @@
         </form>
     </div>
 
+    <div class="professionSortOption">
+        <form method="POST">
+            <input type="hidden" name="sortType" value="profession"/>
+            <button type="submit" title="sort by profession">
+                profession
+            </button>
+        </form>
+    </div>
+
     <div id="mainTableContainerToHide">
         <div class="mainTableContainer">
             <table class="mainTable" cellspacing="0"

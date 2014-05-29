@@ -29,22 +29,24 @@ public class MainPageController {
             modelMap.addAttribute("employees", employees);
         } else if (sortType.compareTo("fullName") == 0) {
             SortEmployees sortEmployees = new SortEmployees();
-            List<Employee> employeesSortedByFullName = sortEmployees.sortByFullName(employees);
-            modelMap.addAttribute("employees", employeesSortedByFullName);
+            modelMap.addAttribute("employees", sortEmployees.sortByFullName(employees));
 
             return new ModelAndView("index", modelMap);
 
         } else if (sortType.compareTo("dateOfBirth") == 0) {
             SortEmployees sortEmployees = new SortEmployees();
-            List<Employee> employeesSortedByDateOfBirth = sortEmployees.sortByDateOfBirth(employees);
-            modelMap.addAttribute("employees", employeesSortedByDateOfBirth);
+            modelMap.addAttribute("employees", sortEmployees.sortByDateOfBirth(employees));
 
             return new ModelAndView("index", modelMap);
 
         } else if (sortType.compareTo("salary") == 0) {
             SortEmployees sortEmployees = new SortEmployees();
-            List<Employee> employeesSortedBySalary = sortEmployees.sortBySalary(employees);
-            modelMap.addAttribute("employees", employeesSortedBySalary);
+            modelMap.addAttribute("employees", sortEmployees.sortBySalary(employees));
+
+            return new ModelAndView("index", modelMap);
+        } else if (sortType.compareTo("profession") == 0) {
+            SortEmployees sortEmployees = new SortEmployees();
+            modelMap.addAttribute("employees", sortEmployees.sortByClass(employees));
 
             return new ModelAndView("index", modelMap);
         }

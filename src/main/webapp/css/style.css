@@ -436,7 +436,7 @@ select {
 .fullNameSortOption {
     font-weight: 900;
     margin-top: 50px;
-    margin-left: 410px;
+    margin-left: 370px;
     position: absolute;
     cursor: pointer;
 }
@@ -444,7 +444,7 @@ select {
 .dateOfBirthSortOption {
     font-weight: 900;
     margin-top: 50px;
-    margin-left: 505px;
+    margin-left: 465px;
     position: absolute;
     cursor: pointer;
 }
@@ -452,11 +452,18 @@ select {
 .salarySortOption {
     font-weight: 900;
     margin-top: 50px;
-    margin-left: 615px;
+    margin-left: 575px;
     position: absolute;
     cursor: pointer;
 }
 
+.professionSortOption {
+    font-weight: 900;
+    margin-top: 50px;
+    margin-left: 655px;
+    position: absolute;
+    cursor: pointer;
+}
 /*End of sort employees block */
 
 /*Single employee information block*/
