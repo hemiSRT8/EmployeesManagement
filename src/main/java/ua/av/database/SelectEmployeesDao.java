@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ua.av.database.parser.DepartmentParser;
-import ua.av.entities.Department;
 import ua.av.entities.Employee;
 import ua.av.exception.BusinessException;
 import ua.av.database.parser.EmployeeParser;
@@ -65,7 +64,6 @@ public class SelectEmployeesDao {
                 }
             } catch (SQLException e) {
                 LOGGER.error("SQL exception while connection closing", e);
-                throw new BusinessException();
             }
         }
 

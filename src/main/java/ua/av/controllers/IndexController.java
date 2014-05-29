@@ -8,7 +8,6 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 import ua.av.database.SelectEmployeesDao;
 import ua.av.entities.Employee;
-import ua.av.entities.Manager;
 import ua.av.utils.SortEmployees;
 
 import java.util.List;

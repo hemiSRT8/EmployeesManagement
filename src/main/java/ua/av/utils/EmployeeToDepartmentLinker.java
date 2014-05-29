@@ -17,9 +17,6 @@ public class EmployeeToDepartmentLinker {
             Long id = employee.getId();
             List<Department> departments = departmentsMap.get(id);
             employee.setDepartment(departments);
-            for (Department department : departments) {
-                department.getListOfEmployees().add(employee);
-            }
         }
         return result;
     }
