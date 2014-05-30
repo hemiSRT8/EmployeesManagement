@@ -17,10 +17,10 @@ public class SalaryInformationController {
     public ModelAndView salaryInformation() {
         ModelMap map = new ModelMap();
 
-        double expense = selectSalaryInformationDao.selectSalaryExpense();
-        double averageSalary = selectSalaryInformationDao.selectAverageSalary();
-        double maxSalary = selectSalaryInformationDao.selectMaxSalary();
-        double minSalary = selectSalaryInformationDao.selectMinSalary();
+        double expense = selectSalaryInformationDao.selectSalaryExpenseForEmployees();
+        double averageSalary = selectSalaryInformationDao.selectAverageSalaryOfEmployees();
+        double maxSalary = selectSalaryInformationDao.selectMaxSalaryOfEmployees();
+        double minSalary = selectSalaryInformationDao.selectMinSalaryOfEmployees();
 
         map.addAttribute("expense", expense);
         map.addAttribute("averageSalary", averageSalary);

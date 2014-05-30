@@ -17,7 +17,8 @@
         <center style="padding-top:35px;font-weight:900;color:green;font-family:cuprum;font-size:20px;">
             <form action="addDepartment.html" method="POST">
 
-                <span style="color:black;font-weight:300;font-size:15px;font-family:none;"><i>example : Logistic</i></span>
+                <span style="color:black;font-weight:300;font-size:15px;font-family:none;"><i>example :
+                    Logistic</i></span>
 
                 <br>
 
@@ -46,12 +47,14 @@
             <tr>
                 <th style="font-weight:500;"> Department name</th>
                 <th style="font-weight:500;"> Amount of employess</th>
+                <th style="font-weight:500;"> Salary expense</th>
             </tr>
 
             <c:forEach var="entry" items="${departmentsMap}">
                 <tr>
                     <td> ${entry.key} </td>
                     <td> ${entry.value.size()} </td>
+                    <td>${departmentSalaryExpense.get(entry.key)} </td>
                 </tr>
             </c:forEach>
 

@@ -43,7 +43,6 @@ public class AddEmployeesToDepartmentDao {
                         }
                     } catch (SQLException e) {
                         LOGGER.error("Unable to close connection", e);
-                        return false;
                     }
                 }
             }

@@ -12,7 +12,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 import ua.av.database.EmployeeCRUDDao;
 import ua.av.entities.Employee;
-import ua.av.utils.SearchEmployee;
+import ua.av.utils.EmployeeService;
 
 import java.util.HashMap;
 import java.util.List;
@@ -89,7 +89,7 @@ public class EmployeeCRUDController {
     public ModelAndView infoAboutEmployee(WebRequest request) {
         Long id = valueOf(request.getParameter("infoActionId"));
         List<Employee> employees = employeeCRUDDao.selectAllEmployees();
-        Employee employee = SearchEmployee.searchById(id, employees);
+        Employee employee = EmployeeService.searchById(id, employees);
 
         return new ModelAndView("infoAboutEmployee", "employee", employee);
     }
@@ -107,7 +107,7 @@ public class EmployeeCRUDController {
 
         List<Employee> list = employeeCRUDDao.selectAllEmployees();
 
-        map.addAttribute("employee", SearchEmployee.searchById(id, list));
+        map.addAttribute("employee", EmployeeService.searchById(id, list));
 
         if (profession.equals("Manager")) {
             map.addAttribute("profession", "manager");
