@@ -58,7 +58,6 @@ public class AddEmployeesToDepartmentController {
                     new ArrayList<String>(Arrays.asList(departmentsArray)));
         }
 
-
         return new ModelAndView("addEmployeesToDepartmentResult", "result", isSuccess);
     }
 }

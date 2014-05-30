@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ua.av.entities.Department;
-import ua.av.exception.BusinessException;
 
 import javax.sql.DataSource;
 import java.sql.CallableStatement;
@@ -62,7 +61,6 @@ public class DepartmentCRUDDao {
                 }
             } catch (SQLException e) {
                 LOGGER.error("SQL exception while connection closing", e);
-                throw new BusinessException(e);
             }
         }
     }
@@ -71,14 +69,14 @@ public class DepartmentCRUDDao {
      * Read department
      */
 
-    public Map<String, List<Long>> selectFullDepartmentsInfo() {
+    public Map<String, List<Long>> selectEmployeeDepartment() {
         Connection connection = null;
         ResultSet departmentsResulSet;
         Map<String, List<Long>> departmentsHashMap = new HashMap<String, List<Long>>();
 
         try {
             connection = dataSource.getConnection();
-            CallableStatement callableStatement = connection.prepareCall("{call selectFullDepartments}");
+            CallableStatement callableStatement = connection.prepareCall("{call selectEmployeeDepartment}");
             departmentsResulSet = callableStatement.executeQuery();
 
             while (departmentsResulSet.next()) {
@@ -97,7 +95,6 @@ public class DepartmentCRUDDao {
 
         } catch (SQLException e) {
             LOGGER.error("SQL exception", e);
-            throw new BusinessException();
         } finally {
             try {
                 if (connection != null) {
@@ -107,7 +104,6 @@ public class DepartmentCRUDDao {
                 }
             } catch (SQLException e) {
                 LOGGER.error("SQL exception while connection closing", e);
-                throw new BusinessException();
             }
         }
 
@@ -142,7 +138,6 @@ public class DepartmentCRUDDao {
 
         } catch (SQLException e) {
             LOGGER.error("SQL exception", e);
-            throw new BusinessException();
         } finally {
             try {
                 if (connection != null) {
@@ -152,7 +147,6 @@ public class DepartmentCRUDDao {
                 }
             } catch (SQLException e) {
                 LOGGER.error("SQL exception while connection closing", e);
-                throw new BusinessException(e);
             }
         }
 
@@ -197,7 +191,6 @@ public class DepartmentCRUDDao {
                 }
             } catch (SQLException e) {
                 LOGGER.error("SQL exception while connection closing", e);
-                throw new BusinessException();
             }
         }
     }
@@ -236,7 +229,6 @@ public class DepartmentCRUDDao {
                 }
             } catch (SQLException e) {
                 LOGGER.error("SQL exception while connection closing", e);
-                throw new BusinessException();
             }
         }
     }

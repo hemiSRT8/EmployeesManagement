@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import ua.av.database.parser.DepartmentParser;
 import ua.av.database.parser.EmployeeParser;
 import ua.av.entities.Employee;
-import ua.av.exception.BusinessException;
 import ua.av.utils.EmployeeToDepartmentLinker;
 
 import javax.sql.DataSource;
@@ -21,7 +20,7 @@ import java.util.Map;
 
 @Component
 public class EmployeeCRUDDao {
-    private static final Logger LOGGER = LoggerFactory.getLogger(DepartmentCRUDDao.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeCRUDDao.class);
 
     @Autowired
     private DataSource dataSource;
@@ -109,7 +108,6 @@ public class EmployeeCRUDDao {
                     departmentParser.parseDepartments(departmentsResultSet));
         } catch (SQLException e) {
             LOGGER.error("SQL exception", e);
-            throw new BusinessException(e);
         } finally {
             try {
                 if (connection != null) {
@@ -124,7 +122,7 @@ public class EmployeeCRUDDao {
 
         int employeesListSize = employees.size();
         if (employeesListSize > 0) {
-            LOGGER.info("employees for main page was selected successfully,size: {}", employeesListSize);
+            LOGGER.info("employees for main page was selected successfully,size:{}", employeesListSize);
         }
 
         return employees;
@@ -181,7 +179,6 @@ public class EmployeeCRUDDao {
                         }
                     } catch (SQLException e) {
                         LOGGER.error("SQL exception while connection closing", e);
-                        throw new BusinessException();
                     }
                 }
             }
@@ -227,7 +224,6 @@ public class EmployeeCRUDDao {
                 }
             } catch (SQLException e) {
                 LOGGER.error("SQL exception while connection closing", e);
-                throw new BusinessException();
             }
         }
     }

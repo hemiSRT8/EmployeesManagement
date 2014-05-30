@@ -8,11 +8,16 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 import ua.av.database.*;
 
+import java.util.List;
+import java.util.Map;
+
 @Controller
 public class DepartmentCRUDController {
 
     @Autowired
-    private DepartmentCRUDDao departmentCRUDDao = new DepartmentCRUDDao();
+    private DepartmentCRUDDao departmentCRUDDao;
+    @Autowired
+    private SelectSalaryInformationDao selectSalaryInformationDao;
 
     /**
      * Create department
@@ -35,8 +40,14 @@ public class DepartmentCRUDController {
     public ModelAndView viewAllDepartments() {
         ModelMap modelmap = new ModelMap();
 
-        modelmap.addAttribute("departmentsMap", departmentCRUDDao.selectFullDepartmentsInfo()); //departments with employees
-        modelmap.addAttribute("departmentsNamesOnly", departmentCRUDDao.selectDepartmentsFromDatabase()); //only department's names
+        Map<String, List<Long>> departmentsWithEmployees = departmentCRUDDao.selectEmployeeDepartment();
+
+        modelmap.addAttribute("departmentsMap",
+                departmentsWithEmployees); //departments with employees
+        modelmap.addAttribute("departmentsNamesOnly",
+                departmentCRUDDao.selectDepartmentsFromDatabase()); //only department's names
+        modelmap.addAttribute("departmentSalaryExpense",
+                selectSalaryInformationDao.selectSalaryExpenseForDepartment(departmentsWithEmployees));
 
         return new ModelAndView("viewAllDepartments", modelmap);
     }

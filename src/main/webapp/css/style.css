@@ -239,7 +239,7 @@ a {
 
 #departmentsFullInfoContainer {
     margin-top: 50px;
-    margin-left: 120px;
+    margin-left: 100px;
     background-color: #FAEBD7;
     float: left;
 }
@@ -250,7 +250,7 @@ a {
     float: right;
     border-left: 1px dotted grey;
     padding-right: 120px;
-    padding-left: 128px;
+    padding-left: 120px;
 }
 
 /* End of editDepartment block*/

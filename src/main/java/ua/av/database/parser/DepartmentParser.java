@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import ua.av.entities.Department;
-import ua.av.exception.BusinessException;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,7 +18,7 @@ public class DepartmentParser {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DepartmentParser.class);
 
-    public Map<Long, List<Department>> parseDepartments(ResultSet departments) {
+    public static Map<Long, List<Department>> parseDepartments(ResultSet departments) {
         LOGGER.info("Parsing departments started");
         Map<Long, List<Department>> departmentsMap = new HashMap<Long, List<Department>>();
         try {
@@ -41,7 +40,6 @@ public class DepartmentParser {
             }
         } catch (SQLException e) {
             LOGGER.error("Error occurs during parsing departments from result set", e);
-            throw new BusinessException(e);
         }
 
         return departmentsMap;
