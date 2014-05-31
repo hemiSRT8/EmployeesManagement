@@ -238,8 +238,8 @@ a {
 }
 
 #departmentsFullInfoContainer {
-    margin-top: 50px;
-    margin-left: 120px;
+    margin-top: 90px;
+    margin-left: 100px;
     background-color: #FAEBD7;
     float: left;
 }
@@ -250,7 +250,8 @@ a {
     float: right;
     border-left: 1px dotted grey;
     padding-right: 120px;
-    padding-left: 128px;
+    padding-left: 120px;
+    font-weight:900;
 }
 
 /* End of editDepartment block*/
@@ -465,6 +466,35 @@ select {
     cursor: pointer;
 }
 /*End of sort employees block */
+
+/*Sort departments block*/
+.sortDepartmentsButton {
+    border: none;
+    font-family: cuprum;
+    font-weight: 900;
+    margin-top: 25px;
+    position: absolute;
+    text-align: center;
+    margin-left: 300px;
+    color: red;
+}
+
+.amountOfEmployeesSortOption {
+    font-weight: 900;
+    margin-top: 50px;
+    margin-left: 180px;
+    position: absolute;
+    cursor: pointer;
+}
+
+.salaryExpenseSortOption {
+    font-weight: 900;
+    margin-top: 50px;
+    margin-left: 350px;
+    position: absolute;
+    cursor: pointer;
+}
+/*End of sort departments block */
 
 /*Single employee information block*/
 .singleEmployeeTable {
