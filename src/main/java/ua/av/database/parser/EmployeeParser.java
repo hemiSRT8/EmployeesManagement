@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import ua.av.entities.*;
-import ua.av.exception.BusinessException;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,7 +15,7 @@ public class EmployeeParser {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeParser.class);
 
-    public List<Employee> parseEmployees(ResultSet employees) {
+    public static List<Employee> parseEmployees(ResultSet employees) {
         List<Employee> allEmployeesList = new ArrayList<Employee>();
 
         if (employees != null) {
@@ -47,7 +46,6 @@ public class EmployeeParser {
                 }
             } catch (SQLException e) {
                 LOGGER.error("SQL exception", e);
-                throw new BusinessException(e);
             }
             LOGGER.info("Parsing employees finished");
         }
@@ -55,21 +53,12 @@ public class EmployeeParser {
         return allEmployeesList;
     }
 
-    private Manager parseManagers(ResultSet managers, double amountOfSales) {
-
+    private static Manager parseManagers(ResultSet resultSet, double amountOfSales) {
         Manager manager = new Manager();
+        parseGeneralFields(manager, resultSet);
         try {
-            Long managerId = managers.getLong("id");
-            manager.setId(managerId);
-            manager.setLastName(managers.getString("lastName"));
-            manager.setFirstName(managers.getString("firstName"));
-            manager.setDateOfBirth(managers.getDate("dateOfBirth"));
-            manager.setWage(managers.getDouble("wage"));
-            manager.setBonus(managers.getDouble("bonus"));
-            manager.setPenalty(managers.getDouble("penalty"));
-            manager.setSalary(managers.getDouble("salary"));
             manager.setAmountOfSales(amountOfSales);
-            manager.setPercentageOfSales(managers.getDouble("percentageOfSales"));
+            manager.setPercentageOfSales(resultSet.getDouble("percentageOfSales"));
 
         } catch (SQLException e) {
             LOGGER.error("SQL exception", e);
@@ -78,49 +67,34 @@ public class EmployeeParser {
         return manager;
     }
 
-    private Developer parseDevelopers(ResultSet developers, int linesOfCode) {
-
+    private static Developer parseDevelopers(ResultSet resultSet, int linesOfCode) {
         Developer developer = new Developer();
-        try {
-            Long developerId = developers.getLong("id");
-            developer.setId(developerId);
-            developer.setLastName(developers.getString("lastName"));
-            developer.setFirstName(developers.getString("firstName"));
-            developer.setDateOfBirth(developers.getDate("dateOfBirth"));
-            developer.setWage(developers.getDouble("wage"));
-            developer.setBonus(developers.getDouble("bonus"));
-            developer.setPenalty(developers.getDouble("penalty"));
-            developer.setSalary(developers.getDouble("salary"));
-            developer.setLinesOfCode(linesOfCode);
-
-        } catch (SQLException e) {
-            LOGGER.error("SQL exception", e);
-        }
+        parseGeneralFields(developer, resultSet);
+        developer.setLinesOfCode(linesOfCode);
 
         return developer;
     }
 
-    private Cleaner parseCleaners(ResultSet cleaners, int amountOfCleanedOffices) {
-
+    private static Cleaner parseCleaners(ResultSet resultSet, int amountOfCleanedOffices) {
         Cleaner cleaner = new Cleaner();
-        try {
-            Long cleanerId = cleaners.getLong("id");
-
-            cleaner.setId(cleanerId);
-            cleaner.setLastName(cleaners.getString("lastName"));
-            cleaner.setFirstName(cleaners.getString("firstName"));
-            cleaner.setDateOfBirth(cleaners.getDate("dateOfBirth"));
-            cleaner.setWage(cleaners.getDouble("wage"));
-            cleaner.setBonus(cleaners.getDouble("bonus"));
-            cleaner.setPenalty(cleaners.getDouble("penalty"));
-            cleaner.setSalary(cleaners.getDouble("salary"));
-            cleaner.setAmountOfCleanedOffices(amountOfCleanedOffices);
-
-        } catch (SQLException e) {
-            LOGGER.error("SQL exception", e);
-            throw new BusinessException(e);
-        }
+        cleaner.setAmountOfCleanedOffices(amountOfCleanedOffices);
+        parseGeneralFields(cleaner, resultSet);
 
         return cleaner;
+    }
+
+    private static void parseGeneralFields(Employee employee, ResultSet resultSet) {
+        try {
+            employee.setId(resultSet.getLong("id"));
+            employee.setLastName(resultSet.getString("lastName"));
+            employee.setFirstName(resultSet.getString("firstName"));
+            employee.setDateOfBirth(resultSet.getDate("dateOfBirth"));
+            employee.setWage(resultSet.getDouble("wage"));
+            employee.setBonus(resultSet.getDouble("bonus"));
+            employee.setPenalty(resultSet.getDouble("penalty"));
+            employee.setSalary(resultSet.getDouble("salary"));
+        } catch (SQLException e) {
+            LOGGER.error("SQL exception", e);
+        }
     }
 }

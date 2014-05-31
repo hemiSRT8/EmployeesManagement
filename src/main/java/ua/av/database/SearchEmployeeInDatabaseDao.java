@@ -3,7 +3,7 @@ package ua.av.database;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ua.av.entities.Employee;
-import ua.av.utils.SearchEmployee;
+import ua.av.utils.EmployeeService;
 
 import java.util.List;
 
@@ -14,6 +14,6 @@ public class SearchEmployeeInDatabaseDao {
     private EmployeeCRUDDao employeeCRUDDao;
 
     public List<Employee> searchEmployee(String lastName) {
-        return SearchEmployee.searchByLastName(lastName, employeeCRUDDao.selectAllEmployees());
+        return EmployeeService.searchByLastName(lastName, employeeCRUDDao.selectAllEmployees());
     }
 }

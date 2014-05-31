@@ -34,7 +34,7 @@
                 </tr>
 
                 <tr>
-                    <td>Date of birthday <br> <span style="font-weight:300;">( year / month / day )</span></td>
+                    <td>Date of birthday <br> <span style="font-weight:300;">( yyyy-mm-dd )</span></td>
                     <td><input pattern="^(19|20)\d\d[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])$"
                                type="text" name="dateOfBirth"
                                value=""
