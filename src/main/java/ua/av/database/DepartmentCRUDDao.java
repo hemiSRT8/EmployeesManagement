@@ -71,17 +71,17 @@ public class DepartmentCRUDDao {
 
     public Map<String, List<Long>> selectEmployeeDepartment() {
         Connection connection = null;
-        ResultSet departmentsResulSet;
+        ResultSet departmentsResultSet;
         Map<String, List<Long>> departmentsHashMap = new HashMap<String, List<Long>>();
 
         try {
             connection = dataSource.getConnection();
             CallableStatement callableStatement = connection.prepareCall("{call selectEmployeeDepartment}");
-            departmentsResulSet = callableStatement.executeQuery();
+            departmentsResultSet = callableStatement.executeQuery();
 
-            while (departmentsResulSet.next()) {
-                String departmentName = departmentsResulSet.getString("departmentName");
-                Long id = departmentsResulSet.getLong("employeeId");
+            while (departmentsResultSet.next()) {
+                String departmentName = departmentsResultSet.getString("departmentName");
+                Long id = departmentsResultSet.getLong("employeeId");
 
                 List<Long> departmentsEmployees = new ArrayList<Long>();
 
