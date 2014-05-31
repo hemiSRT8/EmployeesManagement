@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import ua.av.database.parser.DepartmentParser;
 import ua.av.database.parser.EmployeeParser;
 import ua.av.entities.Employee;
-import ua.av.utils.EmployeeToDepartmentLinker;
+import ua.av.utils.EmployeeService;
 
 import javax.sql.DataSource;
 import java.sql.CallableStatement;
@@ -24,12 +24,6 @@ public class EmployeeCRUDDao {
 
     @Autowired
     private DataSource dataSource;
-    @Autowired
-    private EmployeeParser employeeParser;
-    @Autowired
-    private DepartmentParser departmentParser;
-    @Autowired
-    private EmployeeToDepartmentLinker employeeToDepartmentLinker;
 
     /**
      * Create employee
@@ -104,8 +98,8 @@ public class EmployeeCRUDDao {
             CallableStatement departmentsCallableStatement = connection.prepareCall("{call selectEmployeesDepartment}");
             departmentsResultSet = departmentsCallableStatement.executeQuery();
 
-            employees = employeeToDepartmentLinker.linkDeparmentsToEmployees(employeeParser.parseEmployees(employeesResultSet),
-                    departmentParser.parseDepartments(departmentsResultSet));
+            employees = EmployeeService.linkDeparmentsToEmployees(EmployeeParser.parseEmployees(employeesResultSet),
+                    DepartmentParser.parseDepartments(departmentsResultSet));
         } catch (SQLException e) {
             LOGGER.error("SQL exception", e);
         } finally {
