@@ -11,7 +11,7 @@ public class EmployeeService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeService.class);
 
-    public static List<Employee> sortByClass(List<Employee> employeesToSort) {
+    public static List<Employee> sortByProfession(List<Employee> employeesToSort) {
         LOGGER.info("employee sort by profession started");
         Collections.sort(employeesToSort, new Comparator<Employee>() {
             @Override
@@ -124,7 +124,7 @@ public class EmployeeService {
         return result;
     }
 
-    public static List<Employee> linkDeparmentsToEmployees(List<Employee> employees, Map<Long, List<Department>> departmentsMap) {
+    public static List<Employee> linkDepartmentsToEmployees(List<Employee> employees, Map<Long, List<Department>> departmentsMap) {
         List<Employee> result = new ArrayList<Employee>(employees);
         for (Employee employee : employees) {
             Long id = employee.getId();
@@ -134,5 +134,4 @@ public class EmployeeService {
 
         return result;
     }
-
 }

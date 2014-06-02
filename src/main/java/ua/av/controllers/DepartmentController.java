@@ -12,12 +12,14 @@ import ua.av.utils.DepartmentService;
 import java.util.*;
 
 @Controller
-public class DepartmentCRUDController {
+public class DepartmentController {
 
     @Autowired
-    private DepartmentCRUDDao departmentCRUDDao;
+    private DepartmentDao departmentDao;
     @Autowired
     private SelectSalaryInformationDao selectSalaryInformationDao;
+    @Autowired
+    private DepartmentService departmentService;
 
     /**
      * Create department
@@ -27,7 +29,7 @@ public class DepartmentCRUDController {
     public ModelAndView addDepartmentResult(WebRequest request) {
         String departmentName = request.getParameter("departmentName");
 
-        boolean result = departmentCRUDDao.addDepartment(departmentName);
+        boolean result = departmentDao.addDepartment(departmentName);
 
         return new ModelAndView("addDepartment", "result", result);
     }
@@ -40,7 +42,7 @@ public class DepartmentCRUDController {
     public ModelAndView viewAllDepartments(WebRequest request) {
         ModelMap modelmap = new ModelMap();
 
-        Map<String, List<Long>> departmentsWithEmployees = departmentCRUDDao.selectEmployeeDepartment();
+        Map<String, List<Long>> departmentsWithEmployees = departmentDao.selectEmployeeDepartment();
         Map<String, Double> salaryExpense = selectSalaryInformationDao.selectSalaryExpenseForDepartment(departmentsWithEmployees);
 
         String sortType = request.getParameter("sortType");
@@ -48,9 +50,7 @@ public class DepartmentCRUDController {
         if (sortType == null) { //default departments page , without sorting
             modelmap.addAttribute("departmentsMap",
                     departmentsWithEmployees);
-        } else if ("amountOfEmployees".compareTo(sortType) == 0) { //sort by amount of employees
-            DepartmentService departmentService = new DepartmentService();
-
+        } else if ("amountOfEmployees".equals(sortType)) { //sort by amount of employees
             @SuppressWarnings("unchecked")
             TreeMap<String, List<Long>> treeMap =
                     new TreeMap<String, List<Long>>(departmentService.amountOfEmployeesComparator(departmentsWithEmployees));
@@ -58,9 +58,7 @@ public class DepartmentCRUDController {
             treeMap.putAll(departmentsWithEmployees);
             modelmap.addAttribute("departmentsMap",
                     treeMap);
-        } else if ("salaryExpense".compareTo(sortType) == 0) { //sort by salary expense
-            DepartmentService departmentService = new DepartmentService();
-
+        } else if ("salaryExpense".equals(sortType)) { //sort by salary expense
             @SuppressWarnings("unchecked")
             TreeMap<String, List<Long>> treeMap =
                     new TreeMap<String, List<Long>>(departmentService.salaryExpenseComparator(salaryExpense));
@@ -72,7 +70,7 @@ public class DepartmentCRUDController {
 
 //regardless of the conditions above
         modelmap.addAttribute("departmentsNamesOnly",
-                departmentCRUDDao.selectDepartmentsFromDatabase()); //only department's names
+                departmentDao.selectDepartmentsFromDatabase()); //only department's names
         modelmap.addAttribute("departmentSalaryExpense", salaryExpense);
 
         return new ModelAndView("viewAllDepartments", modelmap);
@@ -87,7 +85,7 @@ public class DepartmentCRUDController {
         String oldDepartmentName = request.getParameter("oldDepartmentName");
         String newDepartmentName = request.getParameter("newDepartmentName");
 
-        boolean result = departmentCRUDDao.editDepartment(oldDepartmentName, newDepartmentName);
+        boolean result = departmentDao.editDepartment(oldDepartmentName, newDepartmentName);
 
         return new ModelAndView("editDepartment", "result", result);
     }
@@ -100,7 +98,7 @@ public class DepartmentCRUDController {
     public ModelAndView deleteDepartment(WebRequest request) {
         String departmentName = request.getParameter("departmentName");
 
-        boolean result = departmentCRUDDao.deleteDepartment(departmentName);
+        boolean result = departmentDao.deleteDepartment(departmentName);
 
         return new ModelAndView("deleteDepartmentResult", "result", result);
     }

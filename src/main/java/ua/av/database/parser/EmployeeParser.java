@@ -97,4 +97,46 @@ public class EmployeeParser {
             LOGGER.error("SQL exception", e);
         }
     }
+
+    public static Employee parseSingleEmployee(ResultSet resultSet, String profession) {
+        if ("manager".equals(profession)) {
+            double amountOfsales = -1;
+            try {
+                if (resultSet.next()) {
+                    amountOfsales = resultSet.getDouble("amountOfSales");
+                }
+
+                return parseManagers(resultSet,amountOfsales );
+            } catch (SQLException e) {
+                LOGGER.error("SQL exception", e);
+            }
+        } else if ("developer".equals(profession)) {
+            int linesOfCode = -1;
+            try {
+                if (resultSet.next()) {
+                    linesOfCode = resultSet.getInt("linesOfCode");
+                }
+
+                return parseDevelopers(resultSet, linesOfCode);
+
+            } catch (SQLException e) {
+                LOGGER.error("SQL exception", e);
+            }
+
+        } else if ("cleaner".equals(profession)) {
+            int amountOfCleanedOffices = -1;
+            try {
+                if (resultSet.next()) {
+                    amountOfCleanedOffices = resultSet.getInt("amountOfCleanedOffices");
+                }
+
+                return parseCleaners(resultSet, amountOfCleanedOffices);
+
+            } catch (SQLException e) {
+                LOGGER.error("SQL exception", e);
+            }
+        }
+
+        return null;
+    }
 }

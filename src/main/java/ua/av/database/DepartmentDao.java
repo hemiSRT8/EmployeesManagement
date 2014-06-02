@@ -19,9 +19,9 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-public class DepartmentCRUDDao {
+public class DepartmentDao {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DepartmentCRUDDao.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DepartmentDao.class);
 
     @Autowired
     private DataSource dataSource;

@@ -1,9 +1,12 @@
 package ua.av.utils;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class DepartmentService {
 
     public Comparator amountOfEmployeesComparator(final Map<String, List<Long>> departments) {
@@ -31,5 +34,4 @@ public class DepartmentService {
             }
         };
     }
-
 }

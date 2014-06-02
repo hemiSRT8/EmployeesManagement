@@ -156,6 +156,15 @@
                                     </form>
                                 <li>
                                     <form class="infoAction" action="infoAboutEmployee.html" method="POST">
+                                        <c:if test="${employee.getClass().name == 'ua.av.entities.Manager'}">
+                                            <input type="hidden" name="profession" value="manager"/>
+                                        </c:if>
+                                        <c:if test="${employee.getClass().name == 'ua.av.entities.Developer'}">
+                                            <input type="hidden" name="profession" value="developer"/>
+                                        </c:if>
+                                        <c:if test="${employee.getClass().name == 'ua.av.entities.Cleaner'}">
+                                            <input type="hidden" name="profession" value="cleaner"/>
+                                        </c:if>
                                         <button type="submit" name="infoActionId" value="${employee.getId()}"
                                                 title="Info about employee">
                                             <img src="img/info.png">

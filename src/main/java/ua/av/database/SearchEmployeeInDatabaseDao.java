@@ -11,9 +11,9 @@ import java.util.List;
 public class SearchEmployeeInDatabaseDao {
 
     @Autowired
-    private EmployeeCRUDDao employeeCRUDDao;
+    private EmployeeDao employeeDao;
 
     public List<Employee> searchEmployee(String lastName) {
-        return EmployeeService.searchByLastName(lastName, employeeCRUDDao.selectAllEmployees());
+        return EmployeeService.searchByLastName(lastName, employeeDao.selectAllEmployees());
     }
 }

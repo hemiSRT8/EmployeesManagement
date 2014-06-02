@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
-import ua.av.database.EmployeeCRUDDao;
+import ua.av.database.EmployeeDao;
 import ua.av.entities.Employee;
 import ua.av.utils.EmployeeService;
 
@@ -22,12 +22,12 @@ import static java.lang.Long.valueOf;
 
 
 @Controller
-public class EmployeeCRUDController {
+public class EmployeeController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeCRUDController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeController.class);
 
     @Autowired
-    private EmployeeCRUDDao employeeCRUDDao;
+    private EmployeeDao employeeDao;
 
     /**
      * Create employee
@@ -73,7 +73,7 @@ public class EmployeeCRUDController {
 
         boolean result = false;
         if (!CollectionUtils.isEmpty(employeeFields)) {
-            result = employeeCRUDDao.addEmployee(employeeFields);
+            result = employeeDao.addEmployee(employeeFields);
         } else {
             LOGGER.error("employeeFields was null");
         }
@@ -88,10 +88,15 @@ public class EmployeeCRUDController {
     @RequestMapping(value = "/infoAboutEmployee.html")
     public ModelAndView infoAboutEmployee(WebRequest request) {
         Long id = valueOf(request.getParameter("infoActionId"));
-        List<Employee> employees = employeeCRUDDao.selectAllEmployees();
-        Employee employee = EmployeeService.searchById(id, employees);
+        String profession = request.getParameter("profession");
 
-        return new ModelAndView("infoAboutEmployee", "employee", employee);
+        Employee employee = employeeDao.selectSingleEmployee(id, profession);
+
+        if (employee != null) {
+            return new ModelAndView("infoAboutEmployee", "employee", employee);
+        } else {
+            return new ModelAndView("redirect:index.html");
+        }
     }
 
     /**
@@ -105,15 +110,15 @@ public class EmployeeCRUDController {
         String profession = request.getParameter("profession");
         long id = valueOf(request.getParameter("editEmployeeId"));
 
-        List<Employee> list = employeeCRUDDao.selectAllEmployees();
+        List<Employee> list = employeeDao.selectAllEmployees();
 
         map.addAttribute("employee", EmployeeService.searchById(id, list));
 
-        if (profession.equals("Manager")) {
+        if ("Manager".equals(profession)) {
             map.addAttribute("profession", "manager");
-        } else if ((profession.equals("Developer"))) {
+        } else if ("Developer".equals(profession)) {
             map.addAttribute("profession", "developer");
-        } else if ((profession.equals("Cleaner"))) {
+        } else if ("Cleaner".equals(profession)) {
             map.addAttribute("profession", "cleaner");
         }
 
@@ -145,7 +150,7 @@ public class EmployeeCRUDController {
             fieldsAndValues.put("amountOfCleanedOffices", request.getParameter("amountOfCleanedOffices"));
         }
 
-        boolean result = employeeCRUDDao.editEmployee(id, professionOfEmployee, fieldsAndValues);
+        boolean result = employeeDao.editEmployee(id, professionOfEmployee, fieldsAndValues);
 
         return new ModelAndView("editEmployeeResult", "result", result);
     }
@@ -158,7 +163,7 @@ public class EmployeeCRUDController {
     public ModelAndView deleteEmployee(WebRequest request) {
         long id = valueOf(request.getParameter("deleteEmployeeId"));
 
-        boolean result = employeeCRUDDao.deleteEmployee(id);
+        boolean result = employeeDao.deleteEmployee(id);
 
         return new ModelAndView("deleteEmployeeResult", "result", result);
     }

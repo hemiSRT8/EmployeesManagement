@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ua.av.database.parser.DepartmentParser;
 import ua.av.database.parser.EmployeeParser;
+import ua.av.entities.Department;
 import ua.av.entities.Employee;
 import ua.av.utils.EmployeeService;
 
@@ -19,11 +20,13 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-public class EmployeeCRUDDao {
-    private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeCRUDDao.class);
+public class EmployeeDao {
+    private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeDao.class);
 
     @Autowired
     private DataSource dataSource;
+    @Autowired
+    private DepartmentDao departmentDao;
 
     /**
      * Create employee
@@ -98,7 +101,7 @@ public class EmployeeCRUDDao {
             CallableStatement departmentsCallableStatement = connection.prepareCall("{call selectEmployeesDepartment}");
             departmentsResultSet = departmentsCallableStatement.executeQuery();
 
-            employees = EmployeeService.linkDeparmentsToEmployees(EmployeeParser.parseEmployees(employeesResultSet),
+            employees = EmployeeService.linkDepartmentsToEmployees(EmployeeParser.parseEmployees(employeesResultSet),
                     DepartmentParser.parseDepartments(departmentsResultSet));
         } catch (SQLException e) {
             LOGGER.error("SQL exception", e);
@@ -120,6 +123,46 @@ public class EmployeeCRUDDao {
         }
 
         return employees;
+    }
+
+    public Employee selectSingleEmployee(Long id, String profession) {
+        Connection connection = null;
+        Employee employee = null;
+
+        try {
+            connection = dataSource.getConnection();
+            CallableStatement callableStatement = connection.prepareCall("{call selectSingleEmployee (?,?)}");
+            callableStatement.setLong("id", id);
+            callableStatement.setString("tableName", profession);
+
+            /**
+             * Parse employees fields
+             */
+            employee = EmployeeParser.parseSingleEmployee(callableStatement.executeQuery(), profession);
+
+            /**
+             * Parse employees departments
+             */
+            Map<String, List<Long>> departments = departmentDao.selectEmployeeDepartment();
+            for (String departmentName : departments.keySet()) {
+                if (departments.get(departmentName).contains(id)) {
+                    employee.addDepartment(new Department(departmentName));
+                }
+            }
+
+        } catch (SQLException e) {
+            LOGGER.error("SQL exception", e);
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                LOGGER.error("SQL exception", e);
+            }
+        }
+
+        return employee;
     }
 
     /**

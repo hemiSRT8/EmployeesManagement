@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 import ua.av.database.AddEmployeesToDepartmentDao;
-import ua.av.database.DepartmentCRUDDao;
-import ua.av.database.EmployeeCRUDDao;
+import ua.av.database.DepartmentDao;
+import ua.av.database.EmployeeDao;
 import ua.av.entities.Department;
 import ua.av.entities.Employee;
 
@@ -25,16 +25,16 @@ public class AddEmployeesToDepartmentController {
     private static final Logger LOGGER = LoggerFactory.getLogger(AddEmployeesToDepartmentController.class);
 
     @Autowired
-    private EmployeeCRUDDao employeeCRUDDao;
+    private EmployeeDao employeeDao;
     @Autowired
     private AddEmployeesToDepartmentDao addEmployeesToDepartmentDao;
     @Autowired
-    private DepartmentCRUDDao departmentCRUDDao;
+    private DepartmentDao departmentDao;
 
     @RequestMapping(value = "/addEmployeesToDepartment.html")
     public ModelAndView addEmployeesToDepartment() {
-        List<Department> departments = departmentCRUDDao.selectDepartmentsFromDatabase();
-        List<Employee> employees = employeeCRUDDao.selectAllEmployees();
+        List<Department> departments = departmentDao.selectDepartmentsFromDatabase();
+        List<Employee> employees = employeeDao.selectAllEmployees();
 
         ModelMap modelMap = new ModelMap();
         modelMap.addAttribute("employees", employees);

@@ -55,6 +55,29 @@
                     <td style="font-weight:900;font-family:cuprum;">Salary</td>
                     <td>${employee.getSalary()}</td>
                 </tr>
+                <c:if test="${employee.getClass().name == 'ua.av.entities.Manager'}">
+                    <tr>
+                        <td style="font-weight:900;font-family:cuprum;">Amount of sales</td>
+                        <td>${employee.getAmountOfSales()}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:900;font-family:cuprum;">Percentage of sales</td>
+                        <td>${employee.getPercentageOfSales()}</td>
+                    </tr>
+                </c:if>
+                <c:if test="${employee.getClass().name == 'ua.av.entities.Developer'}">
+                    <tr>
+                        <td style="font-weight:900;font-family:cuprum;">Lines of code</td>
+                        <td>${employee.getLinesOfCode()}</td>
+                    </tr>
+                </c:if>
+                <c:if test="${employee.getClass().name == 'ua.av.entities.Cleaner'}">
+                    <tr>
+                        <td style="font-weight:900;font-family:cuprum;">Amount of cleaned offices</td>
+                        <td>${employee.getAmountOfCleanedOffices()}</td>
+                    </tr>
+                </c:if>
+
                 <tr>
                     <td style="font-weight:900;font-family:cuprum;">Departments</td>
                     <td style="text-align:left;">
