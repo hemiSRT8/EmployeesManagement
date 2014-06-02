@@ -4,13 +4,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ua.av.exception.BusinessException;
 
 import javax.sql.DataSource;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Component
 public class SelectSalaryInformationDao {
@@ -20,7 +22,7 @@ public class SelectSalaryInformationDao {
     @Autowired
     private DataSource dataSource;
 
-    public double selectSalaryExpense() {
+    public double selectSalaryExpenseForEmployees() {
         Connection connection = null;
         ResultSet resultSet;
         double expense = -1;
@@ -34,7 +36,6 @@ public class SelectSalaryInformationDao {
             }
         } catch (SQLException e) {
             LOGGER.error("SQL exception", e);
-            throw new BusinessException(e);
         } finally {
             try {
                 if (connection != null) {
@@ -44,7 +45,6 @@ public class SelectSalaryInformationDao {
                 }
             } catch (SQLException e) {
                 LOGGER.error("SQL exception while connection closing", e);
-                throw new BusinessException(e);
             }
         }
 
@@ -56,7 +56,7 @@ public class SelectSalaryInformationDao {
         return expense;
     }
 
-    public double selectAverageSalary() {
+    public double selectAverageSalaryOfEmployees() {
         Connection connection = null;
         ResultSet resultSet;
         double averageSalary = -1;
@@ -70,7 +70,6 @@ public class SelectSalaryInformationDao {
             }
         } catch (SQLException e) {
             LOGGER.error("SQL exception", e);
-            throw new BusinessException(e);
         } finally {
             try {
                 if (connection != null) {
@@ -80,7 +79,6 @@ public class SelectSalaryInformationDao {
                 }
             } catch (SQLException e) {
                 LOGGER.error("SQL exception while connection closing", e);
-                throw new BusinessException(e);
             }
         }
 
@@ -92,7 +90,7 @@ public class SelectSalaryInformationDao {
         return averageSalary;
     }
 
-    public double selectMaxSalary() {
+    public double selectMaxSalaryOfEmployees() {
         Connection connection = null;
         ResultSet resultSet;
         double maxSalary = -1;
@@ -106,7 +104,6 @@ public class SelectSalaryInformationDao {
             }
         } catch (SQLException e) {
             LOGGER.error("SQL exception", e);
-            throw new BusinessException(e);
         } finally {
             try {
                 if (connection != null) {
@@ -116,7 +113,6 @@ public class SelectSalaryInformationDao {
                 }
             } catch (SQLException e) {
                 LOGGER.error("SQL exception while connection closing", e);
-                throw new BusinessException(e);
             }
         }
 
@@ -128,7 +124,7 @@ public class SelectSalaryInformationDao {
         return maxSalary;
     }
 
-    public double selectMinSalary() {
+    public double selectMinSalaryOfEmployees() {
         Connection connection = null;
         ResultSet resultSet;
         double minSalary = -1;
@@ -142,7 +138,6 @@ public class SelectSalaryInformationDao {
             }
         } catch (SQLException e) {
             LOGGER.error("SQL exception", e);
-            throw new BusinessException(e);
         } finally {
             try {
                 if (connection != null) {
@@ -152,7 +147,6 @@ public class SelectSalaryInformationDao {
                 }
             } catch (SQLException e) {
                 LOGGER.error("SQL exception while connection closing", e);
-                throw new BusinessException(e);
             }
         }
 
@@ -162,5 +156,38 @@ public class SelectSalaryInformationDao {
 
         LOGGER.info("minSalary of all employees was selected, value = {}", minSalary);
         return minSalary;
+    }
+
+    public Map<String, Double> selectSalaryExpenseForDepartment(Map<String, List<Long>> map) {
+        LOGGER.info("Salary expense calculating for department started");
+
+        Map<String, Double> result = new HashMap<String, Double>();
+        Connection connection = null;
+
+        try {
+            connection = dataSource.getConnection();
+            CallableStatement callableStatement = connection.prepareCall("{call departmentSalaryExpense(?)}");
+
+            for (String department : map.keySet()) {
+                callableStatement.setString("nameOfDepartment", "'" + department + "'");
+                ResultSet resultSet = callableStatement.executeQuery();
+                while (resultSet.next()) {
+                    result.put(department, resultSet.getDouble("salaryExpense"));
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.error("SQL exception", e);
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                LOGGER.error("SQL exception", e);
+            }
+        }
+
+        LOGGER.info("Salary expense calculating for department finished");
+        return result;
     }
 }

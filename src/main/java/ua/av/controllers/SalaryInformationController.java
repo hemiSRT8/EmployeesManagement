@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import ua.av.database.SelectSalaryInformationDao;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Controller
 public class SalaryInformationController {
 
@@ -17,15 +20,14 @@ public class SalaryInformationController {
     public ModelAndView salaryInformation() {
         ModelMap map = new ModelMap();
 
-        double expense = selectSalaryInformationDao.selectSalaryExpense();
-        double averageSalary = selectSalaryInformationDao.selectAverageSalary();
-        double maxSalary = selectSalaryInformationDao.selectMaxSalary();
-        double minSalary = selectSalaryInformationDao.selectMinSalary();
+        Map<String, Double> salaryInfo = new HashMap<String, Double>();
 
-        map.addAttribute("expense", expense);
-        map.addAttribute("averageSalary", averageSalary);
-        map.addAttribute("maxSalary", maxSalary);
-        map.addAttribute("minSalary", minSalary);
+        salaryInfo.put("expense", selectSalaryInformationDao.selectSalaryExpenseForEmployees());
+        salaryInfo.put("averageSalary", selectSalaryInformationDao.selectAverageSalaryOfEmployees());
+        salaryInfo.put("maxSalary", selectSalaryInformationDao.selectMaxSalaryOfEmployees());
+        salaryInfo.put("minSalary", selectSalaryInformationDao.selectMinSalaryOfEmployees());
+
+        map.addAttribute("salaryInfo" , salaryInfo);
 
         return new ModelAndView("salaryInformation", map);
     }

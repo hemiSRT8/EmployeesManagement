@@ -6,9 +6,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
-import ua.av.database.EmployeeCRUDDao;
+import ua.av.database.EmployeeDao;
 import ua.av.entities.Employee;
-import ua.av.utils.SortEmployees;
+import ua.av.utils.EmployeeService;
 
 import java.util.List;
 
@@ -16,36 +16,31 @@ import java.util.List;
 public class MainPageController {
 
     @Autowired
-    private EmployeeCRUDDao employeeCRUDDao;
+    private EmployeeDao employeeDao;
 
     @RequestMapping(value = "/index.html")
     public ModelAndView mainPage(WebRequest request) {
         String sortType = request.getParameter("sortType");
         ModelMap modelMap = new ModelMap();
 
-        List<Employee> employees = employeeCRUDDao.selectAllEmployees();
+        List<Employee> employees = employeeDao.selectAllEmployees();
 
         if (sortType == null) { //Shall return default index.html page
             modelMap.addAttribute("employees", employees);
-        } else if (sortType.compareTo("fullName") == 0) {
-            SortEmployees sortEmployees = new SortEmployees();
-            List<Employee> employeesSortedByFullName = sortEmployees.sortByFullName(employees);
-            modelMap.addAttribute("employees", employeesSortedByFullName);
-
+        } else if (sortType.equals("fullName")) {
+            modelMap.addAttribute("employees", EmployeeService.sortByFullName(employees));
             return new ModelAndView("index", modelMap);
 
-        } else if (sortType.compareTo("dateOfBirth") == 0) {
-            SortEmployees sortEmployees = new SortEmployees();
-            List<Employee> employeesSortedByDateOfBirth = sortEmployees.sortByDateOfBirth(employees);
-            modelMap.addAttribute("employees", employeesSortedByDateOfBirth);
-
+        } else if (sortType.equals("dateOfBirth")) {
+            modelMap.addAttribute("employees", EmployeeService.sortByDateOfBirth(employees));
             return new ModelAndView("index", modelMap);
 
-        } else if (sortType.compareTo("salary") == 0) {
-            SortEmployees sortEmployees = new SortEmployees();
-            List<Employee> employeesSortedBySalary = sortEmployees.sortBySalary(employees);
-            modelMap.addAttribute("employees", employeesSortedBySalary);
+        } else if (sortType.equals("salary")) {
+            modelMap.addAttribute("employees", EmployeeService.sortBySalary(employees));
+            return new ModelAndView("index", modelMap);
 
+        } else if (sortType.equals("profession")) {
+            modelMap.addAttribute("employees", EmployeeService.sortByProfession(employees));
             return new ModelAndView("index", modelMap);
         }
 

@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ua.av.database.parser.DepartmentParser;
 import ua.av.database.parser.EmployeeParser;
+import ua.av.entities.Department;
 import ua.av.entities.Employee;
-import ua.av.exception.BusinessException;
-import ua.av.utils.EmployeeToDepartmentLinker;
+import ua.av.utils.EmployeeService;
 
 import javax.sql.DataSource;
 import java.sql.CallableStatement;
@@ -20,17 +20,13 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-public class EmployeeCRUDDao {
-    private static final Logger LOGGER = LoggerFactory.getLogger(DepartmentCRUDDao.class);
+public class EmployeeDao {
+    private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeDao.class);
 
     @Autowired
     private DataSource dataSource;
     @Autowired
-    private EmployeeParser employeeParser;
-    @Autowired
-    private DepartmentParser departmentParser;
-    @Autowired
-    private EmployeeToDepartmentLinker employeeToDepartmentLinker;
+    private DepartmentDao departmentDao;
 
     /**
      * Create employee
@@ -105,11 +101,10 @@ public class EmployeeCRUDDao {
             CallableStatement departmentsCallableStatement = connection.prepareCall("{call selectEmployeesDepartment}");
             departmentsResultSet = departmentsCallableStatement.executeQuery();
 
-            employees = employeeToDepartmentLinker.linkDeparmentsToEmployees(employeeParser.parseEmployees(employeesResultSet),
-                    departmentParser.parseDepartments(departmentsResultSet));
+            employees = EmployeeService.linkDepartmentsToEmployees(EmployeeParser.parseEmployees(employeesResultSet),
+                    DepartmentParser.parseDepartments(departmentsResultSet));
         } catch (SQLException e) {
             LOGGER.error("SQL exception", e);
-            throw new BusinessException(e);
         } finally {
             try {
                 if (connection != null) {
@@ -124,10 +119,50 @@ public class EmployeeCRUDDao {
 
         int employeesListSize = employees.size();
         if (employeesListSize > 0) {
-            LOGGER.info("employees for main page was selected successfully,size: {}", employeesListSize);
+            LOGGER.info("employees for main page was selected successfully,size:{}", employeesListSize);
         }
 
         return employees;
+    }
+
+    public Employee selectSingleEmployee(Long id, String profession) {
+        Connection connection = null;
+        Employee employee = null;
+
+        try {
+            connection = dataSource.getConnection();
+            CallableStatement callableStatement = connection.prepareCall("{call selectSingleEmployee (?,?)}");
+            callableStatement.setLong("id", id);
+            callableStatement.setString("tableName", profession);
+
+            /**
+             * Parse employees fields
+             */
+            employee = EmployeeParser.parseSingleEmployee(callableStatement.executeQuery(), profession);
+
+            /**
+             * Parse employees departments
+             */
+            Map<String, List<Long>> departments = departmentDao.selectEmployeeDepartment();
+            for (String departmentName : departments.keySet()) {
+                if (departments.get(departmentName).contains(id)) {
+                    employee.addDepartment(new Department(departmentName));
+                }
+            }
+
+        } catch (SQLException e) {
+            LOGGER.error("SQL exception", e);
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                LOGGER.error("SQL exception", e);
+            }
+        }
+
+        return employee;
     }
 
     /**
@@ -181,7 +216,6 @@ public class EmployeeCRUDDao {
                         }
                     } catch (SQLException e) {
                         LOGGER.error("SQL exception while connection closing", e);
-                        throw new BusinessException();
                     }
                 }
             }
@@ -227,7 +261,6 @@ public class EmployeeCRUDDao {
                 }
             } catch (SQLException e) {
                 LOGGER.error("SQL exception while connection closing", e);
-                throw new BusinessException();
             }
         }
     }
