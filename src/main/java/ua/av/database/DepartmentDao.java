@@ -6,7 +6,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ua.av.database.parser.DepartmentParser;
+import ua.av.database.parser.EmployeeParser;
 import ua.av.entities.Department;
+import ua.av.entities.Employee;
+import ua.av.utils.EmployeeService;
 
 import javax.sql.DataSource;
 import java.sql.CallableStatement;
@@ -151,6 +155,41 @@ public class DepartmentDao {
         }
 
         return departmentList;
+    }
+
+    public List<Employee> selectDepartmentEmployeesList(String ids) {
+        LOGGER.info("Selecting department's employees list started");
+
+        List<Employee> employees = new ArrayList<Employee>();
+        Connection connection = null;
+
+        try {
+            connection = dataSource.getConnection();
+
+            CallableStatement employeesCallableStatement = connection.prepareCall("{call selectDepartmentEmployeesList(?)}");
+            employeesCallableStatement.setString("employeesId", ids.substring(ids.indexOf("[") + 1, ids.lastIndexOf("]")));
+            ResultSet employeesResultSet = employeesCallableStatement.executeQuery();
+
+            CallableStatement departmentsCallableStatement = connection.prepareCall("{call selectEmployeesDepartment}");
+            ResultSet departmentsResultSet = departmentsCallableStatement.executeQuery();
+
+            employees = EmployeeService.linkDepartmentsToEmployees(EmployeeParser.parseEmployees(employeesResultSet),
+                    DepartmentParser.parseDepartments(departmentsResultSet));
+
+        } catch (SQLException e) {
+            LOGGER.error("SQL exception", e);
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                LOGGER.error("SQL exception", e);
+            }
+        }
+
+        LOGGER.info("Selecting department's employees list finished , size={}", employees.size());
+        return employees;
     }
 
     /**

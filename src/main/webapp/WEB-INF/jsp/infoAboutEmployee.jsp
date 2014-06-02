@@ -91,7 +91,7 @@
                             </c:when>
 
                             <c:otherwise>
-
+                                <div style="text-align: center">-</div>
                             </c:otherwise>
                         </c:choose>
                     </td>

@@ -3,60 +3,18 @@
 <div id="container">
     <%@ include file="logotypeAndMenu.jsp" %>
 
-    <div id="searchForm">
-        <form action="searchEmployee.html" method="POST">
-            <input type="search" id="searchFormBlock" name="lastName" value=""
-                   placeholder="Search by last name"
-                   pattern="^[A-Za-z]{1,15}$"
-                   required="">
+    <div id="departmentNameOnInfoPage">
+        Employees of <span style="color:red;font-weight: 900">${departmentName}</span> department
+        <br>
+        <span style="font-family: none;font-size:16px;">Amount of employees :
+            <span style="color:red;font-weight: 900">${departmentEmployees.size()}</span>
+        </span>
     </div>
 
-    <div id="searchFormButton">
-        <button style="margin-left:-10px;margin-top:5px;" type="submit"><img src="img/searchLoop.gif"></button>
-    </div>
+    <img style="cursor:pointer;margin-top:20px;margin-bottom:20px;  " onclick="backToViewAllDepartmentsPage();"
+         src="img/backButton.png">
 
-    </form>
-    <div class="sortEmployeesButton">
-        SORT BY :
-    </div>
-
-    <div class="fullNameSortOption">
-        <form method="POST">
-            <input type="hidden" name="sortType" value="fullName"/>
-            <button type="submit" title="sort by full name">
-                full name
-            </button>
-        </form>
-    </div>
-
-    <div class="dateOfBirthSortOption">
-        <form method="POST">
-            <input type="hidden" name="sortType" value="dateOfBirth"/>
-            <button type="submit" title="sort by date of birth">
-                date of birth
-            </button>
-        </form>
-    </div>
-
-    <div class="salarySortOption">
-        <form method="POST">
-            <input type="hidden" name="sortType" value="salary"/>
-            <button type="submit" title="sort by salary">
-                salary
-            </button>
-        </form>
-    </div>
-
-    <div class="professionSortOption">
-        <form method="POST">
-            <input type="hidden" name="sortType" value="profession"/>
-            <button type="submit" title="sort by profession">
-                profession
-            </button>
-        </form>
-    </div>
-
-    <div id="mainTableContainerToHide">
+    <div id="mainTableContainerToHide" style="margin-top:-50px;">
         <div class="mainTableContainer">
             <table class="mainTable" cellspacing="0"
                    style="border-left : 1px solid #51626f;border-top : 1px solid #51626f;">
@@ -76,7 +34,7 @@
                     <th>Action</th>
                 </tr>
 
-                <c:forEach var="employee" items="${employees}">
+                <c:forEach var="employee" items="${departmentEmployees}">
                     <tr>
                         <td>${employee.getLastName()}</td>
                         <td>${employee.getFirstName()}</td>
