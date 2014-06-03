@@ -408,13 +408,12 @@ select {
 }
 
 .departmentsTable {
-    width: 300px;
+    width: 518px;
 }
 
 .departmentsTable td, tr {
     background-color: #FAEBD7;
     border-collapse: collapse;
-    text-align: center;
     border-bottom: 1px solid #51626f;
     border-right: 1px solid #51626f;
     font-size: 15px;
@@ -475,14 +474,14 @@ select {
     margin-top: 25px;
     position: absolute;
     text-align: center;
-    margin-left: 300px;
+    margin-left: 330px;
     color: red;
 }
 
 .amountOfEmployeesSortOption {
     font-weight: 900;
     margin-top: 50px;
-    margin-left: 180px;
+    margin-left: 210px;
     position: absolute;
     cursor: pointer;
 }
@@ -490,7 +489,7 @@ select {
 .salaryExpenseSortOption {
     font-weight: 900;
     margin-top: 50px;
-    margin-left: 350px;
+    margin-left: 380px;
     position: absolute;
     cursor: pointer;
 }
@@ -604,7 +603,6 @@ input[type="search"] {
 .actionButtonsMenu li {
     border: none;
     position: relative;
-    font-family: cuprum;
     font-weight: 900;
     display: inline;
     cursor: pointer;
@@ -616,4 +614,11 @@ input[type="search"] {
     border:none;
     background:none;
     cursor: pointer;
+}
+
+#departmentNameOnInfoPage {
+    text-align: center;
+    margin-top:50px;
+    font-family: cuprum;
+    font-size: 20px;
 }

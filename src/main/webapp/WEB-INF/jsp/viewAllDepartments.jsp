@@ -75,60 +75,64 @@
             </tr>
 
             <c:forEach var="entry" items="${departmentsMap}" varStatus="index">
-                <tr>
-                    <td> ${entry.key} </td>
-                    <td> ${entry.value.size()} </td>
-                    <td>${departmentSalaryExpense.get(entry.key)} </td>
-                    <td id="editDep">
-                        <div id="${index.count}" style="display:none;position:absolute;">
-                            <form class="hiddenEditField" action="editDepartment.html" method="POST">
-                                <input type="hidden" name="oldDepartmentName" value="${entry.key}">
-                                <input type="text" name="newDepartmentName" value="" placeholder="New name"
-                                       pattern="^[A-z][a-z]{1,14}$">
-                                <button type="submit" title="Edit department">
-                                    <img src="img/success.gif">
-                                </button>
-                                <button type="button" title="Cancel"
-                                        onclick="hideEditOperationBlock(${index.count});"><img
-                                        src="img/fail.png">
-                                </button>
-                            </form>
-                        </div>
-
-                        <div id="editActionButton">
-                            <button type="submit" name="oldDepartmentName" value="${entry.key}"
-                                    title="Edit department" onclick="return hiddenEditField_onclick(${index.count});">
-                                <img src="img/edit.png">
+            <tr>
+                <td> ${entry.key} </td>
+                <td> ${entry.value.size()} </td>
+                <td> ${departmentSalaryExpense.get(entry.key)} </td>
+                <td id="editDep">
+                    <div id="${index.count}" style="display:none;position:absolute;">
+                        <form class="hiddenEditField" action="editDepartment.html" method="POST">
+                            <input type="hidden" name="oldDepartmentName" value="${entry.key}">
+                            <input type="text" name="newDepartmentName" value="" placeholder="New name"
+                                   pattern="^[A-z][a-z]{1,14}$">
+                            <button type="submit" title="Edit department">
+                                <img src="img/success.gif">
                             </button>
-                        </div>
+                            <button type="button" title="Cancel"
+                                    onclick="hideEditOperationBlock(${index.count});"><img
+                                    src="img/fail.png">
+                            </button>
+                        </form>
+                    </div>
 
-                        <div id="deleteActionButton">
-                            <form class="deleteAction" action="deleteDepartment.html" method="POST"
-                                  onsubmit="deleteConfirmation();return false;">
-                                <button type="submit" name="departmentName" value="${entry.key}"
-                                        title="Delete department">
-                                    <img src="img/delete.png">
-                                </button>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
-            </c:forEach>
+                    <button type="submit" name="oldDepartmentName" value="${entry.key}" style="float:left;"
+                            title="Edit department" onclick="return hiddenEditField_onclick(${index.count});">
+                        <img src="img/edit.png">
+                    </button>
 
-        </table>
+                    <form action="deleteDepartment.html" method="POST" style="float:left;"
+                          onsubmit="deleteConfirmation();return false;">
+                        <button type="submit" name="departmentName" value="${entry.key}"
+                                title="Delete department">
+                            <img src="img/delete.png">
+                        </button>
+                    </form>
+
+                    <form action="infoAboutDepartmentEmployees.html" method="POST" style="float:left;">
+                        <input type="hidden" name="departmentName" value="${entry.key}">
+                        <button type="submit" name="employeesIds" value="${entry.value}"
+                                title="Info about employee">
+                            <img src="img/info.png">
+                        </button>
+                    </form>
+                </td>
+            </tr>
     </div>
+    </c:forEach>
+    </table>
+</div>
 
-    <div id="departmentsOnlyNamesContainer">
-        <span style="color:red;font-family:cuprum;font-size:16px;">A</span>ll departments
-        <br><br>
-        <select disabled multiple style="width:150px;height:200px;color:black;">
-            <c:forEach var="department" items="${departmentsNamesOnly}">
-                <option>${department.getName()}</option>
-            </c:forEach>
-        </select>
-    </div>
+<div id="departmentsOnlyNamesContainer">
+    <span style="color:red;font-family:cuprum;font-size:16px;">A</span>ll departments
+    <br><br>
+    <select disabled multiple style="width:150px;height:200px;color:black;">
+        <c:forEach var="department" items="${departmentsNamesOnly}">
+            <option>${department.getName()}</option>
+        </c:forEach>
+    </select>
+</div>
 
-    <!-- Container end -->
+<!-- Container end -->
 </div>
 <%@ include file="copyright.jsp" %>
 </body>

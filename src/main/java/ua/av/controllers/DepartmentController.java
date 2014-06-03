@@ -76,6 +76,18 @@ public class DepartmentController {
         return new ModelAndView("viewAllDepartments", modelmap);
     }
 
+
+    @RequestMapping(value = "infoAboutDepartmentEmployees.html")
+    public ModelAndView infoAboutDepartmentEmployeesController(WebRequest request) {
+        ModelMap modelMap = new ModelMap();
+
+        modelMap.addAttribute("departmentName", request.getParameter("departmentName"));
+        modelMap.addAttribute("departmentEmployees", departmentDao.selectDepartmentEmployeesList(request.getParameter("employeesIds")));
+
+        return new ModelAndView("infoAboutDepartmentEmployees", modelMap);
+    }
+
+
     /**
      * Update department
      */
@@ -101,5 +113,15 @@ public class DepartmentController {
         boolean result = departmentDao.deleteDepartment(departmentName);
 
         return new ModelAndView("deleteDepartmentResult", "result", result);
+    }
+
+    @RequestMapping(value = "/deleteEmployeeFromDepartment.html")
+    public String deleteEmployeeFromDepartment(WebRequest request) {
+        Long id = Long.valueOf(request.getParameter("employeeId"));
+        String departmentName = request.getParameter("departmentName");
+
+        departmentDao.deleteEmployeeFromDepartment(id, departmentName);
+
+        return "redirect:viewAllDepartments.html";
     }
 }

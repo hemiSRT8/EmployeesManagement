@@ -22,6 +22,9 @@ public class AddEmployeesToDepartmentDao {
     private DataSource dataSource;
 
     public boolean addEmployeesToDepartment(List<String> employeeIds, List<String> departmentIds) {
+        LOGGER.info("Add employees to departments started,employees size={},departments size={}",
+                employeeIds.size(), departmentIds.size());
+
         Connection connection = null;
 
         for (String id : employeeIds) {
@@ -47,7 +50,8 @@ public class AddEmployeesToDepartmentDao {
                 }
             }
         }
-        LOGGER.info("Employee(s) was(were) added to department(s) successfully");
+
+        LOGGER.info("Add employees to departments finished");
         return true;
     }
 }
