@@ -31,10 +31,11 @@ public class DepartmentDao {
     private DataSource dataSource;
 
     /**
-     * Create department
+     * Create
      */
 
     public boolean addDepartment(String departmentName) {
+        LOGGER.info("Add new department started,name={}", departmentName);
 
         Connection connection = null;
 
@@ -44,7 +45,7 @@ public class DepartmentDao {
             callableStatement.setString("departmentName", "'" + departmentName + "'");
             callableStatement.executeUpdate();
 
-            LOGGER.info("{} department was added successfully", departmentName);
+            LOGGER.info("Add new department finished,name={}", departmentName);
             return true;
 
         } catch (MysqlDataTruncation e) {
@@ -60,8 +61,6 @@ public class DepartmentDao {
             try {
                 if (connection != null) {
                     connection.close();
-                } else {
-                    LOGGER.info("connection is null");
                 }
             } catch (SQLException e) {
                 LOGGER.error("SQL exception while connection closing", e);
@@ -70,10 +69,12 @@ public class DepartmentDao {
     }
 
     /**
-     * Read department
+     * Read
      */
 
     public Map<String, List<Long>> selectEmployeeDepartment() {
+        LOGGER.info("Select employee+department info started");
+
         Connection connection = null;
         ResultSet departmentsResultSet;
         Map<String, List<Long>> departmentsHashMap = new HashMap<String, List<Long>>();
@@ -103,19 +104,18 @@ public class DepartmentDao {
             try {
                 if (connection != null) {
                     connection.close();
-                } else {
-                    LOGGER.info("connection is null while closing");
                 }
             } catch (SQLException e) {
                 LOGGER.error("SQL exception while connection closing", e);
             }
         }
 
-        LOGGER.info("Request about all departments was made , departments list size: {}", departmentsHashMap.size());
+        LOGGER.info("Select employee+department info finished,departments size={}", departmentsHashMap.size());
         return departmentsHashMap;
     }
 
     public List<Department> selectDepartmentsFromDatabase() {
+        LOGGER.info("Select departments started");
 
         Connection connection = null;
         ResultSet departmentsResultSet;
@@ -126,10 +126,6 @@ public class DepartmentDao {
             connection = dataSource.getConnection();
             CallableStatement callableStatement = connection.prepareCall("{call selectDepartments}");
             departmentsResultSet = callableStatement.executeQuery();
-
-            if (departmentsResultSet == null) {
-                LOGGER.error("departmentsResultSet was null");
-            }
 
             if (departmentsResultSet != null) {
                 while (departmentsResultSet.next()) {
@@ -146,19 +142,18 @@ public class DepartmentDao {
             try {
                 if (connection != null) {
                     connection.close();
-                } else {
-                    LOGGER.info("connection is null while closing");
                 }
             } catch (SQLException e) {
                 LOGGER.error("SQL exception while connection closing", e);
             }
         }
 
+        LOGGER.info("Select departments finished,size={}", departmentList.size());
         return departmentList;
     }
 
     public List<Employee> selectDepartmentEmployeesList(String ids) {
-        LOGGER.info("Selecting department's employees list started");
+        LOGGER.info("Selecting department's employees list started,amount of employees in department={}", ids.length());
 
         List<Employee> employees = new ArrayList<Employee>();
         Connection connection = null;
@@ -193,16 +188,18 @@ public class DepartmentDao {
     }
 
     /**
-     * Update department
+     * Update
      */
 
     public boolean editDepartment(String oldDepartmentName, String newDepartmentName) {
+        LOGGER.info("Department edit started,old name={},new name ={}", oldDepartmentName, newDepartmentName);
 
         if (oldDepartmentName == null) {
             LOGGER.error("oldDepartmentName was null");
             return false;
         } else if (newDepartmentName == null) {
             LOGGER.error("newDepartmentName was null");
+            return false;
         }
 
         Connection connection = null;
@@ -225,8 +222,6 @@ public class DepartmentDao {
             try {
                 if (connection != null) {
                     connection.close();
-                } else {
-                    LOGGER.info("connection is null while closing");
                 }
             } catch (SQLException e) {
                 LOGGER.error("SQL exception while connection closing", e);
@@ -235,7 +230,7 @@ public class DepartmentDao {
     }
 
     /**
-     * Delete department
+     * Delete
      */
 
     public boolean deleteDepartment(String departmentName) {
@@ -243,6 +238,8 @@ public class DepartmentDao {
             LOGGER.error("departmentName was null");
             return false;
         }
+
+        LOGGER.info("Department deletion started");
 
         Connection connection = null;
 
@@ -263,13 +260,42 @@ public class DepartmentDao {
             try {
                 if (connection != null) {
                     connection.close();
-                } else {
-                    LOGGER.error("connection is null while closing");
                 }
             } catch (SQLException e) {
                 LOGGER.error("SQL exception while connection closing", e);
             }
         }
+    }
+
+    public void deleteEmployeeFromDepartment(Long id, String departmentName) {
+        LOGGER.info("Delete employee from department started");
+        Connection connection = null;
+
+        try {
+            connection = dataSource.getConnection();
+            CallableStatement callableStatement = connection.prepareCall("{call deleteEmployeeFromDepartment(?,?)}");
+            callableStatement.setString("employeeId", "'" + id + "'");
+            callableStatement.setString("departmentName", "'" + departmentName + "'");
+            callableStatement.executeQuery();
+
+            LOGGER.info("Delete employee from department finished,department name ={},employee id={}",
+                    id, departmentName);
+
+            return;
+
+        } catch (SQLException e) {
+            LOGGER.error("SQL exception", e);
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                LOGGER.error("SQL exception", e);
+            }
+        }
+
+        LOGGER.error("Deleting employee from department has failed,employee id={},department name={}", id, departmentName);
     }
 }
 

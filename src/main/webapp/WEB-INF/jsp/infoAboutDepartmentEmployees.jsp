@@ -11,7 +11,7 @@
         </span>
     </div>
 
-    <img style="cursor:pointer;margin-top:20px;margin-bottom:20px;  " onclick="backToViewAllDepartmentsPage();"
+    <img style="cursor:pointer;margin-top:-40px;position:absolute;" onclick="backToViewAllDepartmentsPage();"
          src="img/backButton.png">
 
     <div id="mainTableContainerToHide" style="margin-top:-50px;">
@@ -104,13 +104,15 @@
                                     </form>
                                 </li>
                                 <li>
-                                    <form class="deleteAction" action="deleteEmployee.html" method="POST"
+                                    <form class="deleteAction" action="deleteEmployeeFromDepartment.html" method="POST"
                                           onsubmit="deleteConfirmation(${employee.getId()});return false;">
-                                        <button type="submit" name="deleteEmployeeId" value="${employee.getId()}"
+                                        <input type="hidden" name="departmentName" value="${departmentName}">
+                                        <button type="submit" name="employeeId" value="${employee.getId()}"
                                                 title="Delete employee">
                                             <img src="img/delete.png">
                                         </button>
                                     </form>
+                                </li>
                                 <li>
                                     <form class="infoAction" action="infoAboutEmployee.html" method="POST">
                                         <c:if test="${employee.getClass().name == 'ua.av.entities.Manager'}">

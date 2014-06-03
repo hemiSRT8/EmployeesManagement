@@ -30,11 +30,6 @@ public class EmployeeServiceTest {
 
     @Test
     public void testSortByProfession() {
-        assertTrue(staff.size() == 3);
-        assertTrue(staff.get(0) instanceof Manager);
-        assertTrue(staff.get(1) instanceof Developer);
-        assertTrue(staff.get(2) instanceof Cleaner);
-
         /**
          * After sorting
          */
@@ -70,17 +65,6 @@ public class EmployeeServiceTest {
 
         cleaner.setLastName("A");
         cleaner.setFirstName("A");
-
-        assertTrue(staff.size() == 3);
-        assertEquals(staff.get(0).getLastName(), "A");
-        assertEquals(staff.get(0).getFirstName(), "B");
-
-        assertEquals(staff.get(1).getLastName(), "W");
-        assertEquals(staff.get(1).getFirstName(), "V");
-
-        assertEquals(staff.get(2).getLastName(), "A");
-        assertEquals(staff.get(2).getFirstName(), "A");
-
         /**
          * After sorting
          */
@@ -103,15 +87,6 @@ public class EmployeeServiceTest {
         manager.setDateOfBirth(new Date(10));
         developer.setDateOfBirth(new Date(15));
         cleaner.setDateOfBirth(new Date(5));
-
-        assertTrue(staff.size() == 3);
-        assertTrue(manager.getDateOfBirth().getTime() == 10);
-        assertTrue(developer.getDateOfBirth().getTime() == 15);
-        assertTrue(cleaner.getDateOfBirth().getTime() == 5);
-
-        assertTrue(staff.get(0) instanceof Manager);
-        assertTrue(staff.get(1) instanceof Developer);
-        assertTrue(staff.get(2) instanceof Cleaner);
 
         /**
          * After sorting (From youngest to adults)
@@ -137,11 +112,6 @@ public class EmployeeServiceTest {
         developer.setSalary(2);
         cleaner.setSalary(1);
 
-        assertTrue(staff.size() == 3);
-        assertTrue(staff.get(0).getSalary() == 3);
-        assertTrue(staff.get(1).getSalary() == 2);
-        assertTrue(staff.get(2).getSalary() == 1);
-
         /**
          * After sorting
          */
@@ -159,11 +129,6 @@ public class EmployeeServiceTest {
         manager.setId(1);
         developer.setId(2);
         cleaner.setId(3);
-
-        assertTrue(staff.size() == 3);
-        assertTrue(staff.get(0).getId() == 1);
-        assertTrue(staff.get(1).getId() == 2);
-        assertTrue(staff.get(2).getId() == 3);
 
         /**
          * After searching
@@ -189,11 +154,6 @@ public class EmployeeServiceTest {
         manager.setLastName("aaa");
         developer.setLastName("bbb");
         cleaner.setLastName("ccc");
-
-        assertTrue(staff.size() == 3);
-        assertEquals(staff.get(0).getLastName(), "aaa");
-        assertEquals(staff.get(1).getLastName(), "bbb");
-        assertEquals(staff.get(2).getLastName(), "ccc");
 
         /**
          * After searching
@@ -229,16 +189,6 @@ public class EmployeeServiceTest {
 
         cleaner.setLastName("aaa");
         cleaner.setFirstName("aaC");
-
-        assertTrue(staff.size() == 3);
-        assertEquals(staff.get(0).getLastName(), "aaa");
-        assertEquals(staff.get(0).getFirstName(), "aaA");
-
-        assertEquals(staff.get(1).getLastName(), "aaa");
-        assertEquals(staff.get(1).getFirstName(), "aaB");
-
-        assertEquals(staff.get(2).getLastName(), "aaa");
-        assertEquals(staff.get(2).getFirstName(), "aaC");
 
         /**
          * After searching

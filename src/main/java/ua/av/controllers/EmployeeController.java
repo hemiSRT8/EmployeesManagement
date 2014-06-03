@@ -30,7 +30,7 @@ public class EmployeeController {
     private EmployeeDao employeeDao;
 
     /**
-     * Create employee
+     * Create
      */
     @RequestMapping(value = "addManager.html")
     public ModelAndView addManager() {
@@ -82,7 +82,7 @@ public class EmployeeController {
     }
 
     /**
-     * Read employee
+     * Read
      */
 
     @RequestMapping(value = "/infoAboutEmployee.html")
@@ -100,7 +100,7 @@ public class EmployeeController {
     }
 
     /**
-     * Update employee
+     * Update
      */
 
     @RequestMapping(value = "/editEmployee.html", method = RequestMethod.POST)
@@ -156,7 +156,7 @@ public class EmployeeController {
     }
 
     /**
-     * Delete employee
+     * Delete
      */
 
     @RequestMapping(value = "/deleteEmployee.html", method = RequestMethod.POST)

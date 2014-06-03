@@ -32,6 +32,8 @@ public class EmployeeDao {
      * Create employee
      */
     public boolean addEmployee(Map<String, String> employeeFields) {
+        LOGGER.info("Adding new employee has started");
+
         Connection connection = null;
         String profession = employeeFields.get("profession");
 
@@ -65,6 +67,7 @@ public class EmployeeDao {
 
             callableStatement.executeUpdate();
             LOGGER.info("employee {} {} was added successfully", lastName, firstName);
+
         } catch (SQLException e) {
             LOGGER.error("SQL exception", e);
             return false;
@@ -86,6 +89,8 @@ public class EmployeeDao {
      */
 
     public List<Employee> selectAllEmployees() {
+        LOGGER.info("Selecting all employees has started");
+
         ResultSet employeesResultSet;
         ResultSet departmentsResultSet;
 
@@ -109,16 +114,17 @@ public class EmployeeDao {
             try {
                 if (connection != null) {
                     connection.close();
-                } else {
-                    LOGGER.info("connection is null while closing");
                 }
             } catch (SQLException e) {
                 LOGGER.error("SQL exception while connection closing", e);
             }
         }
 
-        int employeesListSize = employees.size();
-        if (employeesListSize > 0) {
+        int employeesListSize = -1;
+        if (employees != null) {
+            employeesListSize = employees.size();
+        }
+        if (employeesListSize >= 0) {
             LOGGER.info("employees for main page was selected successfully,size:{}", employeesListSize);
         }
 
@@ -126,6 +132,8 @@ public class EmployeeDao {
     }
 
     public Employee selectSingleEmployee(Long id, String profession) {
+        LOGGER.info("Selecting single employee has started");
+
         Connection connection = null;
         Employee employee = null;
 
@@ -162,6 +170,10 @@ public class EmployeeDao {
             }
         }
 
+        if (employee != null) {
+            LOGGER.info("Selecting single employee finished,id={}", employee.getId());
+        }
+
         return employee;
     }
 
@@ -180,6 +192,8 @@ public class EmployeeDao {
             LOGGER.error("fieldsAndValues was null");
             return false;
         }
+
+        LOGGER.info("Editing employee has started");
 
         Connection connection = null;
 
@@ -235,6 +249,8 @@ public class EmployeeDao {
             LOGGER.error("id was null");
             return false;
         }
+
+        LOGGER.info("Deleting employee has started");
 
         Connection connection = null;
 

@@ -114,4 +114,14 @@ public class DepartmentController {
 
         return new ModelAndView("deleteDepartmentResult", "result", result);
     }
+
+    @RequestMapping(value = "/deleteEmployeeFromDepartment.html")
+    public String deleteEmployeeFromDepartment(WebRequest request) {
+        Long id = Long.valueOf(request.getParameter("employeeId"));
+        String departmentName = request.getParameter("departmentName");
+
+        departmentDao.deleteEmployeeFromDepartment(id, departmentName);
+
+        return "redirect:viewAllDepartments.html";
+    }
 }
