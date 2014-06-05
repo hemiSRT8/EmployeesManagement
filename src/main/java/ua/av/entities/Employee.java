@@ -16,6 +16,7 @@ public abstract class Employee {
     private double penalty;
     private double salary;
     private List<Department> department = new ArrayList<Department>();
+    public static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
 
     protected Employee() {
         //default constructor
@@ -40,10 +41,9 @@ public abstract class Employee {
 
     @Override
     public String toString() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         return "Last name : " + lastName + "\n" +
                 "First name :" + firstName + "\n"
-                + "Date of birth : " + simpleDateFormat.format(dateOfBirth) + "\n"
+                + "Date of birth : " + SIMPLE_DATE_FORMAT.format(dateOfBirth) + "\n"
                 + "Wage : " + wage + "\n"
                 + "Bonus :" + bonus + "\n"
                 + "Penalty : " + penalty + "\n"

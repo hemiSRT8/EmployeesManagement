@@ -35,24 +35,28 @@
     <div class="sortDepartmentsButton">
         SORT BY :
     </div>
-
-    <div class="amountOfEmployeesSortOption">
-        <form method="POST" action="viewAllDepartments.html">
-            <input type="hidden" name="sortType" value="amountOfEmployees"/>
-            <button type="submit" title="sort by amount of employees">
-                amount of employees
-            </button>
-        </form>
-    </div>
-
-    <div class="salaryExpenseSortOption">
-        <form method="POST" action="viewAllDepartments.html">
-            <input type="hidden" name="sortType" value="salaryExpense"/>
-            <button type="submit" title="sort by salary expense">
-                salary expense
-            </button>
-        </form>
-    </div>
+    <ul class="actionButtonsMenu">
+        <li>
+            <div class="amountOfEmployeesSortOption">
+                <form method="POST" action="viewAllDepartments.html">
+                    <input type="hidden" name="sortType" value="amountOfEmployees"/>
+                    <button type="submit" title="sort by amount of employees">
+                        amount of employees
+                    </button>
+                </form>
+            </div>
+        </li>
+        <li>
+            <div class="salaryExpenseSortOption">
+                <form method="POST" action="viewAllDepartments.html">
+                    <input type="hidden" name="sortType" value="salaryExpense"/>
+                    <button type="submit" title="sort by salary expense">
+                        salary expense
+                    </button>
+                </form>
+            </div>
+        </li>
+    </ul>
 
     <div id="departmentsFullInfoContainer">
         <table class="departmentsTable" cellspacing="0"
@@ -84,7 +88,7 @@
                         <form class="hiddenEditField" action="editDepartment.html" method="POST">
                             <input type="hidden" name="oldDepartmentName" value="${entry.key}">
                             <input type="text" name="newDepartmentName" value="" placeholder="New name"
-                                   pattern="^[A-z][a-z]{1,14}$">
+                                   pattern="^[A-z][a-z]{1,14}$" style="width:88px;">
                             <button type="submit" title="Edit department">
                                 <img src="img/success.gif">
                             </button>

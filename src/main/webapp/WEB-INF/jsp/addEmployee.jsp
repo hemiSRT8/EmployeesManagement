@@ -26,7 +26,14 @@
                     <td><input required pattern="^[A-z][a-z]{1,14}$" type="text" name="firstName" value=""/></td>
                 </tr>
                 <tr>
-                    <td>Date of birthday <br> <span style="font-weight:300;">( yyyy-mm-dd )</span></td>
+                    <td>Date of birthday <br>
+                        <span id="dateOfBirthHint">
+                            <b style="color:green;">format</b> : yyyy-mm-dd
+                            <br>
+                            <b style="color:green;">values between</b> : 1900-2099
+                        </span>
+                    </td>
+
                     <td><input pattern="^(19|20)\d\d[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])$"
                                required
                                type="text" name="dateOfBirth"

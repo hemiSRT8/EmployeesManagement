@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 import ua.av.database.parser.DepartmentParser;
 import ua.av.database.parser.EmployeeParser;
 import ua.av.entities.Department;
@@ -31,6 +32,7 @@ public class EmployeeDao {
     /**
      * Create employee
      */
+
     public boolean addEmployee(Map<String, String> employeeFields) {
         LOGGER.info("Adding new employee has started");
 
@@ -120,12 +122,8 @@ public class EmployeeDao {
             }
         }
 
-        int employeesListSize = -1;
-        if (employees != null) {
-            employeesListSize = employees.size();
-        }
-        if (employeesListSize >= 0) {
-            LOGGER.info("employees for main page was selected successfully,size:{}", employeesListSize);
+        if (!CollectionUtils.isEmpty(employees)) {
+            LOGGER.info("employees for main page was selected successfully,size:{}", employees.size());
         }
 
         return employees;
@@ -280,5 +278,4 @@ public class EmployeeDao {
             }
         }
     }
-
 }

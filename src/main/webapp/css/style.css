@@ -238,20 +238,19 @@ a {
 }
 
 #departmentsFullInfoContainer {
-    margin-top: 90px;
+    margin-top: 20px;
     margin-left: 100px;
     background-color: #FAEBD7;
     float: left;
 }
 
 #departmentsOnlyNamesContainer {
-    margin-top: 50px;
     background-color: #FAEBD7;
     float: right;
     border-left: 1px dotted grey;
     padding-right: 120px;
     padding-left: 120px;
-    font-weight:900;
+    font-weight: 900;
 }
 
 /* End of editDepartment block*/
@@ -464,6 +463,7 @@ select {
     position: absolute;
     cursor: pointer;
 }
+
 /*End of sort employees block */
 
 /*Sort departments block*/
@@ -472,27 +472,23 @@ select {
     font-family: cuprum;
     font-weight: 900;
     margin-top: 25px;
-    position: absolute;
+    margin-left: -350px;
     text-align: center;
-    margin-left: 330px;
     color: red;
 }
 
 .amountOfEmployeesSortOption {
     font-weight: 900;
-    margin-top: 50px;
-    margin-left: 210px;
-    position: absolute;
+    margin-left: 190px;
     cursor: pointer;
 }
 
 .salaryExpenseSortOption {
     font-weight: 900;
-    margin-top: 50px;
-    margin-left: 380px;
-    position: absolute;
+    margin-left: 5px;
     cursor: pointer;
 }
+
 /*End of sort departments block */
 
 /*Single employee information block*/
@@ -610,15 +606,21 @@ input[type="search"] {
 }
 
 .saveEmployeeEditResults {
-    margin-top:20px;
-    border:none;
-    background:none;
+    margin-top: 20px;
+    border: none;
+    background: none;
     cursor: pointer;
 }
 
 #departmentNameOnInfoPage {
     text-align: center;
-    margin-top:50px;
+    margin-top: 50px;
     font-family: cuprum;
     font-size: 20px;
+}
+
+#dateOfBirthHint {
+    font-style: italic;
+    font-weight: 300;
+    font-size: 16px;
 }

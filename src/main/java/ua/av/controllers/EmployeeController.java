@@ -129,7 +129,7 @@ public class EmployeeController {
     public ModelAndView editEmployeeResult(WebRequest request) {
 
         Long id = valueOf(request.getParameter("id"));
-        String professionOfEmployee = request.getParameter("type");
+        String profession = request.getParameter("type");
 
         Map<String, String> fieldsAndValues = new HashMap<String, String>();
 
@@ -141,16 +141,16 @@ public class EmployeeController {
         fieldsAndValues.put("penalty", request.getParameter("penalty"));
         fieldsAndValues.put("salary", request.getParameter("salary"));
 
-        if ("manager".equalsIgnoreCase(professionOfEmployee)) {
+        if ("manager".equalsIgnoreCase(profession)) {
             fieldsAndValues.put("amountOfSales", request.getParameter("amountOfSales"));
             fieldsAndValues.put("percentageOfSales", request.getParameter("percentageOfSales"));
-        } else if ("developer".equalsIgnoreCase(professionOfEmployee)) {
+        } else if ("developer".equalsIgnoreCase(profession)) {
             fieldsAndValues.put("linesOfCode", request.getParameter("linesOfCode"));
-        } else if ("cleaner".equalsIgnoreCase(professionOfEmployee)) {
+        } else if ("cleaner".equalsIgnoreCase(profession)) {
             fieldsAndValues.put("amountOfCleanedOffices", request.getParameter("amountOfCleanedOffices"));
         }
 
-        boolean result = employeeDao.editEmployee(id, professionOfEmployee, fieldsAndValues);
+        boolean result = employeeDao.editEmployee(id, profession, fieldsAndValues);
 
         return new ModelAndView("editEmployeeResult", "result", result);
     }

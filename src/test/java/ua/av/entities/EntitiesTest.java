@@ -2,15 +2,12 @@ package ua.av.entities;
 
 import org.junit.Test;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import static java.util.Calendar.*;
 import static org.junit.Assert.*;
 
 public class EntitiesTest {
-
-    public static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
 
     @Test
     public void testEmployee() {
@@ -35,7 +32,7 @@ public class EntitiesTest {
         calendar.set(Calendar.DAY_OF_MONTH, 7);
         employee.setDateOfBirth(calendar.getTime());
         assertNotNull(employee.getDateOfBirth());
-        assertEquals(SIMPLE_DATE_FORMAT.format(employee.getDateOfBirth()), "07/08/1990");
+        assertEquals(Employee.SIMPLE_DATE_FORMAT.format(employee.getDateOfBirth()), "07/08/1990");
     }
 
     @Test
@@ -50,7 +47,7 @@ public class EntitiesTest {
         assertTrue(developer.getId() == 1);
         assertEquals(developer.getFirstName(), "Vita");
         assertEquals(developer.getLastName(), "Ievleva");
-        assertEquals(SIMPLE_DATE_FORMAT.format(developer.getDateOfBirth()), "05/01/1989");
+        assertEquals(Employee.SIMPLE_DATE_FORMAT.format(developer.getDateOfBirth()), "05/01/1989");
         assertTrue(developer.getWage() == 10000);
         assertTrue(developer.getBonus() == 500);
         assertTrue(developer.getPenalty() == 35);
