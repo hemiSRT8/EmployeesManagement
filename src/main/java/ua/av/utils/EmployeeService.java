@@ -2,6 +2,7 @@ package ua.av.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.CollectionUtils;
 import ua.av.entities.Department;
 import ua.av.entities.Employee;
 
@@ -106,6 +107,10 @@ public class EmployeeService {
             }
         }
         LOGGER.info("employee search by last name ({}) finished", lastName);
+
+        if (CollectionUtils.isEmpty(result)) {
+            return Collections.emptyList();
+        }
 
         return result;
     }

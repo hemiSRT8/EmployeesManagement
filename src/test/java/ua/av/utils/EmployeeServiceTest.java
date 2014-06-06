@@ -6,6 +6,7 @@ import ua.av.entities.*;
 
 import java.util.*;
 
+import static java.lang.Long.*;
 import static org.junit.Assert.*;
 
 public class EmployeeServiceTest {
@@ -223,9 +224,9 @@ public class EmployeeServiceTest {
         Department department = new Department("It department");
         List<Department> departmentList = new ArrayList<Department>();
 
-        Long managerId = 1L;
-        Long developerId = 2L;
-        Long cleanerId = 3L;
+        Long managerId = valueOf(1);
+        Long developerId = valueOf(3);
+        Long cleanerId = valueOf(2);
         manager.setId(managerId);
         developer.setId(developerId);
         cleaner.setId(cleanerId);

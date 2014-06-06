@@ -207,7 +207,7 @@ public class EmployeeDao {
                     callableStatement.setString("colName", parameter);
                     callableStatement.setString("newValue", "'" + value + "'");
 
-                    if (value.equals("")) {
+                    if (value.isEmpty()) {
                         continue;
                     }
 
