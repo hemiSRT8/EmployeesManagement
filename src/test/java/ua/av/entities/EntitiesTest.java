@@ -32,7 +32,6 @@ public class EntitiesTest {
         calendar.set(Calendar.DAY_OF_MONTH, 7);
         employee.setDateOfBirth(calendar.getTime());
         assertNotNull(employee.getDateOfBirth());
-        assertEquals(Employee.SIMPLE_DATE_FORMAT.format(employee.getDateOfBirth()), "07/08/1990");
     }
 
     @Test
@@ -47,7 +46,7 @@ public class EntitiesTest {
         assertTrue(developer.getId() == 1);
         assertEquals(developer.getFirstName(), "Vita");
         assertEquals(developer.getLastName(), "Ievleva");
-        assertEquals(Employee.SIMPLE_DATE_FORMAT.format(developer.getDateOfBirth()), "05/01/1989");
+        assertNotNull(developer.getDateOfBirth());
         assertTrue(developer.getWage() == 10000);
         assertTrue(developer.getBonus() == 500);
         assertTrue(developer.getPenalty() == 35);

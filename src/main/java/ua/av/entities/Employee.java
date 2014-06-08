@@ -1,6 +1,5 @@
 package ua.av.entities;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,7 +15,6 @@ public abstract class Employee {
     private double penalty;
     private double salary;
     private List<Department> department = new ArrayList<Department>();
-    public static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
 
     protected Employee() {
         //default constructor
@@ -43,7 +41,7 @@ public abstract class Employee {
     public String toString() {
         return "Last name : " + lastName + "\n" +
                 "First name :" + firstName + "\n"
-                + "Date of birth : " + SIMPLE_DATE_FORMAT.format(dateOfBirth) + "\n"
+                + "Date of birth : " + dateOfBirth + "\n"
                 + "Wage : " + wage + "\n"
                 + "Bonus :" + bonus + "\n"
                 + "Penalty : " + penalty + "\n"
