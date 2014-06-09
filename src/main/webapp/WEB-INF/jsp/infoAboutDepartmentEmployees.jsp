@@ -14,7 +14,9 @@
     <img style="cursor:pointer;margin-top:-40px;position:absolute;" onclick="backToViewAllDepartmentsPage();"
          src="img/backButton.png">
 
-    <img style="margin-left:950px;;margin-top:-170px;position:absolute;" src="img/infoNote.png">
+    <c:if test="${departmentEmployees.size() > 0}">
+        <img style="margin-left:950px;;margin-top:-170px;position:absolute;" src="img/infoNote.png">
+    </c:if>
 
     <div id="mainTableContainerToHide" style="margin-top:-50px;">
         <div class="mainTableContainer">

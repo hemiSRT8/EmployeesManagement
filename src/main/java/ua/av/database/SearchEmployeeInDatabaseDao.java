@@ -14,6 +14,6 @@ public class SearchEmployeeInDatabaseDao {
     private EmployeeDao employeeDao;
 
     public List<Employee> searchEmployee(String lastName) {
-        return EmployeeService.searchByLastName(lastName, employeeDao.selectAllEmployees());
+        return EmployeeService.searchByLastName(lastName, employeeDao.getAllEmployees());
     }
 }

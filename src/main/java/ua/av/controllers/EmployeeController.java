@@ -90,7 +90,7 @@ public class EmployeeController {
         Long id = valueOf(request.getParameter("infoActionId"));
         String profession = request.getParameter("profession");
 
-        Employee employee = employeeDao.selectSingleEmployee(id, profession);
+        Employee employee = employeeDao.getSingleEmployee(id, profession);
 
         if (employee != null) {
             return new ModelAndView("infoAboutEmployee", "employee", employee);
@@ -110,7 +110,7 @@ public class EmployeeController {
         String profession = request.getParameter("profession");
         long id = valueOf(request.getParameter("editEmployeeId"));
 
-        List<Employee> list = employeeDao.selectAllEmployees();
+        List<Employee> list = employeeDao.getAllEmployees();
 
         map.addAttribute("employee", EmployeeService.searchById(id, list));
 

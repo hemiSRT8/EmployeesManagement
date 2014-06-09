@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import ua.av.database.SelectSalaryInformationDao;
+import ua.av.database.GetSalaryInformationDao;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +14,7 @@ import java.util.Map;
 public class SalaryInformationController {
 
     @Autowired
-    private SelectSalaryInformationDao selectSalaryInformationDao;
+    private GetSalaryInformationDao getSalaryInformationDao;
 
     @RequestMapping(value = "/salaryInformation.html")
     public ModelAndView salaryInformation() {
@@ -22,10 +22,10 @@ public class SalaryInformationController {
 
         Map<String, Double> salaryInfo = new HashMap<String, Double>();
 
-        salaryInfo.put("expense", selectSalaryInformationDao.selectSalaryExpenseForEmployees());
-        salaryInfo.put("averageSalary", selectSalaryInformationDao.selectAverageSalaryOfEmployees());
-        salaryInfo.put("maxSalary", selectSalaryInformationDao.selectMaxSalaryOfEmployees());
-        salaryInfo.put("minSalary", selectSalaryInformationDao.selectMinSalaryOfEmployees());
+        salaryInfo.put("minSalary", getSalaryInformationDao.getEmployeesSalaryInformation().get("minSalary"));
+        salaryInfo.put("maxSalary", getSalaryInformationDao.getEmployeesSalaryInformation().get("maxSalary"));
+        salaryInfo.put("averageSalary", getSalaryInformationDao.getEmployeesSalaryInformation().get("averageSalary"));
+        salaryInfo.put("salaryExpense", getSalaryInformationDao.getEmployeesSalaryInformation().get("salaryExpense"));
 
         map.addAttribute("salaryInfo" , salaryInfo);
 

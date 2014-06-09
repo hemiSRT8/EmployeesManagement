@@ -90,7 +90,7 @@ public class EmployeeDao {
      * Read employee
      */
 
-    public List<Employee> selectAllEmployees() {
+    public List<Employee> getAllEmployees() {
         LOGGER.info("Selecting all employees has started");
 
         ResultSet employeesResultSet;
@@ -129,7 +129,7 @@ public class EmployeeDao {
         return employees;
     }
 
-    public Employee selectSingleEmployee(Long id, String profession) {
+    public Employee getSingleEmployee(Long id, String profession) {
         LOGGER.info("Selecting single employee has started");
 
         Connection connection = null;
@@ -149,7 +149,7 @@ public class EmployeeDao {
             /**
              * Parse employees departments
              */
-            Map<String, List<Long>> departments = departmentDao.selectEmployeeDepartment();
+            Map<String, List<Long>> departments = departmentDao.getEmployeeDepartment();
             for (String departmentName : departments.keySet()) {
                 if (departments.get(departmentName).contains(id)) {
                     employee.addDepartment(new Department(departmentName));

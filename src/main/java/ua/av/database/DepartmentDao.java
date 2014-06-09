@@ -72,7 +72,7 @@ public class DepartmentDao {
      * Read
      */
 
-    public Map<String, List<Long>> selectEmployeeDepartment() {
+    public Map<String, List<Long>> getEmployeeDepartment() {
         LOGGER.info("Select employee+department info started");
 
         Connection connection = null;
@@ -114,7 +114,7 @@ public class DepartmentDao {
         return departmentsHashMap;
     }
 
-    public List<Department> selectDepartmentsFromDatabase() {
+    public List<Department> getDepartmentsFromDatabase() {
         LOGGER.info("Select departments started");
 
         Connection connection = null;
@@ -152,7 +152,7 @@ public class DepartmentDao {
         return departmentList;
     }
 
-    public List<Employee> selectDepartmentEmployeesList(String ids) {
+    public List<Employee> getDepartmentEmployeesList(String ids) {
         LOGGER.info("Selecting department's employees list started,amount of employees in department={}", ids.length());
 
         List<Employee> employees = new ArrayList<Employee>();

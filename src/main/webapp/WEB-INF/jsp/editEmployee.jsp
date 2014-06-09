@@ -47,7 +47,7 @@
                        <span id="dateOfBirthHint">
                             <b style="color:green;">format</b> : yyyy-mm-dd
                             <br>
-                            <b style="color:green;">values between</b> : 1900-2099
+                            <b style="color:green;">year between</b> : 1900-2099
                         </span>
                     </td>
                     <td><input pattern="^(19|20)\d\d[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])$"

@@ -13,15 +13,15 @@
             <tr style="font-size:15px;font-weight:900;font-family: cuprum;letter-spacing: 1px;word-spacing: 2px;">
                 <th><span style="color:red;">S</span>alary expense</th>
                 <th><span style="color:red;">A</span>verage salary</th>
-                <th><span style="color:red;">M</span>ax salary</th>
                 <th><span style="color:red;">M</span>in salary</th>
+                <th><span style="color:red;">M</span>ax salary</th>
             </tr>
 
             <tr>
-                <td> ${salaryInfo.get("expense")} </td>
+                <td> ${salaryInfo.get("salaryExpense")} </td>
                 <td> ${salaryInfo.get("averageSalary")} </td>
-                <td> ${salaryInfo.get("maxSalary")} </td>
                 <td> ${salaryInfo.get("minSalary")} </td>
+                <td> ${salaryInfo.get("maxSalary")} </td>
             </tr>
         </table>
         <center>

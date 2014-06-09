@@ -17,7 +17,7 @@ public class DepartmentController {
     @Autowired
     private DepartmentDao departmentDao;
     @Autowired
-    private SelectSalaryInformationDao selectSalaryInformationDao;
+    private GetSalaryInformationDao getSalaryInformationDao;
     @Autowired
     private DepartmentService departmentService;
 
@@ -42,8 +42,8 @@ public class DepartmentController {
     public ModelAndView viewAllDepartments(WebRequest request) {
         ModelMap modelmap = new ModelMap();
 
-        Map<String, List<Long>> departmentsWithEmployees = departmentDao.selectEmployeeDepartment();
-        Map<String, Double> salaryExpense = selectSalaryInformationDao.selectSalaryExpenseForDepartment(departmentsWithEmployees);
+        Map<String, List<Long>> departmentsWithEmployees = departmentDao.getEmployeeDepartment();
+        Map<String, Double> salaryExpense = getSalaryInformationDao.getSalaryExpenseForDepartment(departmentsWithEmployees);
 
         String sortType = request.getParameter("sortType");
 
@@ -70,7 +70,7 @@ public class DepartmentController {
 
 //regardless of the conditions above
         modelmap.addAttribute("departmentsNamesOnly",
-                departmentDao.selectDepartmentsFromDatabase()); //only department's names
+                departmentDao.getDepartmentsFromDatabase()); //only department's names
         modelmap.addAttribute("departmentSalaryExpense", salaryExpense);
 
         return new ModelAndView("viewAllDepartments", modelmap);
@@ -82,7 +82,7 @@ public class DepartmentController {
         ModelMap modelMap = new ModelMap();
 
         modelMap.addAttribute("departmentName", request.getParameter("departmentName"));
-        modelMap.addAttribute("departmentEmployees", departmentDao.selectDepartmentEmployeesList(request.getParameter("employeesIds")));
+        modelMap.addAttribute("departmentEmployees", departmentDao.getDepartmentEmployeesList(request.getParameter("employeesIds")));
 
         return new ModelAndView("infoAboutDepartmentEmployees", modelMap);
     }

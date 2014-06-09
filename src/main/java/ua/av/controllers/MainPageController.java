@@ -23,7 +23,7 @@ public class MainPageController {
         String sortType = request.getParameter("sortType");
         ModelMap modelMap = new ModelMap();
 
-        List<Employee> employees = employeeDao.selectAllEmployees();
+        List<Employee> employees = employeeDao.getAllEmployees();
 
         if (sortType == null) { //Shall return default index.html page
             modelMap.addAttribute("employees", employees);
