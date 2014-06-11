@@ -1,5 +1,6 @@
 package ua.av.database.parser;
 
+import org.junit.Before;
 import org.junit.Test;
 import ua.av.entities.*;
 
@@ -7,27 +8,36 @@ import java.sql.*;
 import java.util.List;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 public class EmployeeParserTest {
 
-    @Test
-    public void testEmployeeParser() {
-        ResultSet resultSet = mock(ResultSet.class);
-        List<Employee> result;
 
-        /**
-         * Setup employee fields
-         */
+    private ResultSet resultSet;
+    private List<Employee> result;
 
-        Long id = 1L;
-        String lastName = "Player";
-        String firstName = "Gamer";
-        Date dateOfBirth = new Date(123);
-        double wage = 5.5;
-        double bonus = 4.4;
-        double penalty = 3.3;
-        double salary = 2.2;
+    private long id;
+    private String lastName;
+    private String firstName;
+    private Date dateOfBirth;
+    private double wage;
+    private double bonus;
+    private double penalty;
+    private double salary;
+
+    @Before
+    public void setup() {
+        resultSet = mock(ResultSet.class);
+
+        id = 1L;
+        lastName = "Player";
+        firstName = "Gamer";
+        dateOfBirth = new Date(123);
+        wage = 5.5;
+        bonus = 4.4;
+        penalty = 3.3;
+        salary = 2.2;
 
         try {
             when(resultSet.next())
@@ -46,12 +56,10 @@ public class EmployeeParserTest {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
 
-        /**
-         * Test manager`s parser
-         */
-
-        Manager manager = null;
+    @Test
+    public void testManagerParser() {
         double amountOfSales = 10.10;
         double percentageOfSales = 11.11;
 
@@ -64,15 +72,12 @@ public class EmployeeParserTest {
         }
 
         result = EmployeeParser.parseEmployees(resultSet);
-        assertTrue(result.size() == 1); //we send only 1 employee:D
-
-        manager = (Manager) result.get(0);
-
+        Manager manager = (Manager) result.get(0);
         /**
-         * Employee`s general fields validation + manager specific fields
+         * Validation
          */
-
-        assertTrue(manager.getId() == 1);
+        assertTrue(result.size() == 1); //we send only 1 employee:D
+        assertTrue(manager.getId() == id);
         assertEquals(manager.getLastName(), lastName);
         assertEquals(manager.getFirstName(), firstName);
         assertEquals(manager.getDateOfBirth(), dateOfBirth);
@@ -80,52 +85,63 @@ public class EmployeeParserTest {
         assertTrue(manager.getBonus() == bonus);
         assertTrue(manager.getPenalty() == penalty);
         assertTrue(manager.getSalary() == salary);
-
         assertTrue(manager.getAmountOfSales() == amountOfSales);
         assertTrue(manager.getPercentageOfSales() == percentageOfSales);
+    }
 
-        /**
-         * Test developer`s parser
-         */
-
-        Developer developer = null;
+    @Test
+    public void testDeveloperParser() {
         int linesOfCode = 12;
 
         try {
             when(resultSet.getString("profession")).thenReturn("developer");
             when(resultSet.getInt("linesOfCode")).thenReturn(linesOfCode);
-
-            result = EmployeeParser.parseEmployees(resultSet);
-            assertTrue(result.size() == 1); //we send only 1 employee:D
-
-            developer = (Developer) result.get(0);
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        assertTrue(developer.getLinesOfCode() == linesOfCode);
-
+        result = EmployeeParser.parseEmployees(resultSet);
+        Developer developer = (Developer) result.get(0);
         /**
-         * Test cleaner`s parser
+         * Validation
          */
+        assertTrue(result.size() == 1); //we send only 1 employee:D
+        assertTrue(developer.getId() == id);
+        assertEquals(developer.getLastName(), lastName);
+        assertEquals(developer.getFirstName(), firstName);
+        assertEquals(developer.getDateOfBirth(), dateOfBirth);
+        assertTrue(developer.getWage() == wage);
+        assertTrue(developer.getBonus() == bonus);
+        assertTrue(developer.getPenalty() == penalty);
+        assertTrue(developer.getSalary() == salary);
+        assertTrue(developer.getLinesOfCode() == linesOfCode);
+    }
 
-        Cleaner cleaner = null;
+    @Test
+    public void testCleanerParser() {
         int amountOfCleanedOffices = 13;
 
         try {
             when(resultSet.getString("profession")).thenReturn("cleaner");
             when(resultSet.getInt("amountOfCleanedOffices")).thenReturn(amountOfCleanedOffices);
-
-            result = EmployeeParser.parseEmployees(resultSet);
-            assertTrue(result.size() == 1); //we send only 1 employee:D
-
-            cleaner = (Cleaner) result.get(0);
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
+        result = EmployeeParser.parseEmployees(resultSet);
+        Cleaner cleaner = (Cleaner) result.get(0);
+        /**
+         * Validation
+         */
+        assertTrue(result.size() == 1); //we send only 1 employee:D
+        assertTrue(cleaner.getId() == id);
+        assertEquals(cleaner.getLastName(), lastName);
+        assertEquals(cleaner.getFirstName(), firstName);
+        assertEquals(cleaner.getDateOfBirth(), dateOfBirth);
+        assertTrue(cleaner.getWage() == wage);
+        assertTrue(cleaner.getBonus() == bonus);
+        assertTrue(cleaner.getPenalty() == penalty);
+        assertTrue(cleaner.getSalary() == salary);
         assertTrue(cleaner.getAmountOfCleanedOffices() == amountOfCleanedOffices);
     }
 }
