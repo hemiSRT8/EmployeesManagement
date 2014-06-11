@@ -76,7 +76,6 @@ public class DepartmentController {
         return new ModelAndView("viewAllDepartments", modelmap);
     }
 
-
     @RequestMapping(value = "infoAboutDepartmentEmployees.html")
     public ModelAndView infoAboutDepartmentEmployeesController(WebRequest request) {
         ModelMap modelMap = new ModelMap();
@@ -86,7 +85,6 @@ public class DepartmentController {
 
         return new ModelAndView("infoAboutDepartmentEmployees", modelMap);
     }
-
 
     /**
      * Update department

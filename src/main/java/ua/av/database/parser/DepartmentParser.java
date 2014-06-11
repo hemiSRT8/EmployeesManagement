@@ -32,7 +32,8 @@ public class DepartmentParser {
                 }
                 departmentsMap.get(employeeId).add(department);
             }
-            LOGGER.info("Parsing departments finished");
+
+            LOGGER.info("Parsing departments finished,map size={}", departmentsMap.size());
             if (LOGGER.isDebugEnabled()) {
                 for (Long employeeId : departmentsMap.keySet()) {
                     LOGGER.debug("Employee  id{} -> linked deparments {}", employeeId, departmentsMap.get(employeeId));

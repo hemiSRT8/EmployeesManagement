@@ -112,7 +112,7 @@
                                           onsubmit="deleteConfirmation(${employee.getId()});return false;">
                                         <input type="hidden" name="departmentName" value="${departmentName}">
                                         <button type="submit" name="employeeId" value="${employee.getId()}"
-                                                title="Delete employee">
+                                                title="Delete employee from department">
                                             <img src="img/delete.png">
                                         </button>
                                     </form>
