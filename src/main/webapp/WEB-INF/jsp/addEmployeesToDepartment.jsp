@@ -22,7 +22,7 @@
                             onclick="cancelAddEmployeesToDepartmentOperation();"></button>
             </div>
 
-            <select required name="department" multiple="multiple" style="height:200px;margin-left:30px;width:160px;">
+            <select required name="department" multiple style="height:200px;margin-left:30px;width:160px;">
                 <c:forEach items="${departments}" var="department">
                     <option value="${department.getName()}"> ${department.getName()} </option>
                 </c:forEach>
@@ -99,4 +99,3 @@
 <%@ include file="copyright.jsp" %>
 <a href="#" class="scrollup"></a>
 </body>
-</html>

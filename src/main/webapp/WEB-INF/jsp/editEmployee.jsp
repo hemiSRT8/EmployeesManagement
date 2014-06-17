@@ -165,4 +165,3 @@
 </div>
 <%@ include file="copyright.jsp" %>
 </body>
-</html>

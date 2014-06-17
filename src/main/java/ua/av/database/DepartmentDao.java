@@ -33,7 +33,6 @@ public class DepartmentDao {
     /**
      * Create
      */
-
     public boolean addDepartment(String departmentName) {
         LOGGER.info("Add new department started,name={}", departmentName);
 
@@ -71,7 +70,6 @@ public class DepartmentDao {
     /**
      * Read
      */
-
     public Map<String, List<Long>> getEmployeeDepartment() {
         LOGGER.info("Select employee+department info started");
 
@@ -190,7 +188,6 @@ public class DepartmentDao {
     /**
      * Update
      */
-
     public boolean editDepartment(String oldDepartmentName, String newDepartmentName) {
         LOGGER.info("Department edit started,old name={},new name ={}", oldDepartmentName, newDepartmentName);
 
@@ -232,11 +229,10 @@ public class DepartmentDao {
     /**
      * Delete
      */
-
-    public boolean deleteDepartment(String departmentName) {
+    public void deleteDepartment(String departmentName) {
         if (departmentName == null) {
             LOGGER.error("departmentName was null");
-            return false;
+            return;
         }
 
         LOGGER.info("Department deletion started");
@@ -251,11 +247,8 @@ public class DepartmentDao {
             callableStatement.executeUpdate();
 
             LOGGER.info("{} department was deleted successfully", departmentName);
-            return true;
-
         } catch (SQLException e) {
-            LOGGER.error("SQL exception", e);
-            return false;
+            LOGGER.error("Department {} deletion was failed due to SQL exception {}", departmentName, e);
         } finally {
             try {
                 if (connection != null) {
@@ -295,7 +288,7 @@ public class DepartmentDao {
             }
         }
 
-        LOGGER.error("Deleting employee from department has failed,employee id={},department name={}", id, departmentName);
+        LOGGER.error("Deleting employee from department was failed,employee id={},department name={}", id, departmentName);
     }
 }
 

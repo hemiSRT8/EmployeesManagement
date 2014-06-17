@@ -104,14 +104,6 @@
                         <img src="img/edit.png">
                     </button>
 
-                    <form action="deleteDepartment.html" method="POST" style="float:left;"
-                          onsubmit="deleteConfirmation();return false;">
-                        <button type="submit" name="departmentName" value="${entry.key}"
-                                title="Delete department">
-                            <img src="img/delete.png">
-                        </button>
-                    </form>
-
                     <form action="infoAboutDepartmentEmployees.html" method="POST" style="float:left;">
                         <input type="hidden" name="departmentName" value="${entry.key}">
                         <button type="submit" name="employeesIds" value="${entry.value}"
@@ -129,15 +121,24 @@
 <div id="departmentsOnlyNamesContainer">
     <span style="color:red;font-family:cuprum;font-size:16px;">A</span>ll departments
     <br><br>
-    <select disabled multiple style="width:150px;height:200px;color:black;">
-        <c:forEach var="department" items="${departmentsNamesOnly}">
-            <option>${department.getName()}</option>
-        </c:forEach>
-    </select>
+    <center>
+        <select name="departmentName" multiple required style="width:150px;height:200px;color:black;" form="deleteDepartment">
+            <c:forEach var="department" items="${departmentsNamesOnly}">
+                <option value="${department.getName()}">${department.getName()}</option>
+            </c:forEach>
+        </select>
+
+        <form id="deleteDepartment" action="deleteDepartment.html" method="POST"
+              onsubmit="deleteConfirmation();return false;">
+            <button type="submit" title="Delete department"
+                    style="background: none;border: none;cursor:pointer;">
+                <img src="img/deleteButton.png" style="margin-top:10px;">
+            </button>
+        </form>
+    </center>
 </div>
 
 <!-- Container end -->
 </div>
 <%@ include file="copyright.jsp" %>
 </body>
-</html>
