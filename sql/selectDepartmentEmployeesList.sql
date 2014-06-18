@@ -5,6 +5,7 @@ CREATE DEFINER =`root`@`localhost` PROCEDURE `selectDepartmentEmployeesList`(IN 
     SET @s = CONCAT('
 		SELECT employee.*, amountOfSales, percentageOfSales, NULL AS linesOfCode, NULL AS amountOfCleanedOffices,"manager" AS profession  
 		FROM employee JOIN manager ON employee.id = manager.id
+WHERE employee.id IN (', (employeesId), ')
 	UNION
 		 SELECT
       employee.*,
@@ -15,6 +16,7 @@ CREATE DEFINER =`root`@`localhost` PROCEDURE `selectDepartmentEmployeesList`(IN 
       "developer" AS profession
     FROM employee
       JOIN developer ON employee.id = developer.id
+WHERE employee.id IN (', (employeesId), ')
 UNION
 SELECT
       employee.*,
@@ -25,8 +27,7 @@ SELECT
       "cleaner" AS profession
 	   FROM employee
       JOIN cleaner ON employee.id = cleaner.id
-		WHERE employee.id IN (', (employeesId), ');'
-    );
+		WHERE employee.id IN (', (employeesId), ');');
     PREPARE stmt FROM @s;
     EXECUTE stmt;
     DEALLOCATE PREPARE stmt;

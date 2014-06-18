@@ -79,6 +79,7 @@
             </tr>
 
             <c:forEach var="entry" items="${departmentsMap}" varStatus="index">
+            <c:if test="${entry.value.size() > 0}">
             <tr>
                 <td> ${entry.key} </td>
                 <td> ${entry.value.size()} </td>
@@ -114,6 +115,7 @@
                 </td>
             </tr>
     </div>
+    </c:if>
     </c:forEach>
     </table>
 </div>
@@ -122,7 +124,8 @@
     <span style="color:red;font-family:cuprum;font-size:16px;">A</span>ll departments
     <br><br>
     <center>
-        <select name="departmentName" multiple required style="width:150px;height:200px;color:black;" form="deleteDepartment">
+        <select name="departmentName" multiple required style="width:150px;height:200px;color:black;"
+                form="deleteDepartment">
             <c:forEach var="department" items="${departmentsNamesOnly}">
                 <option value="${department.getName()}">${department.getName()}</option>
             </c:forEach>

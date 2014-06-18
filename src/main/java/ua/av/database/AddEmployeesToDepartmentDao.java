@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ua.av.cache.DepartmentsCache;
 
 import javax.sql.DataSource;
 import java.sql.CallableStatement;
@@ -20,6 +21,9 @@ public class AddEmployeesToDepartmentDao {
 
     @Autowired
     private DataSource dataSource;
+
+    @Autowired
+    private DepartmentsCache departmentsCache;
 
     public boolean addEmployeesToDepartment(List<String> employeeIds, List<String> departmentIds) {
         LOGGER.info("Add employees to departments started,employees size={},departments size={}",
@@ -51,7 +55,11 @@ public class AddEmployeesToDepartmentDao {
             }
         }
 
-        LOGGER.info("Add employees to departments finished");
+        LOGGER.info("Add employees to departments finished (db)");
+
+        departmentsCache.addEmployeeToDepartment(employeeIds, departmentIds);
+        LOGGER.info("Add employees to departments finished (cache)");
+
         return true;
     }
 }

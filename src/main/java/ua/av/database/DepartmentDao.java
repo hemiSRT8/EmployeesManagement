@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ua.av.cache.DepartmentsCache;
 import ua.av.database.parser.DepartmentParser;
 import ua.av.database.parser.EmployeeParser;
 import ua.av.entities.Department;
@@ -18,7 +19,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +29,9 @@ public class DepartmentDao {
 
     @Autowired
     private DataSource dataSource;
+
+    @Autowired
+    private DepartmentsCache departmentsCache;
 
     /**
      * Create
@@ -44,7 +47,15 @@ public class DepartmentDao {
             callableStatement.setString("departmentName", "'" + departmentName + "'");
             callableStatement.executeUpdate();
 
-            LOGGER.info("Add new department finished,name={}", departmentName);
+            LOGGER.info("Add new department finished (db),name={}", departmentName);
+
+            boolean cacheResult = departmentsCache.addDepartmentToCache(departmentName);
+            if (cacheResult) {
+                LOGGER.info("Add new department finished (cache),name={}", departmentName);
+            } else {
+                LOGGER.info("Add new department failed (cache),name={}", departmentName);
+            }
+
             return true;
 
         } catch (MysqlDataTruncation e) {
@@ -71,87 +82,15 @@ public class DepartmentDao {
      * Read
      */
     public Map<String, List<Long>> getEmployeeDepartment() {
-        LOGGER.info("Select employee+department info started");
-
-        Connection connection = null;
-        ResultSet departmentsResultSet;
-        Map<String, List<Long>> departmentsHashMap = new HashMap<String, List<Long>>();
-
-        try {
-            connection = dataSource.getConnection();
-            CallableStatement callableStatement = connection.prepareCall("{call selectEmployeeDepartment}");
-            departmentsResultSet = callableStatement.executeQuery();
-
-            while (departmentsResultSet.next()) {
-                String departmentName = departmentsResultSet.getString("departmentName");
-                Long id = departmentsResultSet.getLong("employeeId");
-
-                List<Long> departmentsEmployees = new ArrayList<Long>();
-
-                if (departmentsHashMap.containsKey(departmentName)) {
-                    departmentsHashMap.get(departmentName).add(id);
-                } else {
-                    departmentsEmployees.add(id);
-                    departmentsHashMap.put(departmentName, departmentsEmployees);
-                }
-            }
-
-        } catch (SQLException e) {
-            LOGGER.error("SQL exception", e);
-        } finally {
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                LOGGER.error("SQL exception while connection closing", e);
-            }
-        }
-
-        LOGGER.info("Select employee+department info finished,departments size={}", departmentsHashMap.size());
-        return departmentsHashMap;
+        return departmentsCache.getEmployeePlusDepartments();
     }
 
     public List<Department> getDepartmentsFromDatabase() {
-        LOGGER.info("Select departments started");
-
-        Connection connection = null;
-        ResultSet departmentsResultSet;
-
-        List<Department> departmentList = new ArrayList<Department>();
-
-        try {
-            connection = dataSource.getConnection();
-            CallableStatement callableStatement = connection.prepareCall("{call selectDepartments}");
-            departmentsResultSet = callableStatement.executeQuery();
-
-            if (departmentsResultSet != null) {
-                while (departmentsResultSet.next()) {
-                    departmentList.add(new Department(departmentsResultSet.getString("name")));
-                }
-            } else {
-                LOGGER.error("departmentsResultSet was null, empty list was returned");
-                return new ArrayList<Department>();
-            }
-
-        } catch (SQLException e) {
-            LOGGER.error("SQL exception", e);
-        } finally {
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                LOGGER.error("SQL exception while connection closing", e);
-            }
-        }
-
-        LOGGER.info("Select departments finished,size={}", departmentList.size());
-        return departmentList;
+        return departmentsCache.getAllDepartments();
     }
 
     public List<Employee> getDepartmentEmployeesList(String ids) {
-        LOGGER.info("Selecting department's employees list started,amount of employees in department={}", ids.length());
+        LOGGER.info("Selecting department's employees list started");
 
         List<Employee> employees = new ArrayList<Employee>();
         Connection connection = null;
@@ -209,7 +148,15 @@ public class DepartmentDao {
 
             callableStatement.executeUpdate();
 
-            LOGGER.info("{} department was renamed to {}", oldDepartmentName, newDepartmentName);
+            LOGGER.info("{} department was renamed to {} (db)", oldDepartmentName, newDepartmentName);
+
+            boolean cacheResult = departmentsCache.renameDepartment(oldDepartmentName, newDepartmentName);
+            if (cacheResult) {
+                LOGGER.info("{} department was renamed to {} (cache)", oldDepartmentName, newDepartmentName);
+            } else {
+                LOGGER.error("renaming department with old name {} to {} was failed", oldDepartmentName, newDepartmentName);
+            }
+
             return true;
 
         } catch (SQLException e) {
@@ -246,7 +193,15 @@ public class DepartmentDao {
 
             callableStatement.executeUpdate();
 
-            LOGGER.info("{} department was deleted successfully", departmentName);
+            LOGGER.info("{} department was deleted successfully (db)", departmentName);
+
+            boolean cacheResult = departmentsCache.removeDepartmentFromCache(departmentName);
+            if (cacheResult) {
+                LOGGER.info("{} department was deleted successfully (cache)", departmentName);
+            } else {
+                LOGGER.info("{} department deletion was failed (cache)", departmentName);
+            }
+
         } catch (SQLException e) {
             LOGGER.error("Department {} deletion was failed due to SQL exception {}", departmentName, e);
         } finally {
@@ -271,8 +226,17 @@ public class DepartmentDao {
             callableStatement.setString("departmentName", "'" + departmentName + "'");
             callableStatement.executeQuery();
 
-            LOGGER.info("Delete employee from department finished,department name ={},employee id={}",
+            LOGGER.info("Delete employee from department finished(db),department name ={},employee id={}",
                     id, departmentName);
+
+            boolean cacheResult = departmentsCache.removeEmployeeFromDepartment(id, departmentName);
+            if (cacheResult) {
+                LOGGER.info("Delete employee from department finished(cache),department name ={},employee id={}",
+                        id, departmentName);
+            } else {
+                LOGGER.info("Delete employee from department was failed(cache),department name ={},employee id={}",
+                        id, departmentName);
+            }
 
             return;
 
