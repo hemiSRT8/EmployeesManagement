@@ -24,7 +24,6 @@ public class DepartmentController {
     /**
      * Create department
      */
-
     @RequestMapping(value = "/addDepartment.html")
     public ModelAndView addDepartmentResult(WebRequest request) {
         String departmentName = request.getParameter("departmentName");
@@ -37,7 +36,6 @@ public class DepartmentController {
     /**
      * Read department
      */
-
     @RequestMapping(value = "/viewAllDepartments.html")
     public ModelAndView viewAllDepartments(WebRequest request) {
         ModelMap modelmap = new ModelMap();
@@ -89,7 +87,6 @@ public class DepartmentController {
     /**
      * Update department
      */
-
     @RequestMapping(value = "/editDepartment.html")
     public ModelAndView editEmployee(WebRequest request) {
         String oldDepartmentName = request.getParameter("oldDepartmentName");
@@ -103,14 +100,14 @@ public class DepartmentController {
     /**
      * Delete department
      */
-
     @RequestMapping(value = "/deleteDepartment.html")
-    public ModelAndView deleteDepartment(WebRequest request) {
-        String departmentName = request.getParameter("departmentName");
+    public String deleteDepartment(WebRequest request) {
+        String[] departmentsArray = request.getParameterValues("departmentName");
+        for (String s : departmentsArray) {
+            departmentDao.deleteDepartment(s);
+        }
 
-        boolean result = departmentDao.deleteDepartment(departmentName);
-
-        return new ModelAndView("deleteDepartmentResult", "result", result);
+        return "redirect:viewAllDepartments.html";
     }
 
     @RequestMapping(value = "/deleteEmployeeFromDepartment.html")

@@ -147,4 +147,3 @@
 <%@ include file="copyright.jsp" %>
 <a href="#" class="scrollup"></a>
 </body>
-</html>
